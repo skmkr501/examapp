@@ -1,0 +1,6 @@
+{
+  "name": "Exam Site",
+  "description": "Comprehensive exam preparation, daily challenge, AI tutor, educational games, and question bank in Bengali.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
