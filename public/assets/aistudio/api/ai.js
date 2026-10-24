@@ -12,7 +12,7 @@ const FALLBACKS = (process.env.AI_MODEL_FALLBACK || 'gemini-3.5-flash-lite,gemin
 async function sb(path, opt = {}) {
   const r = await fetch(SB + path, {
     ...opt,
-    headers: { apikey: SK, Authorization: 'Bearer ' + SK, 'Content-Type': 'application/json', ...(opt.headers || {}) },
+    headers: { apikey: SK, ...(String(SK).startsWith('eyJ') ? { Authorization: 'Bearer ' + SK } : {}), 'Content-Type': 'application/json', ...(opt.headers || {}) },
   });
   const t = await r.text();
   let j = null;
