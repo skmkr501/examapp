@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6d5ae6"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Exam Site"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>
+(function(){try{
+function mk(n){var c=document.createElement("canvas");c.width=c.height=n;var x=c.getContext("2d");var g=x.createLinearGradient(0,0,n,n);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");x.fillStyle=g;x.fillRect(0,0,n,n);x.font=Math.round(n*.55)+"px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("\ud83d\udcdd",n/2,n*.54);return c.toDataURL("image/png")}
+var a=mk(192),b=mk(512);
+function lk(r,h,z){var l=document.createElement("link");l.rel=r;l.href=h;if(z)l.sizes=z;document.head.appendChild(l)}
+lk("icon",a);lk("apple-touch-icon",b,"512x512");
+var m={name:"Exam Site by Arghya",short_name:"Exam Site",start_url:location.origin+"/",scope:location.origin+"/",display:"standalone",orientation:"portrait",background_color:"#6d5ae6",theme_color:"#6d5ae6",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png",purpose:"any"},{src:b,sizes:"512x512",type:"image/png",purpose:"any"}]};
+lk("manifest","data:application/manifest+json;charset=utf-8,"+encodeURIComponent(JSON.stringify(m)));
+}catch(e){}})();
+</script>
+<title>Exam Site by Arghya</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://knjfubfnhwqruqehsqbq.supabase.co">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1e1b3a;--mute:#6b6a85;--line:#e4e0f7;--accent:#6d5ae6;--bad:#e11d48;--a1:#6d5ae6;--a2:#ec4899;--a3:#f59e0b;--a4:#14b8a6;--a5:#3b82f6}
+@media (prefers-color-scheme:dark){:root{--bg:#12102a;--card:#1c1a3a;--ink:#f1efff;--mute:#a9a6cf;--line:#34305e;--accent:#9d8cff;--bad:#fb7185}}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.6;background:radial-gradient(circle at 0% 0%,rgba(109,90,230,.22),transparent 45%),radial-gradient(circle at 100% 8%,rgba(236,72,153,.18),transparent 40%),var(--bg);background-attachment:fixed}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+body.admin .wrap{max-width:720px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 10px 28px rgba(90,70,200,.12)}
+h1{font-size:1.4rem;margin:0 0 8px}
+h2{font-size:1.1rem;margin:0 0 10px}
+p{margin:0 0 10px;color:var(--mute)}
+input,select{width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin:4px 0 8px}
+input:focus,select:focus{outline:2px solid var(--a1);border-color:transparent}
+button{font:inherit;border:0;border-radius:10px;padding:10px 16px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;cursor:pointer;margin-right:6px;box-shadow:0 4px 12px rgba(109,90,230,.3);transition:transform .15s}
+button:active{transform:scale(.96)}
+button:disabled{opacity:.4}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button.del{background:var(--bad)}
+button.ghost,button.del{box-shadow:none}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tabs button{flex:1;margin:0}
+.qb{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.opt{display:flex;gap:10px;padding:14px;border:2px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;font-size:1.02rem;transition:.15s}
+.bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 6px 18px rgba(90,70,200,.12);margin-bottom:8px}
+.low{color:var(--bad)}
+.err{color:var(--bad);min-height:1.4em}
+.ok{color:var(--accent)}
+.hide{display:none}
+.score{font-size:1.6rem;font-weight:700}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.rq{border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.ro{padding:4px 8px;border-radius:6px;margin:4px 0}
+.good{background:rgba(31,122,69,.2);font-weight:700}
+.wrong{background:rgba(179,54,47,.2)}
+.st{font-size:.85rem;font-weight:700;margin:4px 0}
+.st-ok{color:#1f7a45}.st-bad{color:#b3362f}.st-sk{color:#b8731a}
+.brand{display:flex;align-items:center;gap:12px;margin:4px 0 16px}
+.brand .logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));box-shadow:0 6px 16px rgba(236,72,153,.35)}
+.brand .bn{font-weight:700;font-size:1.3rem;line-height:1.2;background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand .tag{font-size:.85rem;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{font-size:.8rem;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--c,var(--a1)) 16%,transparent);border:1px solid color-mix(in srgb,var(--c,var(--a1)) 40%,transparent)}
+.xcard{--c:var(--a1);padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c)}
+.xcard.c1{--c:var(--a2)}.xcard.c2{--c:var(--a3)}.xcard.c3{--c:var(--a4)}.xcard.c4{--c:var(--a5)}
+.xcard .xt{font-weight:700;font-size:1.05rem}
+.xcard button{width:100%;margin-top:6px;background:linear-gradient(135deg,var(--c),var(--a2))}
+#exams{display:grid;gap:12px}
+#hero{background:linear-gradient(135deg,#6d5ae6,#ec4899 60%,#f59e0b);color:#fff;border:0;padding:16px 18px}
+#hero h1{color:#fff;font-size:1.2rem;margin:0 0 4px}
+#hero .chips{margin:6px 0 0}
+#hero .chip{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.45);color:#fff}
+body.dash .brand{display:none}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dtop{position:sticky;top:6px;z-index:40;display:flex;align-items:center;gap:4px;padding:7px 8px;margin-bottom:14px;border-radius:22px;background:color-mix(in srgb,var(--card) 88%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 8px 24px rgba(90,70,200,.16)}
+.dtitle{flex:1;min-width:0;font-weight:700;font-size:1.08rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ib{position:relative;width:38px;height:38px;padding:0;margin:0;border-radius:12px;background:transparent;box-shadow:none;color:var(--ink);display:grid;place-items:center;flex:none}
+.ib:active{background:var(--line)}
+.xppill{flex:none;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:999px;color:var(--a3);background:color-mix(in srgb,var(--a3) 14%,transparent);border:1px solid color-mix(in srgb,var(--a3) 45%,transparent);white-space:nowrap}
+.bdot{position:absolute;top:7px;right:8px;width:10px;height:10px;border-radius:50%;background:#ef4444;border:2px solid var(--card);display:none}
+.avc{flex:none;width:40px;height:40px;padding:0;margin:0 0 0 2px;border-radius:50%;font-size:1.4rem;background:var(--bg);border:2px solid var(--a1);box-shadow:none;display:grid;place-items:center;color:var(--ink)}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;margin:16px 0 20px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:7px;padding:0;margin:0;background:none;box-shadow:none;color:var(--ink);font-size:.82rem;line-height:1.25;text-align:center}
+.tile .ti{width:100%;max-width:66px;aspect-ratio:1;border-radius:20px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--card));border:1px solid color-mix(in srgb,var(--c) 32%,var(--line));box-shadow:0 6px 16px color-mix(in srgb,var(--c) 20%,transparent);transition:transform .15s}
+.tile:active .ti{transform:scale(.9)}
+.tile .ti .ic{width:28px;height:28px}
+.strk{display:flex;gap:14px;align-items:center}
+.strk .flame{font-size:3rem;line-height:1;filter:drop-shadow(0 4px 10px rgba(245,158,11,.5))}
+.strk .sl{color:var(--mute);font-weight:600}
+.strk .sn{font-size:2.2rem;font-weight:700;color:var(--a3);line-height:1.1}
+.strk .sn small{font-size:1rem;color:var(--mute);font-weight:500}
+.strk p{margin:4px 0 0;font-size:.92rem}
+.scr{scroll-margin-top:76px}
+.flash{animation:flash 1.2s ease}
+@keyframes flash{30%{box-shadow:0 0 0 3px var(--a1),0 10px 28px rgba(90,70,200,.3)}}
+.drawer{position:fixed;inset:0;z-index:80;background:rgba(15,10,40,.55);display:flex}
+.drawer.hide{display:none}
+.dpanel{width:82%;max-width:320px;height:100%;background:var(--card);padding:20px 16px;overflow:auto;box-shadow:12px 0 40px rgba(0,0,0,.3);animation:slidein .22s ease-out}
+@keyframes slidein{from{transform:translateX(-100%)}}
+.dpanel .dn{font-weight:700;font-size:1.1rem;word-break:break-word}
+.dpanel .dv{color:var(--mute);font-size:.88rem;margin-bottom:14px}
+.dpanel .dl{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin:0 0 4px;padding:12px;border-radius:12px;background:transparent;color:var(--ink);box-shadow:none}
+.dpanel .dl:active{background:var(--line)}
+.dpanel hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+.nitem{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.nitem.click{cursor:pointer}
+#timer{background:linear-gradient(135deg,var(--a4),var(--a5));color:#fff;padding:4px 14px;border-radius:999px;font-variant-numeric:tabular-nums}
+#timer.low{background:var(--bad);color:#fff;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.pbar{height:8px;border-radius:99px;background:var(--line);margin:6px 0 12px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a4),var(--a1),var(--a2));transition:width .3s}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--a1);background:color-mix(in srgb,var(--a1) 14%,transparent)}
+#res{text-align:center}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;margin:10px auto;display:grid;place-items:center;background:conic-gradient(var(--a4) calc(var(--p)*1%),var(--line) 0)}
+.ring::before{content:"";grid-area:1/1;width:118px;height:118px;border-radius:50%;background:var(--card)}
+.ring b{grid-area:1/1;font-size:1.8rem;z-index:1}
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:99;pointer-events:none;animation:fall 2.6s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+.sumgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.sc{border-radius:16px;padding:12px;color:#fff}
+.sc b{display:block;font-size:1.6rem}.sc span{font-size:.85rem}
+.s1{background:linear-gradient(135deg,var(--a1),var(--a5))}.s2{background:linear-gradient(135deg,var(--a2),var(--a3))}
+.s3{background:linear-gradient(135deg,var(--a4),var(--a5))}.s4{background:linear-gradient(135deg,var(--a3),var(--a2))}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.dots b{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:.85rem;border:1px solid var(--line);cursor:pointer}
+.dots b.done{background:linear-gradient(135deg,var(--a4),var(--a5));color:#fff;border-color:transparent}
+.dots b.cur{outline:2px solid var(--a2)}
+#revbody{display:flex;flex-direction:column}
+.prhead{font-weight:700;color:var(--a1);border-bottom:2px solid var(--a1);padding-bottom:6px;margin-bottom:10px}
+.sig{display:none;order:99;justify-content:space-between;margin-top:40px}
+.hrow{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.hrow .hp{min-width:56px;text-align:center;font-weight:700;border-radius:10px;padding:4px 8px;background:linear-gradient(135deg,var(--a3),var(--a2));color:#fff}
+@media print{.sig{display:flex}}
+.tabs{flex-wrap:wrap}
+.bdg.off{opacity:.4;filter:grayscale(1)}
+.lbrow{display:flex;gap:10px;align-items:center;padding:8px 10px;border-top:1px solid var(--line);border-radius:10px}
+.lbrow.me{background:color-mix(in srgb,var(--a1) 14%,transparent)}
+.lbrow .rk{min-width:34px;text-align:center;font-weight:700}
+.lbrow .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bank-item{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.bank-item input{width:auto;margin:6px 0 0}
+.ovl{position:fixed;inset:0;background:rgba(15,10,40,.62);z-index:90;display:grid;place-items:center;padding:14px}
+.ovl>.card{width:100%;max-width:560px;max-height:92vh;overflow:auto;margin:0}
+
+.crumb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.crumb button{margin:0;padding:6px 12px}
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cbox{--c:var(--a1);border-radius:18px;padding:16px 10px;color:#fff;cursor:pointer;text-align:center;background:linear-gradient(135deg,var(--c),var(--a2));box-shadow:0 6px 16px rgba(90,70,200,.18);transition:transform .15s}
+.cbox:active{transform:scale(.97)}
+.cbox.k1{--c:var(--a5)}.cbox.k2{--c:var(--a4)}.cbox.k3{--c:var(--a3)}.cbox.k4{--c:var(--a2)}
+.cbox b{display:block;font-size:2rem;line-height:1.2}
+.cbox .cn{font-weight:700}
+.cbox small{display:block;opacity:.92;margin-top:2px}
+.egrid{display:grid;gap:12px}
+.chh{font-weight:700;margin:14px 0 6px;color:var(--a1)}
+.citem{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;background:var(--card)}
+.citem:active{transform:scale(.98)}
+.citem .ci{font-size:1.4rem}
+.cview{white-space:pre-wrap;line-height:1.8;margin:10px 0}
+textarea.ta{width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin:4px 0 8px}
+.citem.lk{opacity:.85}.citem .chip{margin-left:auto}
+.pstep{display:flex;gap:8px;margin:6px 0;color:var(--ink)}.pstep b{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;color:#fff;background:linear-gradient(135deg,var(--a1),var(--a2))}
+.pnum{display:flex;gap:8px;align-items:center;padding:10px 12px;border:1px dashed var(--a2);border-radius:12px;margin:6px 0 10px;font-weight:700;font-size:1.15rem}
+.pnum span{flex:1}.pnum button{margin:0;padding:6px 12px}
+#subcard{background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 18%,var(--card)),color-mix(in srgb,var(--a2) 14%,var(--card)));border-color:color-mix(in srgb,var(--a3) 45%,var(--line))}
+.dlinks{display:none;gap:2px;margin-right:6px}.dlinks button{margin:0;padding:6px 10px;background:transparent;color:var(--ink);box-shadow:none;font-size:.92rem}
+.dlinks button:hover{background:var(--line)}
+@media(min-width:900px){.dlinks{display:flex}.sgrid{grid-template-columns:repeat(9,1fr)}.cgrid{grid-template-columns:repeat(4,1fr)}#exams,.egrid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)!important}}
+#loginbtn{margin:0 4px 0 0;background:#e8505b;box-shadow:none;border-radius:999px;padding:8px 18px}
+.gglbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 10px;padding:12px;background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none;border-radius:999px;font-weight:600}
+.sep{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:.85rem;margin:10px 0}.sep:before,.sep:after{content:"";flex:1;border-top:1px solid var(--line)}
+.vbox{max-width:520px;margin:0 auto}
+.ucard{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid #9be0bd;background:#effcf5;border-radius:16px;margin:10px 0 16px;color:#111}.ucard .pav{width:52px;height:52px;font-size:1.5rem}
+.clsg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 16px}.clsb{margin:0;padding:18px 4px;border-radius:14px;font-weight:700;border:2px solid var(--line)}.clsb.on{border-color:var(--a1);background:color-mix(in srgb,var(--a1) 14%,transparent)}
+.pav{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;flex:none}
+.pgrid{display:grid;grid-template-columns:1fr;gap:0}.pitem{display:flex;gap:10px;align-items:center;padding:12px;border-top:1px solid var(--line)}.pitem small{display:block;color:var(--mute)}
+.pitem i{font-style:normal;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,#e8505b 12%,var(--card))}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.kpi div{padding:12px;border-radius:12px;background:var(--bg)}.kpi small{display:block;color:var(--mute);font-size:.78rem}.kpi b{font-size:1.4rem}
+.pfx{padding:14px;border:1px solid var(--line);border-radius:14px;margin:10px 0}.pfx h3{margin:0 0 8px;font-size:1rem}
+#paysetup summary{cursor:pointer;margin-top:14px;font-weight:700}
+html[data-theme="dark"]{--bg:#12102a;--card:#1c1a3a;--ink:#f1efff;--mute:#a9a6cf;--line:#34305e;--accent:#9d8cff;--bad:#fb7185}
+html[data-theme="light"]{--bg:#f6f7fb;--card:#fff;--ink:#1e1b3a;--mute:#6b6a85;--line:#e4e0f7;--accent:#6d5ae6;--bad:#e11d48}
+.opt.good{background:rgba(31,122,69,.22)}.opt.wrong{background:rgba(179,54,47,.22)}
+@media print{
+:root{--bg:#fff;--card:#fff;--ink:#000;--mute:#333;--line:#999;--accent:#000}
+body{background:#fff;color:#000}
+.noprint{display:none!important}
+section:not(#rev){display:none!important}
+.card{border:0;padding:0;box-shadow:none}
+.rq{break-inside:avoid}
+.brand{display:none!important}
+}
+
+.qimg{display:block;max-width:100%;max-height:260px;margin:6px 0;border-radius:8px;background:#fff;object-fit:contain}
+.opt .qimg,.ro .qimg{max-height:150px;margin:2px 0}
+.qimg.zm{cursor:zoom-in}
+.imgtl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0 8px}
+.imgtl button{padding:4px 10px;font-size:.85rem}
+.imgtl .th{position:relative}
+.imgtl .th img{height:48px;border-radius:6px;border:1px solid var(--line);background:#fff;display:block}
+.imgtl .th i{position:absolute;top:-6px;right:-6px;background:#e5484d;color:#fff;border-radius:50%;width:18px;height:18px;line-height:18px;text-align:center;font-size:.7rem;font-style:normal;cursor:pointer}
+@media print{.qimg{max-height:200px;break-inside:avoid}}
+
+.fc{min-height:160px;display:grid;place-items:center;text-align:center;padding:20px;border-radius:18px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-weight:700;line-height:1.6;margin:12px 0;animation:fcin .35s}
+.fc.bk{background:linear-gradient(135deg,var(--a4),var(--a5))}
+@keyframes fcin{from{transform:rotateY(90deg)}to{transform:none}}
+.tabhide{display:none!important}
+.fttl{font-size:1.4rem;font-weight:700;color:var(--a1);margin:6px 0}
+.ovl.pg{background:var(--bg);display:block;padding:0;overflow:auto;z-index:80}
+.ovl.pg>.card{max-width:760px;width:100%;margin:0 auto;max-height:none;min-height:100%;border-radius:0;border:0;box-shadow:none}
+.pghd{position:sticky;top:-18px;z-index:6;display:flex;gap:10px;align-items:center;background:var(--card);padding:12px 0 10px;margin:-18px 0 8px;border-bottom:1px solid var(--line)}
+.pghd button{margin:0;padding:6px 14px}.pghd b{font-size:1.1rem}
+.pgtabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;margin-bottom:6px;position:sticky;top:44px;background:var(--card);z-index:5}
+.pgtab{flex:0 0 auto;margin:0;padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;cursor:pointer;white-space:nowrap}
+.pgtab.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-color:transparent}
+.ovl.pg .egrid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.ovl.pg .cgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.rtile{border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;background:var(--card)}
+.rtile b{display:block;font-size:2.1rem;line-height:1.3}.rtile small{display:block;color:var(--mute);margin-top:4px}
+.rtile.off{opacity:.6;filter:grayscale(1)}
+.pbwrap{margin-top:14px}.pbwrap h3{font-size:1rem;margin:0 0 8px}.pbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}.pbt{aspect-ratio:1/1;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,color-mix(in srgb,var(--a1) 12%,var(--card)),var(--card));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px;gap:6px;box-shadow:0 3px 10px rgba(90,70,200,.12)}.pbt b{font-size:2.5rem;line-height:1}.pbt span{font-size:.78rem;font-weight:700;line-height:1.25;word-break:break-word}.pbt.r{border-color:color-mix(in srgb,var(--a3) 55%,transparent);background:linear-gradient(145deg,color-mix(in srgb,var(--a3) 18%,var(--card)),var(--card))}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.gainbar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;margin-bottom:14px;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--a4),var(--a1));box-shadow:0 8px 22px rgba(20,184,166,.3);animation:mbin .5s}
+.gainbar span{flex:1}.gainbar button{margin:0;padding:2px 10px;background:rgba(255,255,255,.25);color:#fff;border:0;border-radius:99px}
+.mbx{background:radial-gradient(circle at 50% 35%,rgba(109,90,230,.88),rgba(15,10,40,.95));z-index:120}
+.mbc{text-align:center;color:#fff;max-width:340px;width:100%}
+.mbt{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.mbg{font-size:7rem;line-height:1.2;cursor:pointer;animation:mbfloat 2s ease-in-out infinite;filter:drop-shadow(0 0 26px #fbbf24)}
+.mbg.shake{animation:mbshake .65s}.mbg.pop{animation:mbpop .55s}
+.mbh{opacity:.85;animation:mbblink 1.4s infinite}
+.mbr{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);border-radius:14px;padding:12px;margin:8px 0;font-weight:700;font-size:1.1rem;display:flex;gap:10px;align-items:center;justify-content:center;opacity:0;animation:mbin .5s forwards}
+.mbi{font-size:1.8rem}.mbc button{margin-top:10px}
+@keyframes mbfloat{50%{transform:translateY(-14px) scale(1.06)}}
+@keyframes mbshake{10%,50%,90%{transform:rotate(-14deg) scale(1.1)}30%,70%{transform:rotate(14deg) scale(1.1)}100%{transform:scale(1.3)}}
+@keyframes mbpop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.3)}100%{transform:scale(1);opacity:1}}
+@keyframes mbin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes mbblink{50%{opacity:.35}}
+.gq{font-size:1.9rem;font-weight:700;text-align:center;margin:14px 0;line-height:1.5}.gq.big{font-size:3rem}
+.tfgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.mcard{aspect-ratio:1/1;min-height:70px;display:grid;place-items:center;text-align:center;border-radius:14px;padding:4px;font-weight:700;font-size:.95rem;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;cursor:pointer;user-select:none;transition:transform .2s}
+.mcard.up{background:var(--card);color:var(--ink);border:2px solid var(--a1);transform:rotateY(8deg)}
+.mcard.ok{background:linear-gradient(135deg,var(--a4),var(--a1));color:#fff;border:0}
+.fzc{border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;background:var(--card)}
+.fzc.me{border-color:var(--a1);background:color-mix(in srgb,var(--a1) 8%,var(--card))}
+.fzh{display:flex;align-items:center;gap:10px}
+.fza{font-size:2rem;line-height:1}
+.fzn{flex:1;min-width:0}.fzn b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fzn small{display:block;color:var(--mute)}
+.fzh button{margin:0;padding:8px 12px;font-size:.85rem}
+.fzc .chips{margin-top:8px}
+.fzvis{display:block;font-size:.85rem;color:var(--mute);margin:6px 0 10px}
+.fzsec{font-weight:700;margin:16px 0 4px}
+.fzact{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.fzact button{margin:0;padding:8px 12px;font-size:.85rem}
+.fzpf{text-align:center;display:flex;flex-direction:column;gap:4px;align-items:center;margin-bottom:8px}
+.fzpf .fzbig{font-size:3.4rem;line-height:1.1}.fzpf small{color:var(--mute)}
+.avimg{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.hasph{overflow:hidden;padding:0}
+.fza.hasph{width:46px;height:46px;flex:none;display:block}
+.fzbig.hasph{width:88px;height:88px;display:block;margin:0 auto}
+.avmini{width:1.5em;height:1.5em;border-radius:50%;object-fit:cover;vertical-align:middle}
+.phrow{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.phrow button{margin:0}
+.fzgift{background:linear-gradient(135deg,var(--a3),var(--a2))}
+.fzgbox{border:1px dashed var(--a3);border-radius:14px;padding:10px 12px;margin:8px 0 12px;background:color-mix(in srgb,var(--a3) 10%,var(--card))}
+.fzgbox p{margin:0 0 8px;color:var(--ink);font-size:.9rem}.fzgbox button{margin:0}
+.spgrid{display:grid;gap:6px;margin:6px 0 12px}
+.spcell{font-size:1.7rem;line-height:1;text-align:center;padding:8px 0;border:2px solid var(--line);border-radius:12px;background:var(--bg);user-select:none;touch-action:manipulation}
+.spgrid.tp .spcell{cursor:pointer}.spcell.on{border-color:var(--a2);background:color-mix(in srgb,var(--a2) 20%,var(--bg))}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<template id="tpl-student">
+<div class="wrap">
+<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">জানো · শেখো · এগিয়ে যাও</div></div></header>
+
+<section id="loading" class="card"><h2>লোড হচ্ছে...</h2><p>একটু অপেক্ষা করুন।</p></section>
+
+<section id="auth" class="card hide">
+  <div class="vbox"><button class="ghost" id="authback" style="margin:0 0 10px">← ফিরে যান</button>
+  <h1 id="atitle">লগইন / সাইনআপ</h1><p>Google দিয়ে এক ট্যাপেই শুরু করুন।</p>
+  <button class="gglbtn" id="ggl"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.2 5.5-4.7 7.2l7.6 5.9c4.4-4.1 6.9-10.1 6.9-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.8 2.3-8.3 2.3-6.3 0-11.6-4-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Google দিয়ে চালিয়ে যান</button>
+  <div class="sep">অথবা ইমেইল দিয়ে</div>
+  <div id="nameBox" class="hide"><label>নাম</label><input id="fname" autocomplete="name"></div>
+  <label>ইমেইল</label><input id="email" type="email" autocomplete="email">
+  <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="pass" type="password" autocomplete="current-password">
+  <div class="err" id="aerr"></div>
+  <button id="abtn">লগইন</button>
+  <button class="ghost" id="aswitch">নতুন অ্যাকাউন্ট খুলুন</button>
+  <button class="ghost" id="forgot">পাসওয়ার্ড ভুলে গেছেন?</button>
+  <button class="ghost" id="teachlink">👨‍🏫 শিক্ষক? টিচার প্যানেলে যান</button></div>
+</section>
+
+<section id="guest" class="card hide">
+  <h1 id="gtitle">পরীক্ষা</h1>
+  <div class="chips" id="ginfo"></div>
+  <div class="err" id="gmsg"></div>
+  <div id="gform">
+    <div id="gnameBox"><label>আপনার নাম</label><input id="gname" autocomplete="name" maxlength="60" placeholder="পূর্ণ নাম লিখুন"></div>
+    <div class="err" id="gerr"></div>
+    <button id="gbtn">পরীক্ষা শুরু করুন</button>
+  </div>
+</section>
+
+<section id="reset" class="card hide">
+  <h1>নতুন পাসওয়ার্ড দিন</h1>
+  <input id="npass" type="password" placeholder="নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)">
+  <div class="err" id="rerr"></div>
+  <button id="rbtn">পাসওয়ার্ড বদলান</button>
+</section>
+
+<section id="home" class="hide">
+  <header class="dtop">
+    <button class="ib" id="menubtn" aria-label="মেনু"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="dtitle">Exam Site by Arghya</div>
+    <nav class="dlinks"><button data-act="exam">পরীক্ষা</button><button data-act="daily">ডেইলি চ্যালেঞ্জ</button><button data-act="lb">লিডারবোর্ড</button><button data-act="book">বুক ও নোট</button><button data-act="video">ভিডিও</button><button data-act="past">ফলাফল</button><button data-act="games">গেম জোন</button></nav>
+    <span class="xppill" id="xppill">০ XP</span>
+    <button class="ib" id="srchbtn" aria-label="খুঁজুন"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    <button class="ib" id="themebtn" aria-label="থিম">🌓</button><button class="ib" id="langbtn" style="font-size:.8rem;font-weight:700">EN</button><button class="ib" id="bellbtn" aria-label="নোটিফিকেশন"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i class="bdot" id="bdot"></i></button>
+    <button class="hide" id="loginbtn">লগইন / সাইনআপ</button><button class="avc" id="avbtn" aria-label="অ্যাভাটার বদলান">🙂</button>
+  </header>
+
+  <div class="card" id="hero"><h1 id="hello"></h1><div class="chips" id="stats"></div><button id="herocta" class="hide" style="margin:12px 0 0;background:#fff;color:#6d5ae6">🚀 শুরু করো — লগইন / সাইনআপ</button></div>
+  <div class="card hide" id="subcard"></div>
+
+  <div class="sgrid">
+    <button class="tile" data-act="exam" style="--c:var(--a1)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.4 2.6a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg></span><span>পরীক্ষা</span></button>
+    <button class="tile" data-act="daily" style="--c:var(--a3)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span>ডেইলি চ্যালেঞ্জ</span></button>
+    <button class="tile" data-act="lb" style="--c:var(--a2)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17c0 .6-.5 1-1.1 1.2C7.9 18.8 7 20.2 7 22M14 14.7V17c0 .6.5 1 1.1 1.2 1 .6 1.9 2 1.9 3.8M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span><span>লিডারবোর্ড</span></button>
+    <button class="tile" data-act="book" style="--c:var(--a5)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span>বুক ও নোট</span></button>
+    <button class="tile" data-act="video" style="--c:var(--a4)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg></span><span>ভিডিও</span></button>
+    <button class="tile" data-act="badge" style="--c:var(--a3)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg></span><span>ব্যাজ</span></button>
+    <button class="tile" data-act="past" style="--c:var(--a1)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span><span>ফলাফল</span></button>
+    <button class="tile" data-act="me" style="--c:var(--a2)"><span class="ti"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>প্রোফাইল</span></button>
+    <button class="tile" data-act="mistakes" style="--c:var(--a2)"><span class="ti" style="font-size:1.6rem">📕</span><span>ভুলের খাতা</span></button>
+    <button class="tile" data-act="flash" style="--c:var(--a3)"><span class="ti" style="font-size:1.6rem">🧠</span><span>ফ্ল্যাশকার্ড</span></button>
+    <button class="tile" data-act="custom" style="--c:var(--a1)"><span class="ti" style="font-size:1.6rem">🎯</span><span>কাস্টম পরীক্ষা</span></button>
+    <button class="tile" data-act="refer" style="--c:var(--a4)"><span class="ti" style="font-size:1.6rem">👥</span><span>রেফার করুন</span></button>
+    <button class="tile" data-act="spin" style="--c:var(--a2)"><span class="ti" style="font-size:1.6rem">🎡</span><span>দৈনিক স্পিন</span></button>
+    <button class="tile" data-act="games" style="--c:var(--a1)"><span class="ti" style="font-size:1.6rem">🎮</span><span>গেম জোন</span></button>
+    <button class="tile" data-act="friends" style="--c:var(--a3)"><span class="ti" style="font-size:1.6rem">👥</span><span>ফ্রেন্ড জোন</span></button>
+    <button class="tile" data-act="offscan" style="--c:var(--a4)"><span class="ti" style="font-size:1.6rem">📷</span><span>অফলাইন স্ক্যান</span></button>
+  </div>
+
+  <div class="card scr strk" id="strkcard"><span class="flame">🔥</span><div style="flex:1"><div class="sl">বর্তমান স্ট্রিক</div><div class="sn"><span id="strkNum">০</span> <small>দিন</small></div><p id="strkMsg">স্ট্রিক শুরু করতে একটি পরীক্ষা বা ডেইলি চ্যালেঞ্জ দিন! 🔥</p></div></div>
+
+  <div id="gainbar" class="gainbar hide"></div>
+  <div class="card scr" id="sec-profile"><div style="display:flex;gap:14px;align-items:center"><div style="flex:1"><b id="lvl"></b><div class="pbar"><i id="xpfill"></i></div><small id="xptxt"></small></div></div><div class="chips" id="avgrid" style="display:none;margin-top:10px"></div><div id="pbadges" class="pbwrap"></div></div>
+  <div class="card scr" id="sec-dc"><h2>⚡ ডেইলি চ্যালেঞ্জ</h2><p id="dctext"></p><button id="dcbtn">⚡ শুরু করুন</button></div>
+  <div class="card scr hide" id="sec-fact"></div>
+  <div class="card scr" id="sec-badges"><h2>🏅 ব্যাজ ও স্ট্রিক</h2><div class="chips" id="streak"></div><div class="chips" id="badges"></div><div class="chh">🎓 মাইলস্টোন সার্টিফিকেট (অর্জিতটিতে ট্যাপ করে PDF নিন)</div><div class="chips" id="miles"></div></div>
+  <div class="card scr hide" id="sec-top3"></div>
+  <div class="card scr tabhide" id="sec-lb"><h2>🥇 লিডারবোর্ড</h2><select id="lbsel"></select><div id="lb"></div></div>
+  <div class="card scr tabhide" id="sec-rare"></div>
+  <div class="card scr tabhide" id="sec-nav"><h2 id="navtitle">📚 শ্রেণি, বিষয় ও পরীক্ষা</h2><input id="topicq" placeholder="🔎 টপিক / বিষয় / অধ্যায় ফিল্টার"><div id="crumb" class="crumb"></div><div id="exams"></div></div>
+  <div class="card scr tabhide" id="sec-past"><h2>🏆 আমার আগের ফলাফল</h2><div id="past"></div></div>
+
+  <div class="drawer hide" id="drawer"><div class="dpanel">
+    <div class="dn" id="dname"></div><div class="dv" id="dlvl"></div>
+    <button class="dl" data-go="sec-nav">📚 শ্রেণি, বিষয় ও পরীক্ষা</button>
+    <button class="dl" data-go="sec-dc">⚡ ডেইলি চ্যালেঞ্জ</button>
+    <button class="dl" data-go="sec-lb">🥇 লিডারবোর্ড</button>
+    <button class="dl" data-go="sec-badges">🏅 ব্যাজ ও স্ট্রিক</button>
+    <button class="dl" data-go="sec-past">🏆 আমার ফলাফল</button>
+    <hr>
+    <button class="ghost hide" id="adminbtn" style="width:100%;margin:0 0 8px">🛠 অ্যাডমিন প্যানেল</button>
+    <button class="ghost hide" id="teacherbtn" style="width:100%;margin:0 0 8px">👨‍🏫 টিচার প্যানেল</button>
+    <button class="ghost" id="logout" style="width:100%;margin:0 0 8px">লগআউট</button>
+    <button class="ghost" id="dclose" style="width:100%;margin:0">বন্ধ করুন</button>
+  </div></div>
+</section>
+
+<section id="cls" class="card hide"><div class="vbox">
+  <div class="brand" style="justify-content:center"><span class="logo">📝</span></div>
+  <div class="ucard"><div class="pav" id="clsav">🙂</div><div><b id="clsname"></b><div id="clsmail" style="color:var(--mute)"></div><div style="color:#1f7a45;font-weight:600">✓ অ্যাকাউন্ট তৈরি হয়েছে</div></div></div>
+  <h2>কোন শ্রেণিতে পড়ো?</h2><div class="clsg" id="clsgrid"></div>
+  <button id="clsgo" disabled style="width:100%;padding:14px;margin:0">পড়াশুনা শুরু করো</button></div></section>
+
+<section id="prof" class="hide">
+  <button class="ghost" id="profback" style="margin:0 0 10px">← হোমে ফিরুন</button>
+  <div id="profbody"></div>
+</section>
+
+<section id="exam" class="hide">
+  <div class="bar"><span id="etitle"></span><span id="timer"></span></div>
+  <div class="pbar"><i id="pfill"></i></div>
+  <div class="card">
+    <div id="qn" style="color:var(--mute)"></div>
+    <h2 id="q"></h2><p style="font-size:.9rem">সতর্কতা: একবার অপশন বেছে নিলে আর বদলানো যাবে না।</p><div id="opts"></div>
+    <div class="nav"><button class="ghost" id="prev">আগের</button><button class="ghost" id="next">পরের</button></div>
+    <div class="dots" id="qdots"></div>
+  </div>
+  <button id="submit">জমা দিন</button>
+</section>
+
+<section id="rev" class="card hide">
+  <div id="revbody"></div>
+  <div class="noprint" style="margin-top:14px"><p class="noprint" style="font-size:.9rem">PDF ডাউনলোডে চাপলে যে প্রিন্ট মেনু আসবে, সেখান থেকে "PDF হিসেবে সংরক্ষণ" (Save as PDF) বেছে নিন।</p><button id="revpdf">PDF ডাউনলোড</button> <button class="ghost" id="revback">পিছনে</button></div>
+</section>
+
+<section id="res" class="card hide">
+  <h1>🎯 আপনার ফলাফল</h1>
+  <div class="ring" id="ring"><b id="ringtxt"></b></div>
+  <div class="score" id="score"></div>
+  <p id="rmsg"></p>
+  <div id="wabox" class="pfx hide" style="text-align:left"><h3>📲 উত্তরপত্র WhatsApp-এ পাঠান</h3>
+    <input id="wanum" type="tel" inputmode="numeric" maxlength="14" placeholder="WhatsApp নম্বর (01XXXXXXXXX)">
+    <button id="wabtn" style="width:100%;margin:0;background:#25d366">📄 PDF বানিয়ে WhatsApp-এ পাঠান</button>
+    <div id="wamsg" class="err" style="min-height:1.2em;margin-top:6px"></div></div>
+  <button class="ghost" id="shareCard">📤 ফলাফল কার্ড শেয়ার করুন</button>
+  <button class="ghost hide" id="grev">📄 উত্তরপত্র দেখুন</button>
+  <button id="back">হোমে ফিরুন</button>
+</section>
+
+</div>
+</template>
+<template id="tpl-teacher">
+<div class="wrap">
+<header class="brand"><span class="logo">👨‍🏫</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">টিচারস প্যানেল</div></div></header>
+
+<section id="t_load" class="card"><h2>লোড হচ্ছে...</h2></section>
+
+<section id="t_login" class="card hide">
+  <h1 id="t_atitle">টিচার লগইন</h1>
+  <p>আপনার আইডি (ইমেইল) দিয়ে লগইন করুন। প্যানেল পেতে লগইনের পর অ্যাডমিনের কাছে অনুরোধ পাঠাতে হবে।</p>
+  <button class="ghost" id="t_ggl" style="width:100%;margin:0 0 10px">Google দিয়ে লগইন</button>
+  <div id="t_nameBox" class="hide"><input id="t_fname" placeholder="আপনার নাম" autocomplete="name"></div>
+  <input id="t_email" type="email" placeholder="ইমেইল" autocomplete="email">
+  <input id="t_pass" type="password" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)" autocomplete="current-password">
+  <div class="err" id="t_aerr"></div>
+  <button id="t_abtn">লগইন</button>
+  <button class="ghost" id="t_aswitch">নতুন অ্যাকাউন্ট খুলুন</button>
+  <button class="ghost" id="t_forgot">পাসওয়ার্ড ভুলে গেছেন?</button>
+  <button class="ghost" id="t_tostu0">← স্টুডেন্ট পেজ</button>
+</section>
+
+<section id="t_gate" class="card hide">
+  <h1>👨‍🏫 টিচারস প্যানেল</h1>
+  <div id="t_gmsg"></div>
+  <div id="t_reqbox" class="hide">
+    <p>প্যানেল পেতে নিচের তথ্য দিয়ে অ্যাডমিনের কাছে অনুরোধ পাঠান। অনুমোদন পেলে প্যানেল চালু হয়ে যাবে।</p>
+    <input id="t_rname" placeholder="আপনার নাম">
+    <input id="t_rphone" type="tel" placeholder="মোবাইল / WhatsApp নম্বর">
+    <textarea id="t_rnote" class="ta" rows="3" placeholder="প্রতিষ্ঠান, বিষয় ও কেন প্যানেল দরকার (সংক্ষেপে)" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)"></textarea>
+    <div class="err" id="t_rerr"></div>
+    <button id="t_rbtn">📨 অ্যাডমিনের কাছে অনুরোধ পাঠান</button>
+  </div>
+  <button class="ghost" id="t_gref">🔄 স্ট্যাটাস দেখুন</button>
+  <button class="ghost" id="t_lo1">লগআউট</button>
+  <button class="ghost" id="t_tostu1">← স্টুডেন্ট পেজ</button>
+</section>
+
+<section id="t_rev" class="card hide">
+  <div id="t_revbody"></div>
+  <div class="noprint" style="margin-top:14px"><button id="t_revpdf">📄 PDF / প্রিন্ট</button><button class="ghost" id="t_revback">← ফিরে যান</button></div>
+</section>
+
+<section id="t_panel" class="hide">
+  <div class="sumgrid" id="t_sum"></div>
+  <div class="tabs" id="t_tabs">
+    <button data-t="new">নতুন পরীক্ষা</button>
+    <button class="ghost" data-t="list">পরীক্ষার তালিকা</button>
+    <button class="ghost" data-t="res">ফলাফল</button>
+    <button class="ghost" data-t="bank">প্রশ্নব্যাংক</button>
+    <button class="ghost" data-t="lb">🥇 লিডারবোর্ড</button>
+    <button class="ghost" data-t="ai">🤖 এআই</button>
+  </div>
+
+  <div id="tt-new" class="card">
+    <h2 id="t_formtitle">নতুন পরীক্ষা যোগ করুন</h2>
+    <input id="t_title" placeholder="পরীক্ষার নাম">
+    <input id="t_dur" type="number" min="1" value="10" placeholder="সময় (মিনিট)">
+    <select id="t_ecls"></select>
+    <input id="t_esub" list="t_sublist" placeholder="বিষয় (যেমন: গণিত) — ঐচ্ছিক"><datalist id="t_sublist"></datalist>
+    <input id="t_echap" placeholder="অধ্যায় — ঐচ্ছিক">
+    <label>কতবার পরীক্ষা দেওয়া যাবে (০ লিখলে যতবার খুশি)</label>
+    <input id="t_att" type="number" min="0" value="1">
+    <label style="display:block;margin:6px 0"><input type="checkbox" id="t_shq" checked style="width:auto;margin:0 6px 0 0">প্রশ্নের ক্রম এলোমেলো করুন</label>
+    <label style="display:block;margin:6px 0"><input type="checkbox" id="t_sho" checked style="width:auto;margin:0 6px 0 0">অপশনের ক্রম এলোমেলো করুন</label>
+    <label style="display:block;margin:6px 0 12px"><input type="checkbox" id="t_rvo" checked style="width:auto;margin:0 6px 0 0">পরীক্ষা শেষে স্টুডেন্ট নিজের উত্তরপত্র ও সঠিক উত্তর দেখতে পাবে</label>
+    <label style="display:block;margin:6px 0 12px">➖ নেগেটিভ মার্কিং (প্রতি ভুল নম্বরে কাটা যাবে): <select id="t_neg"><option value="0">নেই</option><option value="0.25">০.২৫</option><option value="0.5">০.৫</option><option value="1">১</option></select></label>
+    <label style="display:block;margin:6px 0 12px"><input type="checkbox" id="t_tobank" checked style="width:auto;margin:0 6px 0 0">সংরক্ষণের সময় প্রশ্নগুলো আমার প্রশ্নব্যাংকেও রাখুন</label>
+    <details style="margin:8px 0 14px">
+      <summary>পেস্ট করে একসঙ্গে প্রশ্ন যোগ করুন</summary>
+      <p>প্রতিটি প্রশ্নের নিচে ক) খ) গ) ঘ) অপশন, তারপর <b>উত্তর: খ</b> ও ঐচ্ছিক <b>নম্বর: 2</b>। দুই প্রশ্নের মাঝে একটা ফাঁকা লাইন রাখুন।</p>
+      <textarea id="t_paste" rows="10" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)"></textarea>
+      <button class="ghost" id="t_doPaste" style="margin-top:6px">ফর্মে সাজান</button>
+    </details>
+    <div id="t_qs"></div>
+    <button class="ghost" id="t_addq">+ প্রশ্ন যোগ</button>
+    <button class="ghost" id="t_frombank">📦 ব্যাংক থেকে বাছুন</button>
+    <button class="ghost" id="t_toai">🤖 এআই দিয়ে বানান</button>
+    <button id="t_save">পরীক্ষা সংরক্ষণ করুন</button>
+    <button class="ghost" id="t_cancel">বাতিল / নতুন ফর্ম</button>
+    <div id="t_msg" class="err"></div>
+  </div>
+
+  <div id="tt-list" class="card hide"><h2>আমার পরীক্ষাগুলো</h2><div id="t_exams"></div></div>
+
+  <div id="tt-res" class="card hide"><h2>স্টুডেন্টদের ফলাফল</h2>
+    <input id="t_rq" placeholder="🔍 নাম দিয়ে খুঁজুন">
+    <select id="t_rex"><option value="">সব পরীক্ষা</option></select>
+    <div class="tw" id="t_results"></div>
+    <h2 style="margin-top:20px">⚠️ সবচেয়ে বেশি ভুল হওয়া প্রশ্ন</h2>
+    <div id="t_hard"></div>
+    <h2 style="margin-top:20px">কে কোন পরীক্ষা শুরু করেছে</h2>
+    <p>যার নেট বা ফোনের সমস্যা হয়েছে, তাকে এখান থেকে আবার সুযোগ দিন। আগের ফলাফল (থাকলে) মুছে যাবে।</p>
+    <div class="tw" id="t_tries"></div>
+  </div>
+
+  <div id="tt-bank" class="card hide"><h2 id="t_btitle">📦 আমার প্রশ্নব্যাংক</h2>
+    <p>এটি শুধু আপনার নিজের ব্যাংক — অন্য কেউ দেখতে পায় না। প্রশ্ন জমিয়ে রেখে যেকোনো পরীক্ষায় যোগ করুন।</p>
+    <details id="t_bform" style="margin:0 0 12px"><summary><b>➕ নতুন প্রশ্ন যোগ / এডিট</b></summary>
+      <div style="margin-top:8px">
+        <input id="t_bbody" placeholder="প্রশ্ন লিখুন">
+        <input class="t_bopt" placeholder="অপশন ক"><input class="t_bopt" placeholder="অপশন খ"><input class="t_bopt" placeholder="অপশন গ"><input class="t_bopt" placeholder="অপশন ঘ">
+        <select id="t_bcor"><option value="0">সঠিক উত্তর: ক</option><option value="1">সঠিক উত্তর: খ</option><option value="2">সঠিক উত্তর: গ</option><option value="3">সঠিক উত্তর: ঘ</option></select>
+        <input id="t_bmarks" type="number" min="1" value="1" placeholder="নম্বর">
+        <select id="t_bcls"></select>
+        <input id="t_bsub" list="t_sublist" placeholder="বিষয়">
+        <input id="t_bchap" placeholder="অধ্যায়">
+        <button id="t_bsave">সংরক্ষণ করুন</button><button class="ghost" id="t_bcancel">বাতিল / নতুন</button>
+        <div id="t_bmsg" class="err"></div>
+      </div>
+    </details>
+    <details style="margin:0 0 12px"><summary>পেস্ট করে একসঙ্গে ব্যাংকে যোগ করুন</summary>
+      <p>নতুন পরীক্ষার পেস্ট ছাঁচের মতোই (প্রশ্ন, ক-ঘ অপশন, উত্তর, নম্বর)। শ্রেণি/বিষয়/অধ্যায় নিচের ঘর থেকে সবগুলোতে বসবে।</p>
+      <textarea id="t_bpaste" rows="8" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)"></textarea>
+      <button class="ghost" id="t_bimport" style="margin-top:6px">ব্যাংকে যোগ করুন</button>
+    </details>
+    <input id="t_bq" placeholder="🔍 প্রশ্ন খুঁজুন">
+    <select id="t_bfcls"></select>
+    <select id="t_bfsub"><option value="">সব বিষয়</option></select>
+    <div id="t_bcount" class="chips"></div>
+    <div id="t_blist"></div>
+    <button class="ghost" id="t_bsel">দেখানো সব প্রশ্ন বাছুন</button>
+    <input id="t_brand" type="number" min="1" value="10" style="margin-top:8px">
+    <button class="ghost" id="t_brandbtn">🎲 র‍্যান্ডম বাছুন (উপরের সংখ্যা অনুযায়ী)</button>
+    <button id="t_badd">নতুন পরীক্ষায় যোগ করুন</button>
+    <button class="del" id="t_bdel">বাছাইগুলো মুছুন</button>
+  </div>
+
+  <div id="tt-lb" class="card hide"><h2>🥇 আমার লিডারবোর্ড</h2>
+    <p>শুধু আপনার পরীক্ষাগুলোর ফলাফল থেকে তৈরি। আলাদা পরীক্ষা বা সব পরীক্ষার মোট নম্বর দেখুন।</p>
+    <select id="t_lex"></select>
+    <input id="t_lq" placeholder="🔍 নাম দিয়ে খুঁজুন">
+    <label style="display:block;margin:6px 0;font-size:.9rem"><input type="checkbox" id="t_lreset" style="width:auto;margin:0 6px 0 0">মুছলে স্টুডেন্টকে ওই পরীক্ষা আবার দেওয়ার সুযোগও দিন</label>
+    <div class="err" id="t_lmsg"></div>
+    <div id="t_lblist"></div>
+    <button class="ghost" id="t_lcsv">⬇️ CSV ডাউনলোড</button>
+    <button class="ghost" id="t_lprint">🖨 প্রিন্ট / PDF</button>
+  </div>
+
+  <div id="tt-ai" class="card hide">
+    <h2>📷 ছবি থেকে প্রশ্ন স্ক্যান</h2>
+    <p>প্রশ্নপত্রের ছবি দিন — এআই প্রশ্ন ও অপশন পড়ে MCQ বানাবে।</p>
+    <input id="t_scfile" type="file" accept="image/*" multiple style="display:none"><button class="ghost" id="t_scpick">📷 ছবি তুলুন / বাছাই করুন</button>
+    <div id="t_scthumbs" style="display:flex;flex-wrap:wrap;gap:8px;margin:6px 0"></div>
+    <input id="t_scsub" list="t_sublist" placeholder="বিষয় (ঐচ্ছিক) — উত্তর বের করতে সুবিধা হয়">
+    <textarea id="t_sckey" class="ta" rows="2" placeholder="ঐচ্ছিক উত্তরমালা: যেমন 1-গ, 2-খ, 3-c …" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)"></textarea>
+    <label style="display:block;margin:6px 0"><input type="checkbox" id="t_scsolve" checked style="width:auto;margin:0 6px 0 0">উত্তরমালা না থাকলে এআই সমাধান করে উত্তর বসাবে (যাচাই করে নিন)</label>
+    <button id="t_scgo">🔍 স্ক্যান করুন</button>
+    <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+    <h2>🤖 এআই প্রশ্ন জেনারেটর</h2>
+    <p>বিষয়/অধ্যায় দিলে এআই MCQ বানিয়ে নিচে দেখাবে। দেখে ঠিক করে ব্যাংকে বা নতুন পরীক্ষায় যোগ করুন।</p>
+    <select id="t_aicls"></select>
+    <input id="t_aisub" list="t_sublist" placeholder="বিষয় (যেমন: গণিত)">
+    <input id="t_aich" placeholder="অধ্যায়/টপিক (ঐচ্ছিক)">
+    <select id="t_aidf"><option>বার্ষিক পরীক্ষার মান</option><option>সহজ</option><option>মাঝারি</option><option>কঠিন</option></select>
+    <input id="t_ain" type="number" min="1" max="60" value="10" placeholder="কয়টি প্রশ্ন (সর্বোচ্চ ৬০)">
+    <textarea id="t_ainotes" class="ta" rows="4" placeholder="ঐচ্ছিক: বইয়ের কোনো অংশ/নোট পেস্ট করুন — তখন শুধু সেটার ভিত্তিতে প্রশ্ন হবে" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)"></textarea>
+    <button id="t_aigen">🤖 প্রশ্ন বানান</button>
+    <div id="t_aimsg" class="err"></div>
+    <div id="t_aiprev"></div>
+    <div id="t_aiact" class="hide">
+      <label style="display:block;margin:6px 0">প্রতি প্রশ্নের নম্বর: <input id="t_aimarks" type="number" min="1" value="1" style="width:90px;display:inline-block"></label>
+      <button id="t_aitoexam">📝 বাছাই করাগুলো নতুন পরীক্ষার ফর্মে যোগ করুন</button>
+      <button class="ghost" id="t_aitobank">📦 বাছাই করাগুলো প্রশ্নব্যাংকে রাখুন</button>
+    </div>
+  </div>
+
+  <button class="ghost" id="t_lo2">লগআউট</button>
+  <button class="ghost" id="t_tostu2">স্টুডেন্ট পেজ</button>
+</section>
+</div>
+</template>
+<template id="tpl-admin">
+<div class="wrap">
+<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">অ্যাডমিন প্যানেল</div></div></header>
+
+<section id="login" class="card hide">
+  <h1>অ্যাডমিন লগইন</h1>
+  <input id="email" type="email" placeholder="ইমেইল">
+  <input id="pass" type="password" placeholder="পাসওয়ার্ড">
+  <div class="err" id="lerr"></div>
+  <button id="lbtn">লগইন</button>
+</section>
+
+<section id="denied" class="card hide">
+  <h1>অনুমতি নেই</h1>
+  <p>এই অ্যাকাউন্ট অ্যাডমিন নয়।</p>
+  <button class="ghost" id="lo1">লগআউট</button>
+</section>
+
+<section id="rev" class="card hide">
+  <div id="revbody"></div>
+  <div class="noprint" style="margin-top:14px"><p class="noprint" style="font-size:.9rem">PDF ডাউনলোডে চাপলে যে প্রিন্ট মেনু আসবে, সেখান থেকে "PDF হিসেবে সংরক্ষণ" (Save as PDF) বেছে নিন।</p><button id="revpdf">PDF ডাউনলোড</button> <button class="ghost" id="revback">পিছনে</button></div>
+</section>
+
+<section id="panel" class="hide">
+  <div class="sumgrid" id="sum"></div>
+  <div class="tabs">
+    <button data-t="new">নতুন পরীক্ষা</button>
+    <button class="ghost" data-t="list">পরীক্ষা তালিকা</button>
+    <button class="ghost" data-t="res">ফলাফল</button>
+    <button class="ghost" data-t="bank">প্রশ্নব্যাংক</button>
+    <button class="ghost" data-t="cont">📖 কনটেন্ট</button>
+    <button class="ghost" data-t="pay">💳 পেমেন্ট</button>
+    <button class="ghost" data-t="stu">👪 স্টুডেন্ট রিপোর্ট</button>
+    <button class="ghost" data-t="ana">📊 অ্যানালিটিক্স</button>
+    <button class="ghost" data-t="cpn">🎟 কুপন</button>
+    <button class="ghost" data-t="fact">💡 ডেইলি ফ্যাক্ট</button>
+    <button class="ghost" data-t="spin">🎡 স্পিন</button>
+    <button class="ghost" data-t="rare">🌟 রেয়ার ব্যাজ</button>
+    <button class="ghost" data-t="game">🎮 গেম</button>
+    <button class="ghost" data-t="teach">👨‍🏫 টিচার</button>
+  </div>
+
+  <div id="t-new" class="card">
+    <h2 id="formtitle">নতুন পরীক্ষা যোগ করুন</h2>
+    <input id="title" placeholder="পরীক্ষার নাম">
+    <input id="dur" type="number" min="1" value="10" placeholder="সময় (মিনিট)">
+    <select id="ecls"></select>
+    <input id="esub" list="sublist" placeholder="বিষয় (যেমন: গণিত) — ঐচ্ছিক"><datalist id="sublist"></datalist>
+    <input id="echap" placeholder="অধ্যায় (প্রশ্নব্যাংক/কাস্টম পরীক্ষার জন্য) — ঐচ্ছিক">
+    <select id="ebank"><option value="">📦 প্রশ্নব্যাংক ক্যাটাগরি (ঐচ্ছিক)</option><option value="ssc">এসএসসি</option><option value="hsc">এইচএসসি</option><option value="medical">মেডিকেল</option><option value="univ">ভার্সিটি</option></select>
+    <select id="ebsub" class="hide"><option value="">ভার্সিটি বাছুন</option><option>চবি</option><option>রাবি</option><option>জবি</option><option>জাবি</option><option>কুবি</option><option>সাস্ট</option><option>ঢাকেবি</option></select>
+    <label>কতবার পরীক্ষা দেওয়া যাবে (০ লিখলে যতবার খুশি)</label>
+    <input id="att" type="number" min="0" value="1">
+    <label style="display:block;margin:6px 0"><input type="checkbox" id="shq" checked style="width:auto;margin:0 6px 0 0">প্রশ্নের ক্রম এলোমেলো করুন</label>
+    <label style="display:block;margin:6px 0 12px"><input type="checkbox" id="sho" checked style="width:auto;margin:0 6px 0 0">অপশনের ক্রম এলোমেলো করুন</label>
+    <label style="display:block;margin:6px 0 12px"><input type="checkbox" id="rvo" checked style="width:auto;margin:0 6px 0 0">পরীক্ষা শেষে স্টুডেন্ট নিজের উত্তরপত্র ও সঠিক উত্তর দেখতে পারবে</label>
+    <label style="display:block;margin:6px 0 12px">➖ নেগেটিভ মার্কিং (প্রতি ভুল নম্বরে কাটা যাবে): <select id="neg"><option value="0">নেই</option><option value="0.25">০.২৫</option><option value="0.5">০.৫</option><option value="1">১</option></select></label>
+    <button class="ghost" id="scanShort" type="button" style="margin:4px 0 10px">📷 ছবি স্ক্যান করে প্রশ্ন যোগ করুন</button>
+    <details style="margin:8px 0 14px">
+      <summary>পেস্ট করে একসঙ্গে প্রশ্ন যোগ করুন</summary>
+      <p>প্রতিটি প্রশ্নের নিচে ক) খ) গ) ঘ) অপশন, তারপর <b>উত্তর: খ</b> ও ঐচ্ছিক <b>নম্বর: 2</b>। দুই প্রশ্নের মাঝে একটা ফাঁকা লাইন দিন।</p>
+      <textarea id="paste" rows="10" style="width:100%;padding:10px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)"></textarea>
+      <button class="ghost" id="doPaste" style="margin-top:6px">ফর্মে সাজান</button>
+    </details>
+    <div id="qs"></div>
+    <button class="ghost" id="addq">+ প্রশ্ন যোগ</button>
+    <button id="save">পরীক্ষা সংরক্ষণ করুন</button>
+    <button class="ghost" onclick="location.reload()">বাতিল / নতুন ফর্ম</button>
+    <div id="msg" class="err"></div>
+  </div>
+
+  <div id="t-list" class="card hide"><h2>সব পরীক্ষা</h2><div id="exams"></div></div>
+  <div id="t-cont" class="card hide"><h2 id="ctitle">📖 পড়ার কনটেন্ট যোগ করুন</h2>
+    <p>শ্রেণি → বিষয় → অধ্যায় অনুযায়ী নোট, ভিডিও বা লিংক যোগ করুন। স্টুডেন্টরা সেই বিষয়ের ভিতরেই দেখতে পাবে।</p>
+    <select id="ccls"></select>
+    <input id="csub" list="sublist" placeholder="বিষয় (যেমন: গণিত)">
+    <input id="cchap" placeholder="অধ্যায় (যেমন: অধ্যায় ১ - বাস্তব সংখ্যা)">
+    <input id="cttl" placeholder="শিরোনাম">
+    <select id="ckind"><option value="note">📝 নোট (লেখা)</option><option value="video">▶️ ভিডিও (YouTube লিংক)</option><option value="link">🔗 লিংক (PDF / Drive / ওয়েবসাইট)</option></select>
+    <select id="cfree"><option value="0">💎 প্রিমিয়াম (শুধু সাবস্ক্রাইবার)</option><option value="1">🆓 ফ্রি (সবার জন্য)</option></select>
+    <input id="curl" class="hide" placeholder="লিংক (https:// দিয়ে শুরু)">
+    <textarea id="cbody" class="ta" rows="8" placeholder="নোটের লেখা (ভিডিও/লিংকের সাথে ঐচ্ছিক বর্ণনা)"></textarea>
+    <button id="csave">সংরক্ষণ করুন</button><button class="ghost" id="ccancel">বাতিল / নতুন</button>
+    <div id="cmsg" class="err"></div>
+    <h2 style="margin-top:20px">সব কনটেন্ট</h2>
+    <select id="cfil"></select>
+    <div id="clist"></div>
+  </div>
+
+  <div id="t-pay" class="card hide"><h2>💳 সাবস্ক্রিপশন পেমেন্ট</h2>
+    <p>স্টুডেন্টের দেওয়া bKash TrxID আপনার bKash অ্যাপের লেনদেনের সাথে মিলিয়ে অনুমোদন দিন।</p>
+    <input id="grantEmail" type="email" placeholder="ইমেইল দিয়ে সরাসরি অ্যাক্সেস দিন (ঐচ্ছিক)"><button id="grantBtn">অ্যাক্সেস দিন</button>
+    <div id="pmsg" class="err"></div>
+    <div id="paylist"></div>
+    <details id="paysetup"><summary>⚙️ ডেটাবেস সেটআপ SQL (একবার Run করুন)</summary><p>SQL কপি করে Supabase → SQL Editor-এ Run করুন। এতে সাবস্ক্রিপশন ও ভিজিটরদের পরীক্ষার তালিকা দেখার অনুমতি দুটোই সেট হয়।</p><button id="copysql">📋 SQL কপি করুন</button><textarea id="sqlbox" class="ta" rows="8" readonly></textarea></details>
+  </div>
+
+  <div id="t-stu" class="card hide"><h2>👪 শিক্ষক / অভিভাবক রিপোর্ট</h2>
+    <p>স্টুডেন্টদের গড় ফলাফল দেখুন এবং এক ট্যাপে অভিভাবকের WhatsApp-এ রিপোর্ট পাঠান।</p>
+    <select id="sfcls"></select><input id="sfq" placeholder="নাম বা ইমেইল খুঁজুন">
+    <div id="stulist"></div></div>
+
+  <div id="t-ana" class="card hide"><h2>📊 অ্যানালিটিক্স</h2>
+    <div id="anabox">লোড হচ্ছে...</div>
+    <h2 style="margin-top:20px">⚠️ সবচেয়ে কঠিন প্রশ্ন</h2><div id="ahard"></div>
+    <button class="ghost" id="anarf">🔄 রিফ্রেশ</button></div>
+
+  <div id="t-cpn" class="card hide"><h2>🎟 কুপন কোড</h2>
+    <p>কুপন রিডিম করলে শিক্ষার্থী নির্দিষ্ট দিনের প্রিমিয়াম পাবে। (রেফারেল ও কুপন — দুটোই প্রিমিয়াম দিন যোগ করে।)</p>
+    <input id="cpc" placeholder="কোড (ইংরেজি/সংখ্যা, যেমন: EID50)">
+    <input id="cpd" type="number" min="1" placeholder="কত দিনের প্রিমিয়াম">
+    <input id="cpm" type="number" min="1" placeholder="সর্বোচ্চ ব্যবহার (ফাঁকা = সীমাহীন)">
+    <input id="cpe" type="date">
+    <button id="cpsave">কুপন বানান</button><div id="cpmsg" class="err"></div>
+    <div id="cplist"></div></div>
+
+  <div id="t-game" class="card hide"><h2>🎮 গেম জোন ব্যবস্থাপনা</h2>
+    <div class="pgtabs" id="gbar" style="position:static"></div>
+    <div id="gcfg">
+      <p>গেম চালু/বন্ধ, নাম, ইমোজি ও দৈনিক পুরস্কারের সীমা ঠিক করুন।</p>
+      <input id="gct" placeholder="গেমের নাম"><input id="gce" placeholder="ইমোজি" maxlength="4"><input id="gcd" placeholder="ছোট বিবরণ"><input id="gcn" type="number" min="0" placeholder="দৈনিক পুরস্কার সীমা (প্রতি শিক্ষার্থী)">
+      <button id="gcsave">সংরক্ষণ</button><div id="gcmsg" class="err"></div><div id="gclist"></div></div>
+    <div id="grw" class="hide">
+      <p>স্কোরের স্তর অনুযায়ী পুরস্কার। শিক্ষার্থী যে স্তর ছুঁয়েছে তার সর্বোচ্চটি পাবে।</p>
+      <select id="grg"></select><input id="grm" type="number" min="1" placeholder="ন্যূনতম স্কোর">
+      <input id="gre" placeholder="ইমোজি (যেমন 🪙)" maxlength="4"><input id="grl" placeholder="পুরস্কারের নাম (যেমন: ১০ কয়েন)">
+      <select id="grk"><option value="coin">🪙 কয়েন</option><option value="xp">⚡ XP</option><option value="premium">💎 প্রিমিয়াম দিন</option><option value="coupon">🎟 কুপন কোড</option><option value="badge">🏅 রেয়ার ব্যাজ</option><option value="text">🎁 বিশেষ (নিজে দেবেন)</option></select>
+      <input id="grv" type="number" min="0" placeholder="পরিমাণ (কয়েন / XP / দিন)">
+      <select id="grc" class="hide"></select><select id="grb" class="hide"></select>
+      <button id="grsave">সংরক্ষণ</button><button class="ghost" id="grcancel">বাতিল / নতুন</button><div id="grmsg" class="err"></div><div id="grlist"></div></div>
+    <div id="gpz" class="hide">
+      <p>সংখ্যার ধাঁধা, সত্য/মিথ্যা ও ছবির ধাঁধার প্রশ্ন যোগ করুন।</p>
+      <select id="gpg"><option value="numseq">🔢 সংখ্যার ধাঁধা</option><option value="tf">❓ সত্য নাকি মিথ্যা</option><option value="pic">🧩 ছবির ধাঁধা</option></select>
+      <input id="gpq" placeholder="প্রশ্ন / ধাঁধা / বিবৃতি (ছবির ধাঁধায় ইমোজি)">
+      <textarea id="gpo" class="ta" rows="4" placeholder="অপশন — প্রতি লাইনে একটি (সত্য/মিথ্যায় লাগবে না)"></textarea>
+      <input id="gpa" type="number" min="1" placeholder="সঠিক উত্তরের নম্বর (১,২,৩… | সত্য/মিথ্যায়: ১=সত্য, ২=মিথ্যা)">
+      <button id="gpsave">যোগ করুন</button><div id="gpmsg" class="err"></div><div id="gplist"></div></div>
+    <div id="gprs" class="hide">
+      <p>কার্ড মেলানোর জোড়া (যেমন শব্দ ↔ অর্থ)।</p>
+      <input id="gma" placeholder="কার্ড ১ (যেমন: Brave)"><input id="gmb" placeholder="কার্ড ২ (যেমন: সাহসী)">
+      <button id="gmsave">জোড়া যোগ করুন</button><div id="gmmsg" class="err"></div><div id="gmlist"></div></div>
+  </div>
+
+  <div id="t-rare" class="card hide"><h2>🌟 রেয়ার ব্যাজ ও ট্রফি</h2>
+    <p>গোপন অর্জন তৈরি করুন। শিক্ষার্থী শর্ত পূরণ করলে সার্ভার নিজে ব্যাজ ও পুরস্কার দেয়।</p>
+    <input id="rbe" placeholder="ইমোজি (যেমন 🌙)" maxlength="4">
+    <input id="rbt" placeholder="ব্যাজের নাম">
+    <input id="rbh" placeholder="ইঙ্গিত (গোপন হলে লকড অবস্থায় এটাই দেখাবে)">
+    <select id="rbk"></select><small id="rbinfo"></small>
+    <input id="rbp1" type="number" placeholder="p1 (শর্তের প্যারামিটার ১)">
+    <input id="rbp2" type="number" placeholder="p2 (প্যারামিটার ২)">
+    <input id="rbn" type="number" min="1" placeholder="need (কতবার/কত দিন)">
+    <select id="rbs"><option value="1">🔒 গোপন (নাম লুকানো থাকবে)</option><option value="0">👁 প্রকাশ্য</option></select>
+    <input id="rbc" type="number" min="0" placeholder="পুরস্কার: কয়েন">
+    <input id="rbx" type="number" min="0" placeholder="পুরস্কার: XP">
+    <button id="rbsave">সংরক্ষণ করুন</button><button class="ghost" id="rbcancel">বাতিল / নতুন</button><div id="rbmsg" class="err"></div>
+    <h2 style="margin-top:20px">🏅 ম্যানুয়ালি ব্যাজ দিন</h2>
+    <input id="rbem" placeholder="শিক্ষার্থীর ইমেইল"><select id="rbpick"></select>
+    <button class="ghost" id="rbgive">ব্যাজ দিন</button><div id="rbgm" class="err"></div>
+    <div id="rblist"></div></div>
+
+  <div id="t-spin" class="card hide"><h2>🎡 দৈনিক স্পিন পুরস্কার</h2>
+    <p>পুরস্কারের "ওজন" যত বেশি, জেতার সম্ভাবনা তত বেশি। কমপক্ষে ২টি চালু পুরস্কার থাকলে স্পিন চালু হয়।</p>
+    <input id="spe" placeholder="ইমোজি (যেমন 🎁)" maxlength="4">
+    <input id="spl" placeholder="পুরস্কারের নাম (যেমন: ৫০ XP)">
+    <select id="spk"><option value="xp">⚡ XP বোনাস</option><option value="coin">🪙 কয়েন</option><option value="premium">💎 প্রিমিয়াম দিন</option><option value="text">🎁 বিশেষ পুরস্কার (আপনি নিজে দেবেন)</option><option value="none">🍀 কিছু না (আবার চেষ্টা)</option></select>
+    <input id="spv" type="number" min="0" placeholder="মান (XP বা প্রিমিয়াম দিন)">
+    <input id="spw" type="number" min="0" placeholder="ওজন / সম্ভাবনা (যেমন ১০)">
+    <button id="spsave">সংরক্ষণ করুন</button><button class="ghost" id="spcancel">বাতিল / নতুন</button><div id="spmsg" class="err"></div>
+    <div id="splist"></div>
+    <h2 style="margin-top:20px">🏆 সাম্প্রতিক বিজয়ী</h2><div id="splog"></div></div>
+
+  <div id="t-fact" class="card hide"><h2>💡 ডেইলি শব্দ / তথ্য</h2>
+    <select id="fk"><option value="word">🔤 ইংরেজি শব্দ</option><option value="fact">💡 সাধারণ জ্ঞান / তথ্য</option></select>
+    <input id="ft" placeholder="শব্দ বা শিরোনাম">
+    <textarea id="fb" class="ta" rows="4" placeholder="অর্থ / ব্যাখ্যা / উদাহরণ"></textarea>
+    <input id="fd" type="date"><small>তারিখ দিলে ঠিক সেদিনই দেখাবে; না দিলে প্রতিদিন ঘুরে ঘুরে দেখাবে।</small>
+    <button id="fsave">সংরক্ষণ করুন</button><div id="fmsg" class="err"></div>
+    <div id="flist"></div></div>
+
+  <div id="t-teach" class="card hide"><h2>👨‍🏫 টিচার অনুরোধ ও অনুমোদন</h2>
+    <p>শিক্ষকরা নিজের আইডিতে লগইন করে (সাইটের <b>#teacher</b> পেজ) টিচারস প্যানেলের জন্য অনুরোধ পাঠান। অনুমোদন দিলেই তারা নিজস্ব পরীক্ষা, প্রশ্নব্যাংক, ফলাফল, লিডারবোর্ড ও এআই পাবেন — অন্যের ডেটা দেখতে পাবেন না।</p>
+    <input id="tg_email" type="email" placeholder="ইমেইল দিয়ে সরাসরি টিচার প্যানেল দিন (ঐচ্ছিক)"><button id="tg_btn">টিচার বানান</button>
+    <div id="tg_msg" class="err"></div>
+    <div id="tg_list"></div>
+    <details id="tg_setup"><summary>⚙️ ডেটাবেস সেটআপ SQL (একবার Run করুন)</summary>
+      <p>SQL কপি করে Supabase → SQL Editor-এ Run করুন। আগের কোনো টেবিল/ফাংশন বদলায় না। এআই ব্যবহার করতে চাইলে 🤖 AI ও অটো → সেটআপ থেকে আপডেট করা <b>api/ai.js</b> আবার ডিপ্লয় করুন।</p>
+      <button class="ghost" id="tg_copy" style="margin:0 0 6px;padding:4px 10px;font-size:.85rem">📋 কপি</button>
+      <textarea id="tg_sql" class="ta" readonly rows="8" style="width:100%;font-family:monospace;font-size:.78rem;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)"></textarea></details>
+  </div>
+
+  <div id="t-bank" class="card hide"><h2>📦 প্রশ্নব্যাংক</h2>
+    <p>সব পরীক্ষার প্রশ্ন এখানে জমা থাকে। বেছে নিয়ে নতুন পরীক্ষায় যোগ করুন।</p>
+    <input id="bq" placeholder="🔍 প্রশ্ন খুঁজুন">
+    <select id="bex"><option value="">সব পরীক্ষা</option></select>
+    <div id="bcount" class="chips"></div>
+    <div id="blist"></div>
+    <button class="ghost" id="bsel">দেখানো সব প্রশ্ন বাছুন</button>
+    <input id="brand" type="number" min="1" value="10" style="margin-top:8px">
+    <button class="ghost" id="brandbtn">🎲 র‍্যান্ডম বাছুন (উপরের সংখ্যা অনুযায়ী)</button>
+    <button id="badd">নতুন পরীক্ষায় যোগ করুন</button>
+  </div>
+  <div id="t-res" class="card hide"><h2>স্টুডেন্টদের ফলাফল</h2>
+    <input id="rq" placeholder="🔍 নাম দিয়ে খুঁজুন">
+    <select id="rex"><option value="">সব পরীক্ষা</option></select><div class="tw" id="results"></div>
+    <h2 style="margin-top:20px">⚠️ সবচেয়ে বেশি ভুল হওয়া প্রশ্ন</h2>
+    <div id="hard"></div>
+    <h2 style="margin-top:20px">কে কোন পরীক্ষা শুরু করেছে</h2>
+    <p>যার নেট বা ফোনের সমস্যা হয়েছে, তাকে এখান থেকে আবার সুযোগ দিন। আগের ফলাফল (থাকলে) মুছে যাবে।</p>
+    <div class="tw" id="tries"></div></div>
+
+  <button class="ghost" id="lo2">লগআউট</button>
+  <button class="ghost" id="tostu">স্টুডেন্ট পেজ</button>
+</section>
+
+</div>
+</template>
+<script type="text/plain" id="subsql">
+-- bKash সাবস্ক্রিপশন সেটআপ (একবার Run করুন)
+alter table public.contents add column if not exists is_free boolean not null default false;
+
+create table if not exists public.subscriptions(
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  status text not null default 'pending' check (status in ('pending','active','rejected')),
+  trx_id text unique,
+  sender text,
+  created_at timestamptz not null default now(),
+  approved_at timestamptz
+);
+alter table public.subscriptions enable row level security;
+
+create or replace function public.sub_is_admin() returns boolean language sql security definer set search_path=public stable as $f$
+  select exists(select 1 from public.admins where user_id=auth.uid()) $f$;
+create or replace function public.sub_is_active() returns boolean language sql security definer set search_path=public stable as $f$
+  select exists(select 1 from public.subscriptions where user_id=auth.uid() and status='active') $f$;
+
+create or replace function public.my_subscription() returns text language sql security definer set search_path=public stable as $f$
+  select case when public.sub_is_admin() then 'admin'
+    else coalesce((select status from public.subscriptions where user_id=auth.uid()),'none') end $f$;
+
+create or replace function public.request_subscription(p_trx text,p_sender text) returns text
+language plpgsql security definer set search_path=public as $f$
+begin
+  if auth.uid() is null or coalesce((auth.jwt()->>'is_anonymous')::boolean,false) then
+    raise exception 'সাবস্ক্রাইব করতে অ্যাকাউন্টে লগইন করুন';
+  end if;
+  if p_trx is null or upper(trim(p_trx)) !~ '^[A-Z0-9]{8,12}$' then
+    raise exception 'TrxID সঠিক নয়';
+  end if;
+  if p_sender is null or trim(p_sender) !~ '^01[0-9]{9}$' then
+    raise exception 'bKash নম্বর সঠিক নয়';
+  end if;
+  if public.sub_is_active() then return 'active'; end if;
+  insert into public.subscriptions(user_id,status,trx_id,sender)
+    values(auth.uid(),'pending',upper(trim(p_trx)),trim(p_sender))
+  on conflict(user_id) do update
+    set status='pending',trx_id=upper(trim(p_trx)),sender=trim(p_sender),created_at=now();
+  return 'pending';
+exception when unique_violation then
+  raise exception 'এই TrxID আগেই ব্যবহার হয়েছে';
+end $f$;
+
+create or replace function public.content_catalog() returns jsonb language sql security definer set search_path=public stable as $f$
+  select coalesce(jsonb_agg(
+    (to_jsonb(c) - 'url' - 'body')
+    || jsonb_build_object('url',case when t.ok then c.url end,'body',case when t.ok then c.body end,'locked',not t.ok)
+    order by c.id),'[]'::jsonb)
+  from public.contents c
+  cross join lateral (select (c.is_free or public.sub_is_admin() or public.sub_is_active()) as ok) t $f$;
+
+create or replace function public.admin_subscriptions() returns jsonb language sql security definer set search_path=public stable as $f$
+  select coalesce(jsonb_agg(jsonb_build_object('user_id',s.user_id,'email',u.email,
+    'name',u.raw_user_meta_data->>'full_name','sender',s.sender,'trx_id',s.trx_id,
+    'status',s.status,'created_at',s.created_at)
+    order by (s.status='pending') desc,s.created_at desc),'[]'::jsonb)
+  from public.subscriptions s join auth.users u on u.id=s.user_id
+  where public.sub_is_admin() $f$;
+
+create or replace function public.admin_set_subscription(p_user uuid,p_status text) returns void
+language plpgsql security definer set search_path=public as $f$
+begin
+  if not public.sub_is_admin() then raise exception 'অনুমতি নেই'; end if;
+  if p_status not in ('pending','active','rejected') then raise exception 'ভুল অবস্থা'; end if;
+  update public.subscriptions set status=p_status,
+    approved_at=case when p_status='active' then now() else null end where user_id=p_user;
+end $f$;
+
+create or replace function public.admin_grant_by_email(p_email text) returns void
+language plpgsql security definer set search_path=public as $f$
+declare uid uuid;
+begin
+  if not public.sub_is_admin() then raise exception 'অনুমতি নেই'; end if;
+  select id into uid from auth.users where lower(email)=lower(trim(p_email));
+  if uid is null then raise exception 'এই ইমেইলে কোনো অ্যাকাউন্ট নেই'; end if;
+  insert into public.subscriptions(user_id,status,approved_at) values(uid,'active',now())
+  on conflict(user_id) do update set status='active',approved_at=now();
+end $f$;
+
+-- কনটেন্ট টেবিল থেকে সরাসরি পড়া শুধু ফ্রি / সাবস্ক্রাইবার / অ্যাডমিনের জন্য
+do $f$ declare r record; begin
+  for r in select policyname from pg_policies where schemaname='public' and tablename='contents' and cmd='SELECT'
+  loop execute format('drop policy %I on public.contents',r.policyname); end loop;
+end $f$;
+create policy contents_gated_select on public.contents for select to authenticated
+  using (is_free or public.sub_is_admin() or public.sub_is_active());
+
+-- ভিজিটররা লগইন ছাড়াই পরীক্ষার তালিকা দেখতে পাবে
+drop policy if exists exams_public_read on public.exams;
+create policy exams_public_read on public.exams for select to anon using (true);
+
+-- শিক্ষক/অভিভাবক রিপোর্টের জন্য স্টুডেন্ট তালিকা (শুধু অ্যাডমিন)
+create or replace function public.admin_students() returns jsonb language sql security definer set search_path=public stable as $f$
+  select coalesce(jsonb_agg(jsonb_build_object('user_id',u.id,'email',u.email,
+    'name',u.raw_user_meta_data->>'full_name','class_level',u.raw_user_meta_data->>'class_level',
+    'guardian',u.raw_user_meta_data->>'guardian','whatsapp',u.raw_user_meta_data->>'whatsapp',
+    'mobile',u.raw_user_meta_data->>'mobile') order by u.created_at desc),'[]'::jsonb)
+  from auth.users u where public.sub_is_admin() and not coalesce(u.is_anonymous,false) $f$;
+</script>
+<script type="text/plain" id="tch-sql">
+-- 👨‍🏫 টিচারস প্যানেল সেটআপ (একবার Run করুন; বারবার চালালেও সমস্যা নেই)
+
+-- ১) শিক্ষকের আবেদন/অনুমোদন
+create table if not exists public.teachers(
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  name text, phone text, note text,
+  status text not null default 'pending' check (status in ('pending','active','rejected')),
+  created_at timestamptz not null default now(),
+  approved_at timestamptz
+);
+alter table public.teachers enable row level security;
+
+create or replace function public.t_is_admin() returns boolean language sql security definer set search_path=public stable as $f$
+  select exists(select 1 from public.admins where user_id=auth.uid()) $f$;
+create or replace function public.t_is_teacher() returns boolean language sql security definer set search_path=public stable as $f$
+  select exists(select 1 from public.teachers where user_id=auth.uid() and status='active') $f$;
+
+create or replace function public.my_teacher_status() returns text language sql security definer set search_path=public stable as $f$
+  select coalesce((select status from public.teachers where user_id=auth.uid()),'none') $f$;
+
+create or replace function public.request_teacher(p_name text,p_phone text,p_note text) returns text
+language plpgsql security definer set search_path=public as $f$
+begin
+  if auth.uid() is null or coalesce((auth.jwt()->>'is_anonymous')::boolean,false) then
+    raise exception 'আগে অ্যাকাউন্টে লগইন করুন';
+  end if;
+  if coalesce(trim(p_name),'')='' then raise exception 'আপনার নাম দিন'; end if;
+  if public.t_is_teacher() then return 'active'; end if;
+  insert into public.teachers(user_id,name,phone,note,status)
+    values(auth.uid(),trim(p_name),trim(p_phone),trim(p_note),'pending')
+  on conflict(user_id) do update
+    set name=trim(p_name),phone=trim(p_phone),note=trim(p_note),status='pending',created_at=now(),approved_at=null;
+  return 'pending';
+end $f$;
+
+create or replace function public.admin_teachers() returns jsonb language sql security definer set search_path=public stable as $f$
+  select coalesce(jsonb_agg(jsonb_build_object('user_id',t.user_id,'email',u.email,
+    'name',coalesce(t.name,u.raw_user_meta_data->>'full_name'),'phone',t.phone,'note',t.note,
+    'status',t.status,'created_at',t.created_at,
+    'exams',(select count(*) from public.exams e where e.owner_id=t.user_id))
+    order by (t.status='pending') desc,t.created_at desc),'[]'::jsonb)
+  from public.teachers t join auth.users u on u.id=t.user_id
+  where public.t_is_admin() $f$;
+
+create or replace function public.admin_set_teacher(p_user uuid,p_status text) returns void
+language plpgsql security definer set search_path=public as $f$
+begin
+  if not public.t_is_admin() then raise exception 'অনুমতি নেই'; end if;
+  if p_status not in ('pending','active','rejected') then raise exception 'ভুল অবস্থা'; end if;
+  update public.teachers set status=p_status,
+    approved_at=case when p_status='active' then now() else null end where user_id=p_user;
+end $f$;
+
+create or replace function public.admin_grant_teacher(p_email text) returns void
+language plpgsql security definer set search_path=public as $f$
+declare uid uuid;
+begin
+  if not public.t_is_admin() then raise exception 'অনুমতি নেই'; end if;
+  select id into uid from auth.users where lower(email)=lower(trim(p_email));
+  if uid is null then raise exception 'এই ইমেইলে কোনো অ্যাকাউন্ট নেই'; end if;
+  insert into public.teachers(user_id,name,status,approved_at)
+    values(uid,(select raw_user_meta_data->>'full_name' from auth.users where id=uid),'active',now())
+  on conflict(user_id) do update set status='active',approved_at=now();
+end $f$;
+
+-- ২) পরীক্ষার মালিক (শিক্ষক)। অ্যাডমিনের পরীক্ষায় owner_id ফাঁকা থাকে।
+alter table public.exams add column if not exists owner_id uuid references auth.users(id) on delete cascade;
+create index if not exists exams_owner_idx on public.exams(owner_id);
+
+-- ৩) শিক্ষক শুধু নিজের পরীক্ষা/প্রশ্ন/উত্তর/ফলাফল ম্যানেজ করবে
+drop policy if exists t_exams_sel on public.exams;
+create policy t_exams_sel on public.exams for select to authenticated using (owner_id=auth.uid());
+drop policy if exists t_exams_ins on public.exams;
+create policy t_exams_ins on public.exams for insert to authenticated with check (owner_id=auth.uid() and public.t_is_teacher());
+drop policy if exists t_exams_upd on public.exams;
+create policy t_exams_upd on public.exams for update to authenticated using (owner_id=auth.uid() and public.t_is_teacher()) with check (owner_id=auth.uid());
+drop policy if exists t_exams_del on public.exams;
+create policy t_exams_del on public.exams for delete to authenticated using (owner_id=auth.uid() and public.t_is_teacher());
+
+drop policy if exists t_questions_all on public.questions;
+create policy t_questions_all on public.questions for all to authenticated
+  using (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=questions.exam_id and e.owner_id=auth.uid()))
+  with check (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=questions.exam_id and e.owner_id=auth.uid()));
+
+drop policy if exists t_keys_all on public.answer_keys;
+create policy t_keys_all on public.answer_keys for all to authenticated
+  using (public.t_is_teacher() and exists(select 1 from public.questions q join public.exams e on e.id=q.exam_id where q.id=answer_keys.question_id and e.owner_id=auth.uid()))
+  with check (public.t_is_teacher() and exists(select 1 from public.questions q join public.exams e on e.id=q.exam_id where q.id=answer_keys.question_id and e.owner_id=auth.uid()));
+
+drop policy if exists t_results_sel on public.results;
+create policy t_results_sel on public.results for select to authenticated
+  using (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=results.exam_id and e.owner_id=auth.uid()));
+drop policy if exists t_results_upd on public.results;
+create policy t_results_upd on public.results for update to authenticated
+  using (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=results.exam_id and e.owner_id=auth.uid()))
+  with check (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=results.exam_id and e.owner_id=auth.uid()));
+drop policy if exists t_results_del on public.results;
+create policy t_results_del on public.results for delete to authenticated
+  using (public.t_is_teacher() and exists(select 1 from public.exams e where e.id=results.exam_id and e.owner_id=auth.uid()));
+
+-- ৪) শিক্ষকের নিজস্ব প্রশ্নব্যাংক (অন্য কেউ দেখতে পাবে না)
+create table if not exists public.teacher_bank(
+  id bigint generated always as identity primary key,
+  owner_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  body text not null,
+  options jsonb not null,
+  correct int not null check (correct between 0 and 3),
+  marks int not null default 1,
+  class_level int, subject text, chapter text,
+  created_at timestamptz not null default now()
+);
+create index if not exists teacher_bank_owner_idx on public.teacher_bank(owner_id);
+alter table public.teacher_bank enable row level security;
+drop policy if exists t_bank_all on public.teacher_bank;
+create policy t_bank_all on public.teacher_bank for all to authenticated
+  using (owner_id=auth.uid() and public.t_is_teacher()) with check (owner_id=auth.uid() and public.t_is_teacher());
+
+-- ৫) নিজের পরীক্ষার উত্তরপত্র দেখা, কে কী শুরু করেছে, আবার সুযোগ দেওয়া
+create or replace function public.teacher_review(p_result_id text) returns jsonb
+language plpgsql security definer set search_path=public as $f$
+declare r record; ex record; items jsonb;
+begin
+  if not public.t_is_teacher() then raise exception 'শুধু অনুমোদিত শিক্ষক'; end if;
+  select * into r from public.results where id::text=p_result_id;
+  if not found then raise exception 'ফলাফল পাওয়া যায়নি'; end if;
+  select * into ex from public.exams where id=r.exam_id and owner_id=auth.uid();
+  if not found then raise exception 'এটি আপনার পরীক্ষা নয়'; end if;
+  select coalesce(jsonb_agg(jsonb_build_object(
+      'body',q.body,'options',to_jsonb(q.options),'correct',k.correct,
+      'chosen',case when r.answers is null then null else nullif(r.answers->>(q.id::text),'')::int end,
+      'marks',coalesce(q.marks,1)) order by q.id),'[]'::jsonb)
+    into items
+    from public.questions q left join public.answer_keys k on k.question_id=q.id
+    where q.exam_id=r.exam_id;
+  return jsonb_build_object('exam',ex.title,'student',r.student_name,'at',r.created_at,
+    'score',r.score,'total',r.total,
+    'recorded',coalesce(r.answers,'{}'::jsonb)<>'{}'::jsonb,'items',items);
+end $f$;
+
+create or replace function public.teacher_attempts() returns jsonb
+language plpgsql security definer set search_path=public stable as $f$
+begin
+  if not public.t_is_teacher() then raise exception 'শুধু অনুমোদিত শিক্ষক'; end if;
+  return coalesce((select jsonb_agg(jsonb_build_object(
+      'user_id',a.user_id,'exam_id',a.exam_id,'exam_title',e.title,
+      'name',coalesce(u.raw_user_meta_data->>'full_name',u.email,'অতিথি'),
+      'submitted',exists(select 1 from public.results r where r.user_id=a.user_id and r.exam_id=a.exam_id))
+      order by e.id desc)
+    from public.attempts a
+    join public.exams e on e.id=a.exam_id and e.owner_id=auth.uid()
+    left join auth.users u on u.id=a.user_id),'[]'::jsonb);
+end $f$;
+
+create or replace function public.teacher_reset(p_user uuid,p_exam text) returns text
+language plpgsql security definer set search_path=public as $f$
+begin
+  if not public.t_is_teacher() then raise exception 'শুধু অনুমোদিত শিক্ষক'; end if;
+  if not exists(select 1 from public.exams where id::text=p_exam and owner_id=auth.uid()) then
+    raise exception 'এটি আপনার পরীক্ষা নয়';
+  end if;
+  delete from public.results where user_id=p_user and exam_id::text=p_exam;
+  delete from public.attempts where user_id=p_user and exam_id::text=p_exam;
+  return 'ok';
+end $f$;
+
+revoke all on function public.my_teacher_status() from public,anon;
+revoke all on function public.request_teacher(text,text,text) from public,anon;
+revoke all on function public.admin_teachers() from public,anon;
+revoke all on function public.admin_set_teacher(uuid,text) from public,anon;
+revoke all on function public.admin_grant_teacher(text) from public,anon;
+revoke all on function public.teacher_review(text) from public,anon;
+revoke all on function public.teacher_attempts() from public,anon;
+revoke all on function public.teacher_reset(uuid,text) from public,anon;
+grant execute on function public.my_teacher_status() to authenticated;
+grant execute on function public.request_teacher(text,text,text) to authenticated;
+grant execute on function public.admin_teachers() to authenticated;
+grant execute on function public.admin_set_teacher(uuid,text) to authenticated;
+grant execute on function public.admin_grant_teacher(text) to authenticated;
+grant execute on function public.teacher_review(text) to authenticated;
+grant execute on function public.teacher_attempts() to authenticated;
+grant execute on function public.teacher_reset(uuid,text) to authenticated;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+var CL={1:"প্রথম শ্রেণি",2:"দ্বিতীয় শ্রেণি",3:"তৃতীয় শ্রেণি",4:"চতুর্থ শ্রেণি",5:"পঞ্চম শ্রেণি",6:"ষষ্ঠ শ্রেণি",7:"সপ্তম শ্রেণি",8:"অষ্টম শ্রেণি",9:"নবম শ্রেণি",10:"দশম শ্রেণি",11:"একাদশ শ্রেণি",12:"দ্বাদশ শ্রেণি",13:"এডমিশন",910:"নবম ও দশম শ্রেণি",1112:"একাদশ ও দ্বাদশ শ্রেণি"};
+var SUBJ=["বাংলা","ইংরেজি","গণিত","বিজ্ঞান","বাংলাদেশ ও বিশ্বপরিচয়","তথ্য ও যোগাযোগ প্রযুক্তি","ইসলাম ও নৈতিক শিক্ষা","হিন্দুধর্ম ও নৈতিক শিক্ষা","পদার্থবিজ্ঞান","রসায়ন","জীববিজ্ঞান","উচ্চতর গণিত","ভূগোল ও পরিবেশ","ইতিহাস ও বিশ্বসভ্যতা","পৌরনীতি ও নাগরিকতা","অর্থনীতি","কৃষিশিক্ষা","সাধারণ জ্ঞান"];
+/* ==== bKash সাবস্ক্রিপশন সেটিং: নিজের নম্বর ও দাম বসান ==== */
+var BKASH={number:"01307208383",mode:"Send Money",price:49};
+var LANGEN=false;try{LANGEN=localStorage.getItem("lang")==="en";var _t=localStorage.getItem("th");if(_t)document.documentElement.setAttribute("data-theme",_t)}catch(e){}
+var TR={"পরীক্ষা":"Exams","ডেইলি চ্যালেঞ্জ":"Daily Challenge","লিডারবোর্ড":"Leaderboard","বুক ও নোট":"Books & Notes","ভিডিও":"Videos","ব্যাজ":"Badges","ফলাফল":"Results","প্রোফাইল":"Profile","ভুলের খাতা":"Mistakes","লগইন / সাইনআপ":"Login / Sign up","লগআউট":"Logout","শুরু করুন":"Start","⚡ শুরু করুন":"⚡ Start","বন্ধ করুন":"Close","← হোমে ফিরুন":"← Back to home","📚 শ্রেণি, বিষয় ও পরীক্ষা":"📚 Classes, subjects & exams","⚡ ডেইলি চ্যালেঞ্জ":"⚡ Daily Challenge","🥇 লিডারবোর্ড":"🥇 Leaderboard","🏅 ব্যাজ ও স্ট্রিক":"🏅 Badges & streak","🏆 আমার আগের ফলাফল":"🏆 My past results","🏆 আমার ফলাফল":"🏆 My results","বর্তমান স্ট্রিক":"Current streak","দিন":"days","তোমার তথ্যাবলী":"Your information","অ্যাকাউন্ট সেটিংস":"Account settings","পারফরম্যান্স রিপোর্ট":"Performance report","✏️ এডিট":"✏️ Edit","জমা দিন":"Submit","আগের":"Previous","পরের":"Next","🎯 আপনার ফলাফল":"🎯 Your result","← ফিরে যান":"← Back","অথবা ইমেইল দিয়ে":"or with email","Google দিয়ে চালিয়ে যান":"Continue with Google","ইমেইল":"Email","লগইন":"Login","কোন শ্রেণিতে পড়ো?":"Which class are you in?","পড়াশুনা শুরু করো":"Start learning","💎 প্রিমিয়াম আনলক করুন":"💎 Unlock Premium","💳 bKash দিয়ে সাবস্ক্রাইব করুন":"💳 Subscribe with bKash","হোমে ফিরুন":"Back to home","📕 ভুল প্রশ্নের খাতা":"📕 Mistake notebook","ড্যাশবোর্ড":"Dashboard","লগইন করুন":"Login","নতুন অ্যাকাউন্ট খুলুন":"Create account","পাসওয়ার্ড ভুলে গেছেন?":"Forgot password?","ফ্রি":"Free","📖 বুক ও নোট":"📖 Books & Notes","▶️ ভিডিও":"▶️ Videos","🔍 খুঁজুন":"🔍 Search","🔔 নোটিফিকেশন":"🔔 Notifications"};
+function trNode(n){
+  if(n.nodeType===3){var t=n.nodeValue.trim();if(TR[t])n.nodeValue=n.nodeValue.replace(t,TR[t]);return}
+  if(n.nodeType!==1)return;
+  var w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),x;while((x=w.nextNode())){var u=x.nodeValue.trim();if(TR[u])x.nodeValue=x.nodeValue.replace(u,TR[u])}
+  if(n.placeholder&&TR[n.placeholder])n.placeholder=TR[n.placeholder];
+}
+function startStudent(){
+
+var SUPABASE_URL="https://knjfubfnhwqruqehsqbq.supabase.co";
+var SUPABASE_KEY="sb_publishable_pX5j7jDmv7HIde8FlmLXzA_Obx8kmFu";
+var db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+window.__ctx=function(){return {db:db,user:user,name:uname(),setRes:function(a,b){if(lastRes){lastRes.s=a;lastRes.p=b}}}};
+var $=function(i){return document.getElementById(i)};
+var bn=function(n){if(LANGEN)return String(n);return String(n).replace(/\d/g,function(d){return "০১২৩৪৫৬৭৮৯"[d]})};
+var user,exam,qs,ans,cur,left,tick,signup=false;
+var linkId=(location.hash.match(/#exam=(\d+)/)||[])[1],gexam=null,entered=false;
+function isGuest(){return !!user&&(user.is_anonymous===true||!user.email)}
+
+function show(id){document.body.classList.toggle("dash",id==="home"||id==="prof");$("loading").classList.add("hide");["auth","guest","reset","home","exam","res","rev","cls","prof"].forEach(function(s){$(s).classList.toggle("hide",s!==id)})}
+function uname(){if(!user)return "অতিথি";return (user.user_metadata&&user.user_metadata.full_name)||user.email}
+
+$("aswitch").onclick=function(){
+  signup=!signup;
+  $("atitle").textContent=signup?"নতুন অ্যাকাউন্ট":"লগইন করুন";
+  $("abtn").textContent=signup?"অ্যাকাউন্ট খুলুন":"লগইন";
+  $("aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে":"নতুন অ্যাকাউন্ট খুলুন";
+  $("nameBox").classList.toggle("hide",!signup);$("aerr").textContent="";
+};
+$("abtn").onclick=async function(){
+  var email=$("email").value.trim(),pass=$("pass").value;
+  $("aerr").textContent="";
+  var r;
+  if(signup){
+    r=await db.auth.signUp({email:email,password:pass,options:{data:{full_name:$("fname").value.trim()}}});
+    if(!r.error&&!r.data.session){$("aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
+  }else{
+    r=await db.auth.signInWithPassword({email:email,password:pass});
+  }
+  if(r.error){$("aerr").textContent="ত্রুটি: "+r.error.message}
+};
+$("logout").onclick=function(){navC=null;navS=null;db.auth.signOut()};
+$("adminbtn").onclick=function(){location.hash="#admin"};
+$("teacherbtn").onclick=function(){location.hash="#teacher"};
+$("teachlink").onclick=function(){location.hash="#teacher"};
+
+/* ---- ড্যাশবোর্ড হেডার, শর্টকাট, সার্চ, নোটিফিকেশন ---- */
+var dcDone=false;
+function goSec(id){var e=$(id);if(!e)return;e.scrollIntoView({behavior:"smooth",block:"start"});e.classList.remove("flash");void e.offsetWidth;e.classList.add("flash")}
+function closeDrawer(){$("drawer").classList.add("hide")}
+$("menubtn").onclick=function(){$("drawer").classList.remove("hide")};
+$("drawer").onclick=function(e){if(e.target===this)closeDrawer()};
+$("dclose").onclick=closeDrawer;
+$("logout").addEventListener("click",closeDrawer);
+$("adminbtn").addEventListener("click",closeDrawer);
+$("teacherbtn").addEventListener("click",closeDrawer);
+Array.prototype.forEach.call(document.querySelectorAll("[data-go]"),function(b){b.onclick=function(){closeDrawer();goSec(b.getAttribute("data-go"))}});
+var pageNext=false;
+function ovlOpen(title){var pg=pageNext;pageNext=false;var o=el("div",null,"ovl"+(pg?" pg":"")),k=el("div",null,"card");o.appendChild(k);
+  if(pg){var hd=el("div",null,"pghd"),bk=el("button","← পেছনে","ghost");bk.onclick=function(){o.remove()};hd.appendChild(bk);hd.appendChild(el("b",title));k.appendChild(hd)}
+  else k.appendChild(el("h2",title));
+  o.onclick=function(e){if(!pg&&e.target===o)o.remove()};document.body.appendChild(o);return {o:o,k:k}}
+function closeBtn(v){var c=el("button","বন্ধ করুন","ghost");c.onclick=function(){v.o.remove()};v.k.appendChild(c)}
+function contentItem(x,box){var it=el("div",null,"citem"+(x.locked?" lk":""));it.appendChild(el("span",x.locked?"🔒":({note:"📝",video:"▶️",link:"🔗"}[x.kind]||"📄"),"ci"));it.appendChild(el("span",x.title));if(x.is_free&&subOn)it.appendChild(el("span","ফ্রি","chip"));it.onclick=function(){if(!user){openAuth();return}if(x.locked)payOpen();else openContent(x)};box.appendChild(it)}
+async function loadSub(){var r=await db.rpc("my_subscription");if(r.error){subOn=false;subSt="none";return}subOn=true;subSt=r.data||"none"}
+function drawSubBanner(){
+  var c=$("subcard");c.innerHTML="";
+  if(!subOn||subSt==="active"||subSt==="admin"||isGuest()){c.classList.add("hide");return}
+  c.classList.remove("hide");
+  c.appendChild(el("h2","💎 প্রিমিয়াম আনলক করুন"));
+  if(subSt==="pending"){
+    c.appendChild(el("p","⏳ আপনার পেমেন্ট যাচাই চলছে। অনুমোদনের পর সব বুক, নোট ও ভিডিও খুলে যাবে।"));
+    var rb=el("button","🔄 স্ট্যাটাস দেখুন");rb.onclick=refreshSub;c.appendChild(rb);
+  }else{
+    c.appendChild(el("p",(subSt==="rejected"?"❌ আগের পেমেন্ট যাচাই করা যায়নি। সঠিক TrxID দিয়ে আবার চেষ্টা করুন। ":"")+"একবার ৳"+bn(BKASH.price)+" দিলেই সারাজীবন সব বুক, নোট ও ভিডিও দেখতে পারবেন।"));
+    var b=el("button","💳 bKash দিয়ে সাবস্ক্রাইব করুন");b.onclick=payOpen;c.appendChild(b);
+  }
+}
+async function refreshSub(){
+  await loadSub();
+  var ct=await db.rpc("content_catalog");if(!ct.error)allCt=ct.data||[];
+  drawSubBanner();
+  if(subSt==="active")alert("🎉 সাবস্ক্রিপশন চালু হয়েছে! এখন সব কনটেন্ট দেখতে পারবেন।");
+}
+function payOpen(){
+  if(!user){openAuth();return}
+  if(isGuest()){alert("সাবস্ক্রাইব করতে ইমেইল দিয়ে অ্যাকাউন্ট খুলে লগইন করুন।");return}
+  if(subSt==="pending"){alert("আপনার পেমেন্ট যাচাই চলছে। একটু অপেক্ষা করুন।");return}
+  document.querySelectorAll(".ovl").forEach(function(o){o.remove()});
+  var v=ovlOpen("💳 bKash দিয়ে সাবস্ক্রাইব"),k=v.k;
+  k.appendChild(el("div","একবার ৳"+bn(BKASH.price)+" · সারাজীবন","chip"));
+  function step(n,t){var d=el("div",null,"pstep");d.appendChild(el("b",bn(n)));d.appendChild(el("span",t));k.appendChild(d)}
+  step(1,"bKash অ্যাপ খুলে \""+BKASH.mode+"\" বেছে নিন।");
+  step(2,"নিচের নম্বরে ঠিক ৳"+bn(BKASH.price)+" পাঠান।");
+  var pn=el("div",null,"pnum");pn.appendChild(el("span",BKASH.number));
+  var cp=el("button","কপি","ghost");cp.onclick=function(){try{navigator.clipboard.writeText(BKASH.number);cp.textContent="কপি হয়েছে ✓"}catch(_){}};
+  pn.appendChild(cp);k.appendChild(pn);
+  step(3,"পেমেন্ট শেষে SMS বা অ্যাপ থেকে TrxID কপি করুন।");
+  step(4,"নিচে আপনার bKash নম্বর ও TrxID দিয়ে জমা দিন।");
+  var si=document.createElement("input");si.type="tel";si.inputMode="numeric";si.maxLength=11;si.placeholder="যে bKash নম্বর থেকে পাঠিয়েছেন (01XXXXXXXXX)";k.appendChild(si);
+  var ti=document.createElement("input");ti.maxLength=12;ti.autocapitalize="characters";ti.placeholder="TrxID (যেমন: 9AB1C2D3EF)";k.appendChild(ti);
+  var er=el("div",null,"err");k.appendChild(er);
+  var sb=el("button","জমা দিন");
+  sb.onclick=async function(){
+    er.textContent="";
+    var sn=si.value.trim().replace(/\D/g,""),tx=ti.value.trim().toUpperCase();
+    if(!/^01\d{9}$/.test(sn)){er.textContent="সঠিক ১১ সংখ্যার bKash নম্বর দিন।";return}
+    if(!/^[A-Z0-9]{8,12}$/.test(tx)){er.textContent="সঠিক TrxID দিন (৮–১২ অক্ষর/সংখ্যা)।";return}
+    sb.disabled=true;
+    var r=await db.rpc("request_subscription",{p_trx:tx,p_sender:sn});
+    sb.disabled=false;
+    if(r.error){er.textContent="ত্রুটি: "+r.error.message;return}
+    subSt=r.data||"pending";v.o.remove();drawSubBanner();
+    alert("✅ জমা হয়েছে! যাচাই শেষে আপনার সাবস্ক্রিপশন চালু হবে।");
+  };
+  k.appendChild(sb);closeBtn(v);
+}
+function listContents(title,f){
+  var v=ovlOpen(title),k=v.k,xs=allCt.filter(f),g={},ord=[];
+  if(!xs.length)k.appendChild(el("p","এখনও কিছু যোগ হয়নি।"));
+  xs.forEach(function(x){var key=(CL[x.class_level]||"অন্যান্য")+" · "+sName((x.subject||"").trim())+(x.chapter?" · "+x.chapter:"");if(!g[key]){g[key]=[];ord.push(key)}g[key].push(x)});
+  ord.forEach(function(key){k.appendChild(el("div","📑 "+key,"chh"));g[key].forEach(function(x){contentItem(x,k)})});
+  closeBtn(v);
+}
+
+/* ===== প্রশ্নব্যাংক পিকার, কাস্টম পরীক্ষা, ফ্ল্যাশকার্ড, রেফারেল ===== */
+async function bankPicker(k,label,cb){
+  var r=await db.rpc("bank_catalog");
+  if(r.error||!r.data||!r.data.length){k.appendChild(el("p","প্রশ্নব্যাংকে এখনও প্রশ্ন নেই বা সেটআপ (SQL) বাকি।"));return}
+  var cat=r.data.map(function(x){return {c:x.class_level==null?"0":String(x.class_level),s:x.subject||"_",h:x.chapter||"_",n:Number(x.n)}});
+  var sc=el("select"),ss=el("select"),sh=el("select"),ni=el("input"),info=el("div",null,"chip");
+  ni.type="number";ni.min=1;ni.max=50;ni.value=10;
+  function uq(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
+  function fill(S,ph,vals,fm){var old=S.value;S.innerHTML="";var o=el("option",ph);o.value="";S.appendChild(o);vals.forEach(function(x){var q=el("option",fm(x));q.value=x;S.appendChild(q)});if(vals.indexOf(old)>-1)S.value=old}
+  function rows(){return cat.filter(function(x){return (!sc.value||x.c===sc.value)&&(!ss.value||x.s===ss.value)&&(!sh.value||x.h===sh.value)})}
+  function upd(lv){
+    var b=cat.filter(function(x){return !sc.value||x.c===sc.value});
+    if(lv<2)fill(ss,"সব বিষয়",uq(b.map(function(x){return x.s})),function(x){return x==="_"?"সাধারণ":x});
+    var b2=b.filter(function(x){return !ss.value||x.s===ss.value});
+    if(lv<3)fill(sh,"সব অধ্যায়",uq(b2.map(function(x){return x.h})),function(x){return x==="_"?"সাধারণ":x});
+    info.textContent="📚 পাওয়া যাবে: "+bn(rows().reduce(function(a,x){return a+x.n},0))+"টি প্রশ্ন";
+  }
+  fill(sc,"সব শ্রেণি",uq(cat.map(function(x){return x.c})).sort(function(a,b){return a-b}),function(x){return x==="0"?"অন্যান্য":(CL[x]||x)});
+  sc.onchange=function(){ss.value="";sh.value="";upd(1)};ss.onchange=function(){sh.value="";upd(2)};sh.onchange=function(){upd(3)};
+  upd(1);
+  k.appendChild(sc);k.appendChild(ss);k.appendChild(sh);
+  k.appendChild(el("small","প্রশ্নসংখ্যা (১–৫০):"));k.appendChild(ni);k.appendChild(info);
+  var go=el("button",label);
+  go.onclick=function(){cb({c:sc.value===""?null:Number(sc.value),s:ss.value===""?null:(ss.value==="_"?"":ss.value),h:sh.value===""?null:(sh.value==="_"?"":sh.value),n:Math.max(1,Math.min(50,parseInt(ni.value)||10))})};
+  k.appendChild(go);
+}
+async function bankFetch(p){
+  var r=await db.rpc("bank_questions",{p_class:p.c,p_subject:p.s,p_chapter:p.h,p_n:p.n});
+  if(r.error){alert("প্রশ্ন আনা যায়নি: "+r.error.message);return null}
+  return r.data||[];
+}
+async function openCustom(){
+  var v=ovlOpen("🎯 কাস্টম পরীক্ষা বানান"),k=v.k;
+  k.appendChild(el("p","শ্রেণি, বিষয়, অধ্যায় ও প্রশ্নসংখ্যা বেছে নিজের পরীক্ষা তৈরি করুন। এটি লিডারবোর্ডে গণনা হয় না।"));
+  await bankPicker(k,"🚀 পরীক্ষা শুরু করুন",async function(p){
+    var q=await bankFetch(p);if(!q||!q.length){alert("এই বাছাইয়ে কোনো প্রশ্ন নেই।");return}
+    runCustom(v,q);
+  });
+  closeBtn(v);
+}
+function runCustom(v,qs){
+  var k=v.k,a={},i=0,left=Math.ceil(qs.length*.8)*60,tk,tm;
+  qs.sort(function(){return Math.random()-.5});
+  qs.forEach(function(q){q.ord=q.options.map(function(_,j){return j}).sort(function(){return Math.random()-.5})});
+  function clk(){if(tm)tm.textContent="⏱ "+bn(Math.floor(left/60))+":"+bn((left%60<10?"0":"")+left%60)}
+  function end(){
+    clearInterval(tk);k.innerHTML="";
+    var sc=0,tot=0,wr=[];qs.forEach(function(q){var m=q.marks||1;tot+=m;if(a[q.id]===q.correct)sc+=m;else wr.push(q)});
+    var pc=tot?Math.round(sc/tot*100):0;
+    k.appendChild(el("h2","🎯 ফলাফল"));k.appendChild(el("p","স্কোর: "+bn(sc)+" / "+bn(tot)+" ("+bn(pc)+"%)"));
+    if(pc>=80)confetti();
+    if(wr.length){
+      var fb=el("button","🧠 ভুলগুলো ফ্ল্যাশকার্ডে নিন ("+bn(wr.length)+")");
+      fb.onclick=function(){var n=fcAdd(wr.map(function(q){return {b:q.body,a:q.options[q.correct]}}),"ভুল");fb.disabled=true;fb.textContent="✅ "+bn(n)+"টি নতুন কার্ড যোগ হয়েছে"};
+      k.appendChild(fb);
+      wr.forEach(function(q){var d=el("div",null,"rq");d.appendChild(el("b",q.body));d.appendChild(el("div","✓ সঠিক: "+q.options[q.correct],"ro good"));d.appendChild(el("div",a[q.id]==null?"স্কিপ করেছেন":"✗ আপনার উত্তর: "+q.options[a[q.id]],"ro wrong"));k.appendChild(d)});
+    }else k.appendChild(el("p","সবগুলো সঠিক! 🎉"));
+    closeBtn(v);
+  }
+  function step(){
+    k.innerHTML="";var q=qs[i];
+    tm=el("div",null,"chip");k.appendChild(tm);clk();
+    k.appendChild(el("h2","প্রশ্ন "+bn(i+1)+" / "+bn(qs.length)));k.appendChild(el("p",q.body));
+    q.ord.forEach(function(j){var d=el("div",q.options[j],"opt"+(a[q.id]===j?" sel":""));d.onclick=function(){a[q.id]=j;step()};k.appendChild(d)});
+    var nav=el("div",null,"chips");
+    if(i>0){var pb=el("button","← আগের","ghost");pb.onclick=function(){i--;step()};nav.appendChild(pb)}
+    if(i<qs.length-1){var nb=el("button","পরের →");nb.onclick=function(){i++;step()};nav.appendChild(nb)}
+    else{var sb=el("button","✅ জমা দিন");sb.onclick=function(){if(confirm("জমা দেবেন?"))end()};nav.appendChild(sb)}
+    k.appendChild(nav);
+  }
+  tk=setInterval(function(){if(!document.body.contains(v.o)){clearInterval(tk);return}left--;clk();if(left<=0)end()},1000);
+  step();
+}
+var FCD=86400000,FCI=[0,1,3,7,16];
+function fcKey(){return "fc_"+(user?user.id:"g")}
+function fcLoad(){try{return JSON.parse(localStorage.getItem(fcKey()))||{}}catch(e){return {}}}
+function fcSave(d){try{localStorage.setItem(fcKey(),JSON.stringify(d))}catch(e){}}
+function fcAdd(list,tag){var d=fcLoad(),n=0;list.forEach(function(x){var id=String(x.b).trim();if(id&&!d[id]){d[id]={f:id,s:x.a,t:tag||"",bx:0,due:0};n++}});fcSave(d);return n}
+function openFlash(){
+  if(!user){openAuth();return}
+  var v=ovlOpen("🧠 ফ্ল্যাশকার্ড"),k=v.k;
+  function menu(){
+    k.innerHTML="";k.appendChild(el("h2","🧠 ফ্ল্যাশকার্ড"));
+    var d=fcLoad(),ks=Object.keys(d),now=Date.now();
+    var due=ks.filter(function(i){return d[i].due<=now}).length,ok=ks.filter(function(i){return d[i].bx>=3}).length;
+    var c=el("div",null,"chips");
+    c.appendChild(el("span","📚 মোট "+bn(ks.length),"chip"));c.appendChild(el("span","⏰ আজকের "+bn(due),"chip"));c.appendChild(el("span","🏆 আয়ত্তে "+bn(ok),"chip"));k.appendChild(c);
+    k.appendChild(el("p","স্মার্ট রিভিউ: কঠিন কার্ড বারবার আসবে, সহজ কার্ড ধীরে ধীরে দূরে সরে যাবে।"));
+    var b1=el("button","▶️ রিভিউ শুরু ("+bn(due)+")");b1.disabled=!due;b1.onclick=function(){study(d)};k.appendChild(b1);
+    var b2=el("button","➕ প্রশ্নব্যাংক থেকে কার্ড নিন","ghost");
+    b2.onclick=async function(){
+      k.innerHTML="";k.appendChild(el("h2","কার্ড তৈরি করুন"));
+      var bk=el("button","← ফিরে যান","ghost");bk.onclick=menu;
+      await bankPicker(k,"কার্ড যোগ করুন",async function(p){
+        var q=await bankFetch(p);if(!q||!q.length){alert("এই বাছাইয়ে কোনো প্রশ্ন নেই।");return}
+        var n=fcAdd(q.map(function(x){return {b:x.body,a:x.options[x.correct]}}),p.s||"");alert(bn(n)+"টি নতুন কার্ড যোগ হয়েছে।");menu();
+      });
+      k.appendChild(bk);
+    };
+    k.appendChild(b2);
+    var f=el("input"),bq=el("input");f.placeholder="নিজের ক
