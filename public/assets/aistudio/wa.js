@@ -393,7 +393,7 @@ module.exports = async (req, res) => {
       if (!WT || !PID) return res.status(500).json({ error: 'WA_TOKEN / WA_PHONE_ID সেট করা নেই' });
       if (job === 'daily') return res.json(await jobDaily(false));
       if (job === 'weekly') return res.json(await jobWeekly(false));
-      return res.status(400).json({ error: 'job=daily|weekly|games দিন' });
+      return res.status(400).json({ error: 'job=daily|weekly|games|xgext দিন' });
     }
     if (req.method !== 'POST') return res.status(405).json({ error: 'method' });
 
