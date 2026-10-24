@@ -30,6 +30,13 @@ async function authUser(req) {
   const u = await r.json();
   return u && u.id ? u : null;
 }
+async function isStaff(id) {
+  if (await isAdmin(id)) return true;
+  try {
+    const r = await sb('/rest/v1/teachers?user_id=eq.' + id + '&status=eq.active&select=user_id');
+    return Array.isArray(r) && r.length > 0;
+  } catch (e) { return false; }
+}
 async function isAdmin(id) {
   const r = await sb('/rest/v1/admins?user_id=eq.' + id + '&select=user_id');
   return Array.isArray(r) && r.length > 0;
@@ -219,7 +226,7 @@ module.exports = async (req, res) => {
     if (!GK) return res.status(500).json({ error: 'সার্ভারে GEMINI_API_KEY সেট করা নেই' });
 
     if (act === 'genq') {
-      if (!(await isAdmin(u.id))) return res.status(403).json({ error: 'শুধু অ্যাডমিন' });
+      if (!(await isStaff(u.id))) return res.status(403).json({ error: 'শুধু অ্যাডমিন বা অনুমোদিত শিক্ষক' });
       const n = Math.max(1, Math.min(8, parseInt(b.count) || 6));
       const avoid = (b.avoid || []).slice(-40).map((s) => String(s).slice(0, 80));
       const prompt = `শ্রেণি: ${CLS[b.class_level] || b.class_level || 'উল্লেখ নেই'}
@@ -237,7 +244,7 @@ avoid: ${JSON.stringify(avoid)}`;
     }
 
     if (act === 'scanq') {
-      if (!(await isAdmin(u.id))) return res.status(403).json({ error: 'শুধু অ্যাডমিন' });
+      if (!(await isStaff(u.id))) return res.status(403).json({ error: 'শুধু অ্যাডমিন বা অনুমোদিত শিক্ষক' });
       const img = typeof b.image === 'string' ? b.image.replace(/^data:[^,]+,/, '') : '';
       if (!img) return res.status(400).json({ error: 'ছবি দিন' });
       if (img.length > 4_000_000) return res.status(413).json({ error: 'ছবি বেশি বড়, ছোট করে আবার দিন' });
