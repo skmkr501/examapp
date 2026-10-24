@@ -20,7 +20,7 @@ const TPL = {
 async function sb(path, opt = {}) {
   const r = await fetch(SB + path, {
     ...opt,
-    headers: { apikey: SK, Authorization: 'Bearer ' + SK, 'Content-Type': 'application/json', ...(opt.headers || {}) },
+    headers: { apikey: SK, ...(String(SK).startsWith('eyJ') ? { Authorization: 'Bearer ' + SK } : {}), 'Content-Type': 'application/json', ...(opt.headers || {}) },
   });
   const t = await r.text();
   let j = null;
@@ -165,7 +165,7 @@ async function activity(uid, days) {
   return { rs: rs || [], streak: cur, doneToday: set.has(today()) };
 }
 async function userInfo(uid) {
-  const r = await fetch(`${SB}/auth/v1/admin/users/${uid}`, { headers: { apikey: SK, Authorization: 'Bearer ' + SK } });
+  const r = await fetch(`${SB}/auth/v1/admin/users/${uid}`, { headers: { apikey: SK, ...(String(SK).startsWith('eyJ') ? { Authorization: 'Bearer ' + SK } : {}) } });
   const u = await r.json().catch(() => ({}));
   const m = u.user_metadata || {};
   return { name: m.full_name || (u.email || '').split('@')[0] || 'শিক্ষার্থী', cls: parseInt(m.class_level) || null };
