@@ -1,12 +1,14 @@
 {
   "functions": {
     "api/ai.js": { "maxDuration": 60 },
-    "api/wa.js": { "maxDuration": 60 }
+    "api/wa.js": { "maxDuration": 60 },
+    "api/push.js": { "maxDuration": 60 }
   },
   "crons": [
     { "path": "/api/wa?job=games", "schedule": "30 0 * * *" },
     { "path": "/api/wa?job=daily", "schedule": "0 1 * * *" },
     { "path": "/api/wa?job=xgext", "schedule": "40 1 * * *" },
+    { "path": "/api/push?job=daily", "schedule": "0 2 * * *" },
     { "path": "/api/wa?job=weekly", "schedule": "0 3 * * 5" }
   ]
 }
