@@ -2,12 +2,21 @@ package com.example
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
+import android.os.Looper
+import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
+import java.io.File
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.Toast
@@ -33,6 +42,58 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import com.example.ui.theme.MyApplicationTheme
 import com.example.ui.theme.PurpleAccent
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.delay
+
+const val SITE_URL = "https://examappagkk.vercel.app/"
+
+/** ওয়েব পেজ থেকে PDF সেভ ও পুশ টোকেন পাওয়ার ব্রিজ (JS: window.ExamAndroid) */
+class PdfBridge(private val ctx: Context) {
+    private val ui = Handler(Looper.getMainLooper())
+    private fun toast(t: String) = ui.post { Toast.makeText(ctx, t, Toast.LENGTH_LONG).show() }
+
+    @JavascriptInterface
+    fun getPushToken(): String {
+        val sp = ctx.getSharedPreferences("push", Context.MODE_PRIVATE)
+        return sp.getString("token", "") ?: ""
+    }
+
+    @JavascriptInterface
+    fun savePdf(base64: String, name: String): Boolean {
+        return try {
+            val bytes = Base64.decode(base64.substringAfter(","), Base64.DEFAULT)
+            val fn = if (name.endsWith(".pdf")) name else "$name.pdf"
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val cv = ContentValues().apply {
+                    put(MediaStore.Downloads.DISPLAY_NAME, fn)
+                    put(MediaStore.Downloads.MIME_TYPE, "application/pdf")
+                    put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+                }
+                val uri = ctx.contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv)
+                    ?: throw Exception("ফাইল তৈরি হয়নি")
+                ctx.contentResolver.openOutputStream(uri)?.use { it.write(bytes) }
+                toast("✅ Downloads ফোল্ডারে সেভ হয়েছে: $fn")
+                ui.post {
+                    try {
+                        val v = Intent(Intent.ACTION_VIEW).apply {
+                            setDataAndType(uri, "application/pdf")
+                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        }
+                        ctx.startActivity(v)
+                    } catch (_: Exception) { }
+                }
+            } else {
+                val dir = ctx.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: ctx.filesDir
+                File(dir, fn).writeBytes(bytes)
+                toast("✅ সেভ হয়েছে: ${dir.absolutePath}/$fn")
+            }
+            true
+        } catch (e: Exception) {
+            toast("❌ সেভ ব্যর্থ: ${e.message}")
+            false
+        }
+    }
+}
 
 data class NavTab(
     val title: String,
@@ -67,6 +128,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+            if (!token.isNullOrEmpty()) {
+                getSharedPreferences("push", Context.MODE_PRIVATE)
+                    .edit()
+                    .putString("token", token)
+                    .apply()
+                Log.d("FCM", "Saved token on launch: $token")
+            }
+        }
+
         setContent {
             MyApplicationTheme {
                 MainAppHost(
@@ -99,18 +170,32 @@ fun MainAppHost(
     var isLoading by remember { mutableStateOf(true) }
     var loadingProgress by remember { mutableStateOf(0) }
 
-    // Camera permission request
+    var pendingWebPermissionRequest by remember { mutableStateOf<PermissionRequest?>(null) }
+
+    // Camera permission request - only launched on-demand when website requests camera
     val cameraPermissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
-        if (!isGranted) {
+        if (isGranted) {
+            pendingWebPermissionRequest?.let { it.grant(it.resources) }
+        } else {
+            pendingWebPermissionRequest?.deny()
             Toast.makeText(context, "ক্যামেরা পারমিশন দিলে OMR স্ক্যান কাজ করবে", Toast.LENGTH_SHORT).show()
         }
+        pendingWebPermissionRequest = null
     }
 
+    // Separate launcher for POST_NOTIFICATIONS
+    val notifPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { _ -> }
+
     LaunchedEffect(Unit) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        if (Build.VERSION.SDK_INT >= 33) {
+            delay(3000)
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                notifPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
     }
 
@@ -126,7 +211,7 @@ fun MainAppHost(
         if (webView != null && webView.canGoBack()) {
             webView.goBack()
         } else if (currentHash.isNotEmpty()) {
-            webView?.loadUrl("file:///android_asset/index.html")
+            webView?.loadUrl(SITE_URL)
             currentHash = ""
         } else {
             (context as? ComponentActivity)?.finish()
@@ -153,7 +238,7 @@ fun MainAppHost(
                                 webViewRef?.reload()
                             } else {
                                 currentHash = tab.hash
-                                val targetUrl = "file:///android_asset/index.html" + tab.hash
+                                val targetUrl = SITE_URL + tab.hash
                                 webViewRef?.loadUrl(targetUrl)
                             }
                         },
@@ -205,6 +290,8 @@ fun MainAppHost(
                             userAgentString = "$userAgentString ExamSiteAndroidApp/1.0"
                         }
 
+                        addJavascriptInterface(PdfBridge(ctx), "ExamAndroid")
+
                         webChromeClient = object : WebChromeClient() {
                             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                                 loadingProgress = newProgress
@@ -224,7 +311,18 @@ fun MainAppHost(
                             }
 
                             override fun onPermissionRequest(request: PermissionRequest?) {
-                                request?.grant(request.resources)
+                                if (request == null) return
+                                val hasCamera = request.resources.contains(PermissionRequest.RESOURCE_VIDEO_CAPTURE)
+                                if (hasCamera) {
+                                    if (ContextCompat.checkSelfPermission(ctx, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                                        request.grant(request.resources)
+                                    } else {
+                                        pendingWebPermissionRequest = request
+                                        cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                                    }
+                                } else {
+                                    request.grant(request.resources)
+                                }
                             }
                         }
 
@@ -263,7 +361,7 @@ fun MainAppHost(
                             }
                         }
 
-                        loadUrl("file:///android_asset/index.html")
+                        loadUrl(SITE_URL)
                         webViewRef = this
                     }
                 },
