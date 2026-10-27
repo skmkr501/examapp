@@ -93,6 +93,32 @@ class PdfBridge(private val ctx: Context) {
             false
         }
     }
+
+    @JavascriptInterface
+    fun getInstallTime(): String {
+        return try {
+            val time = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ctx.packageManager.getPackageInfo(ctx.packageName, PackageManager.PackageInfoFlags.of(0)).lastUpdateTime
+            } else {
+                @Suppress("DEPRECATION")
+                ctx.packageManager.getPackageInfo(ctx.packageName, 0).lastUpdateTime
+            }
+            time.toString()
+        } catch (_: Exception) {
+            "0"
+        }
+    }
+
+    @JavascriptInterface
+    fun openExternal(url: String) {
+        if (!url.startsWith("https://")) return
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            ctx.startActivity(intent)
+        } catch (_: Exception) { }
+    }
 }
 
 data class NavTab(
