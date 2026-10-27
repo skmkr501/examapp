@@ -2,6 +2,7 @@ package com.example
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -40,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.example.ui.theme.MyApplicationTheme
 import com.example.ui.theme.PurpleAccent
 import com.google.firebase.messaging.FirebaseMessaging
@@ -118,6 +120,72 @@ class PdfBridge(private val ctx: Context) {
             }
             ctx.startActivity(intent)
         } catch (_: Exception) { }
+    }
+
+    @JavascriptInterface
+    fun shareFile(dataUrl: String, fileName: String, mime: String, text: String, phone: String) {
+        ui.post {
+            try {
+                val sharedDir = File(ctx.cacheDir, "shared").apply {
+                    if (!exists()) mkdirs()
+                }
+                val file = File(sharedDir, fileName)
+                val base64Data = if (dataUrl.contains(",")) dataUrl.substringAfter(",") else dataUrl
+                val bytes = Base64.decode(base64Data, Base64.DEFAULT)
+                file.writeBytes(bytes)
+
+                val uri = FileProvider.getUriForFile(ctx, "${ctx.packageName}.fileprovider", file)
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = if (mime.isNotBlank()) mime else "*/*"
+                    putExtra(Intent.EXTRA_STREAM, uri)
+                    if (text.isNotBlank()) {
+                        putExtra(Intent.EXTRA_TEXT, text)
+                    }
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+
+                if (phone.isNotBlank()) {
+                    val cleanDigits = phone.trim().filter { it.isDigit() }
+                    val jidNum = if (cleanDigits.startsWith("01") && cleanDigits.length == 11) {
+                        "88$cleanDigits"
+                    } else if (cleanDigits.isNotEmpty()) {
+                        cleanDigits
+                    } else {
+                        phone.trim()
+                    }
+                    val jid = if (phone.contains("@s.whatsapp.net")) phone.trim() else "$jidNum@s.whatsapp.net"
+
+                    val waIntent = Intent(intent).apply {
+                        setPackage("com.whatsapp")
+                        putExtra("jid", jid)
+                    }
+                    try {
+                        ctx.startActivity(waIntent)
+                        return@post
+                    } catch (_: ActivityNotFoundException) {
+                        try {
+                            val w4bIntent = Intent(intent).apply {
+                                setPackage("com.whatsapp.w4b")
+                                putExtra("jid", jid)
+                            }
+                            ctx.startActivity(w4bIntent)
+                            return@post
+                        } catch (_: ActivityNotFoundException) {
+                            // fall through to chooser
+                        }
+                    }
+                }
+
+                val chooser = Intent.createChooser(intent, "শেয়ার করুন").apply {
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                ctx.startActivity(chooser)
+            } catch (e: Exception) {
+                toast("শেয়ার ব্যর্থ: ${e.message}")
+            }
+        }
     }
 }
 
