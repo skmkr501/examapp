@@ -298,12 +298,13 @@ html,body{max-width:100%;overflow-x:hidden}
 
 <section id="auth" class="card hide">
   <div class="vbox"><button class="ghost" id="authback" style="margin:0 0 10px">← ফিরে যান</button>
-  <h1 id="atitle">লগইন / সাইনআপ</h1><p>Google দিয়ে এক ট্যাপেই শুরু করুন।</p>
+  <h1 id="atitle">লগইন করুন</h1><p id="asubtitle">Google দিয়ে এক ট্যাপেই শুরু করুন অথবা ইউজারনেম/ইমেইল দিয়ে লগইন করুন।</p>
   <button class="gglbtn" id="ggl"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.2 5.5-4.7 7.2l7.6 5.9c4.4-4.1 6.9-10.1 6.9-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.8 2.3-8.3 2.3-6.3 0-11.6-4-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Google দিয়ে চালিয়ে যান</button>
-  <div class="sep">অথবা ইমেইল দিয়ে</div>
-  <div id="nameBox" class="hide"><label>নাম</label><input id="fname" autocomplete="name"></div>
-  <label>ইমেইল</label><input id="email" type="email" autocomplete="email">
-  <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="pass" type="password" autocomplete="current-password">
+  <div class="sep" id="authsep">অথবা ইমেইল বা ইউজারনেম দিয়ে</div>
+  <div id="nameBox" class="hide"><label>পূর্ণ নাম</label><input id="fname" autocomplete="name" placeholder="আপনার পূর্ণ নাম লিখুন"></div>
+  <div id="unameBox" class="hide"><label>ইউনিক ইউজারনেম (লগইনের জন্য)</label><input id="uname_in" autocomplete="username" placeholder="যেমন: shanto123 (৩-২০ অক্ষর)" style="text-transform:lowercase"><small style="color:var(--mute);font-size:.78rem;display:block;margin:-4px 0 8px">ইংরেজি ছোট অক্ষর, সংখ্যা ও আন্ডারস্কোর (_) ব্যবহার করুন</small></div>
+  <label id="emaillbl">ইমেইল বা ইউজারনেম</label><input id="email" type="text" autocomplete="username" placeholder="আপনার ইমেইল বা ইউজারনেম লিখুন">
+  <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="pass" type="password" autocomplete="current-password" placeholder="পাসওয়ার্ড লিখুন">
   <div class="err" id="aerr"></div>
   <button id="abtn">লগইন</button>
   <button class="ghost" id="aswitch">নতুন অ্যাকাউন্ট খুলুন</button>
@@ -444,10 +445,11 @@ html,body{max-width:100%;overflow-x:hidden}
 
 <section id="t_login" class="card hide">
   <h1 id="t_atitle">টিচার লগইন</h1>
-  <p>আপনার আইডি (ইমেইল) দিয়ে লগইন করুন। প্যানেল পেতে লগইনের পর অ্যাডমিনের কাছে অনুরোধ পাঠাতে হবে।</p>
+  <p id="t_asub">আপনার আইডি (ইমেইল বা ইউজারনেম) দিয়ে লগইন করুন। প্যানেল পেতে লগইনের পর অ্যাডমিনের কাছে অনুরোধ পাঠাতে হবে।</p>
   <button class="ghost" id="t_ggl" style="width:100%;margin:0 0 10px">Google দিয়ে লগইন</button>
-  <div id="t_nameBox" class="hide"><input id="t_fname" placeholder="আপনার নাম" autocomplete="name"></div>
-  <input id="t_email" type="email" placeholder="ইমেইল" autocomplete="email">
+  <div id="t_nameBox" class="hide"><input id="t_fname" placeholder="আপনার পূর্ণ নাম" autocomplete="name"></div>
+  <div id="t_unameBox" class="hide"><input id="t_uname" placeholder="ইউনিক ইউজারনেম (যেমন: teacher123)" autocomplete="username" style="text-transform:lowercase"></div>
+  <input id="t_email" type="text" placeholder="ইমেইল বা ইউজারনেম" autocomplete="username">
   <input id="t_pass" type="password" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)" autocomplete="current-password">
   <div class="err" id="t_aerr"></div>
   <button id="t_abtn">লগইন</button>
@@ -706,6 +708,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div id="pmsg" class="err"></div>
     <div id="paylist"></div>
     <details id="paysetup"><summary>⚙️ ডেটাবেস সেটআপ SQL (একবার Run করুন)</summary><p>SQL কপি করে Supabase → SQL Editor-এ Run করুন। এতে সাবস্ক্রিপশন ও ভিজিটরদের পরীক্ষার তালিকা দেখার অনুমতি দুটোই সেট হয়।</p><button id="copysql">📋 SQL কপি করুন</button><textarea id="sqlbox" class="ta" rows="8" readonly></textarea></details>
+    <details id="unamesetup" style="margin-top:10px"><summary>🆔 ইউনিক ইউজারনেম ডেটাবেস SQL (একবার Run করুন)</summary><p>ইউজাররা যাতে নিজস্ব ইউনিক ইউজারনেম দিয়ে সরাসরি লগইন করতে পারে, তার জন্য Supabase → SQL Editor-এ এই কোডটি একবার Run করুন।</p><button id="copyunamesql">📋 ইউজারনেম SQL কপি করুন</button><textarea id="unamesqlbox" class="ta" rows="8" readonly></textarea></details>
   </div>
 
   <div id="t-stu" class="card hide"><h2>👪 শিক্ষক / অভিভাবক রিপোর্ট</h2>
@@ -928,6 +931,75 @@ create or replace function public.admin_students() returns jsonb language sql se
     'guardian',u.raw_user_meta_data->>'guardian','whatsapp',u.raw_user_meta_data->>'whatsapp',
     'mobile',u.raw_user_meta_data->>'mobile') order by u.created_at desc),'[]'::jsonb)
   from auth.users u where public.sub_is_admin() and not coalesce(u.is_anonymous,false) $f$;
+</script>
+<script type="text/plain" id="username-sql">
+-- ===== ইউনিক ইউজারনেম সেটআপ (একবার Supabase SQL Editor-এ Run করুন) =====
+-- বারবার চালালেও কোনো সমস্যা নেই, আগের কোনো ডেটা নষ্ট হবে না।
+
+create table if not exists public.usernames(
+  username text primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  email text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists usernames_user_id_idx on public.usernames(user_id);
+create index if not exists usernames_email_idx on public.usernames(email);
+
+alter table public.usernames enable row level security;
+
+-- যে কেউ ইউজারনেম খালি আছে কিনা বা লগইনের জন্য ইমেইল দেখতে পারে
+drop policy if exists usernames_select_all on public.usernames;
+create policy usernames_select_all on public.usernames for select using(true);
+
+-- অথেনটিকেটেড ইউজার তার নিজস্ব রেকর্ড তৈরি, আপডেট ও মুছতে পারবে
+drop policy if exists usernames_insert_own on public.usernames;
+create policy usernames_insert_own on public.usernames for insert with check(auth.uid() = user_id);
+
+drop policy if exists usernames_update_own on public.usernames;
+create policy usernames_update_own on public.usernames for update using(auth.uid() = user_id);
+
+drop policy if exists usernames_delete_own on public.usernames;
+create policy usernames_delete_own on public.usernames for delete using(auth.uid() = user_id);
+
+grant select on public.usernames to anon, authenticated;
+grant insert, update, delete on public.usernames to authenticated;
+
+-- নিরাপদ ফাংশন: ইউজারনেম সেট করা
+create or replace function public.set_my_username(p_username text)
+returns jsonb language plpgsql security definer set search_path=public as $f$
+declare
+  uid uuid := auth.uid();
+  uemail text;
+  uname_clean text;
+begin
+  if uid is null then
+    return jsonb_build_object('ok', false, 'error', 'লগইন আবশ্যক');
+  end if;
+  uname_clean := lower(trim(p_username));
+  if uname_clean !~ '^[a-z0-9_]{3,20}$' then
+    return jsonb_build_object('ok', false, 'error', 'ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর হতে হবে');
+  end if;
+  select email into uemail from auth.users where id = uid;
+  if uemail is null or uemail = '' then
+    return jsonb_build_object('ok', false, 'error', 'ব্যবহারকারীর ইমেইল পাওয়া যায়নি');
+  end if;
+  if exists(select 1 from public.usernames where username = uname_clean and user_id <> uid) then
+    return jsonb_build_object('ok', false, 'error', 'এই ইউজারনেমটি অন্য কেউ নিয়ে নিয়েছে');
+  end if;
+  delete from public.usernames where user_id = uid;
+  insert into public.usernames(username, user_id, email) values(uname_clean, uid, uemail)
+  on conflict(username) do update set user_id = uid, email = uemail;
+  return jsonb_build_object('ok', true, 'username', uname_clean);
+end;
+$f$;
+grant execute on function public.set_my_username(text) to authenticated;
+
+-- নিরাপদ ফাংশন: ইউজারনেম দিয়ে ইমেইল বের করা
+create or replace function public.get_email_by_username(p_username text)
+returns text language sql security definer set search_path=public stable as $f$
+  select email from public.usernames where username = lower(trim(p_username)) limit 1;
+$f$;
+grant execute on function public.get_email_by_username(text) to anon, authenticated;
 </script>
 <script type="text/plain" id="tch-sql">
 -- 👨‍🏫 টিচারস প্যানেল সেটআপ (একবার Run করুন; বারবার চালালেও সমস্যা নেই)
@@ -1264,26 +1336,157 @@ var linkId=(location.hash.match(/#exam=(\d+)/)||[])[1],gexam=null,entered=false;
 function isGuest(){return !!user&&(user.is_anonymous===true||!user.email)}
 
 function show(id){document.body.classList.toggle("dash",id==="home"||id==="prof");$("loading").classList.add("hide");["auth","guest","reset","home","exam","res","rev","cls","prof"].forEach(function(s){$(s).classList.toggle("hide",s!==id)})}
-function uname(){if(!user)return "অতিথি";return (user.user_metadata&&user.user_metadata.full_name)||user.email}
+function uname(){if(!user)return "অতিথি";var m=user.user_metadata||{};return m.full_name||(m.username?"@"+m.username:user.email)}
+
+/* ===== ইউনিক ইউজারনেম সার্ভিস ও হেল্পার ===== */
+function cleanUsername(u){return String(u||"").trim().toLowerCase()}
+function isValidUsername(u){return /^[a-z0-9_]{3,20}$/.test(cleanUsername(u))}
+
+async function checkUsernameAvailable(u, currentUserId){
+  u = cleanUsername(u);
+  if(!isValidUsername(u)) return {available:false, reason:"ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে (কোনো স্পেস নয়)।"};
+  try {
+    var q = await db.from("usernames").select("user_id").eq("username", u).maybeSingle();
+    if(q && q.data){
+      if(currentUserId && q.data.user_id === currentUserId) return {available:true};
+      return {available:false, reason:"এই ইউজারনেমটি ইতিমধ্যে ব্যবহৃত হয়েছে, অন্য একটি বেছে নিন।"};
+    }
+  } catch(e) {}
+  try {
+    var loc = localStorage.getItem("un_" + u);
+    if(loc && user && user.email && loc !== user.email){
+      return {available:false, reason:"এই ইউজারনেমটি ইতিমধ্যে ব্যবহৃত হয়েছে, অন্য একটি বেছে নিন।"};
+    }
+  } catch(e) {}
+  return {available:true};
+}
+
+async function resolveLoginIdentifier(input){
+  var s = String(input||"").trim();
+  if(!s) return {error:"ইমেইল বা ইউজারনেম লিখুন।"};
+  if(s.includes("@")) return {email:s, isUsername:false};
+  var u = cleanUsername(s);
+  if(!isValidUsername(u)) return {error:"সঠিক ইউজারনেম (৩-২০ অক্ষর) অথবা সঠিক ইমেইল লিখুন।"};
+  try {
+    var rpc = await db.rpc("get_email_by_username", {p_username: u});
+    if(!rpc.error && rpc.data) return {email:rpc.data, isUsername:true, username:u};
+  } catch(e) {}
+  try {
+    var q = await db.from("usernames").select("email").eq("username", u).maybeSingle();
+    if(!q.error && q.data && q.data.email) return {email:q.data.email, isUsername:true, username:u};
+  } catch(e) {}
+  try {
+    var loc = localStorage.getItem("un_" + u);
+    if(loc && loc.includes("@")) return {email:loc, isUsername:true, username:u};
+  } catch(e) {}
+  return {error:"এই ইউজারনেম ('" + u + "') দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি। অনুগ্রহ করে আপনার সঠিক ইউজারনেম বা আসল ইমেইল দিয়ে চেষ্টা করুন।"};
+}
+
+async function saveUserUsername(u, uid, email){
+  u = cleanUsername(u);
+  if(!u || !email) return;
+  try { localStorage.setItem("un_" + u, email); } catch(e) {}
+  try { await db.rpc("set_my_username", {p_username: u}); } catch(e) {}
+  try {
+    if(uid) await db.from("usernames").upsert({username:u, user_id:uid, email:email});
+  } catch(e) {}
+}
+
+async function syncCurrentUsername(){
+  if(!user) return;
+  var u = cleanUsername(user.user_metadata && user.user_metadata.username);
+  if(u && isValidUsername(u) && user.email){
+    saveUserUsername(u, user.id, user.email);
+  }
+}
 
 $("aswitch").onclick=function(){
   signup=!signup;
-  $("atitle").textContent=signup?"নতুন অ্যাকাউন্ট":"লগইন করুন";
+  $("atitle").textContent=signup?"নতুন অ্যাকাউন্ট তৈরি":"লগইন করুন";
+  if($("asubtitle")) $("asubtitle").textContent=signup?"ইমেইল, ইউজারনেম ও পাসওয়ার্ড দিয়ে সহজে অ্যাকাউন্ট খুলুন।":"Google দিয়ে এক ট্যাপেই শুরু করুন অথবা ইউজারনেম/ইমেইল দিয়ে লগইন করুন।";
   $("abtn").textContent=signup?"অ্যাকাউন্ট খুলুন":"লগইন";
-  $("aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে":"নতুন অ্যাকাউন্ট খুলুন";
-  $("nameBox").classList.toggle("hide",!signup);$("aerr").textContent="";
-};
-$("abtn").onclick=async function(){
-  var email=$("email").value.trim(),pass=$("pass").value;
+  $("aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে? লগইন করুন":"নতুন অ্যাকাউন্ট খুলুন";
+  $("nameBox").classList.toggle("hide",!signup);
+  $("unameBox").classList.toggle("hide",!signup);
+  $("emaillbl").textContent=signup?"ইমেইল":"ইমেইল বা ইউজারনেম";
+  $("email").placeholder=signup?"আপনার ইমেইল ঠিকানা লিখুন":"আপনার ইমেইল বা ইউজারনেম লিখুন";
+  if($("authsep")) $("authsep").textContent=signup?"অথবা প্রয়োজনীয় তথ্য দিয়ে":"অথবা ইমেইল বা ইউজারনেম দিয়ে";
   $("aerr").textContent="";
-  var r;
+};
+
+$("abtn").onclick=async function(){
+  $("aerr").className="err";
+  $("aerr").textContent="";
+  var pass=$("pass").value;
   if(signup){
-    r=await db.auth.signUp({email:email,password:pass,options:{data:{full_name:$("fname").value.trim()}}});
-    if(!r.error&&!r.data.session){$("aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
+    var nm=$("fname").value.trim();
+    if(!nm){$("aerr").textContent="আপনার পূর্ণ নাম লিখুন।";return}
+    var rawUname=$("uname_in").value.trim();
+    var u=cleanUsername(rawUname);
+    if(!isValidUsername(u)){
+      $("aerr").textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে (কোনো স্পেস নয়)।";
+      return;
+    }
+    $("abtn").disabled=true;
+    $("aerr").textContent="ইউজারনেম যাচাই হচ্ছে...";
+    var chk=await checkUsernameAvailable(u);
+    if(!chk.available){
+      $("abtn").disabled=false;
+      $("aerr").textContent=chk.reason;
+      return;
+    }
+    var em=$("email").value.trim();
+    if(!em||!em.includes("@")){
+      $("abtn").disabled=false;
+      $("aerr").textContent="সঠিক ইমেইল ঠিকানা দিন।";
+      return;
+    }
+    if(!pass||pass.length<6){
+      $("abtn").disabled=false;
+      $("aerr").textContent="পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।";
+      return;
+    }
+    $("aerr").textContent="অ্যাকাউন্ট তৈরি হচ্ছে...";
+    var r=await db.auth.signUp({
+      email:em,
+      password:pass,
+      options:{data:{full_name:nm,username:u}}
+    });
+    $("abtn").disabled=false;
+    if(r.error){$("aerr").textContent="ত্রুটি: "+r.error.message;return}
+    saveUserUsername(u,(r.data&&r.data.user&&r.data.user.id)||null,em);
+    if(!r.data.session){
+      $("aerr").className="ok";
+      $("aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর ইউজারনেম '"+u+"' বা ইমেইল দিয়ে লগইন করুন।";
+      return;
+    }
   }else{
-    r=await db.auth.signInWithPassword({email:email,password:pass});
+    var rawId=$("email").value.trim();
+    if(!rawId){$("aerr").textContent="ইমেইল বা ইউজারনেম লিখুন।";return}
+    if(!pass){$("aerr").textContent="পাসওয়ার্ড লিখুন।";return}
+    $("abtn").disabled=true;
+    $("aerr").textContent="লগইন হচ্ছে...";
+    var res=await resolveLoginIdentifier(rawId);
+    if(res.error){
+      $("abtn").disabled=false;
+      $("aerr").textContent=res.error;
+      return;
+    }
+    var r=await db.auth.signInWithPassword({email:res.email,password:pass});
+    $("abtn").disabled=false;
+    if(r.error){
+      if(r.error.message.includes("Invalid login credentials")){
+        $("aerr").textContent="ত্রুটি: ভুল "+(res.isUsername?"ইউজারনেম বা ":"")+"পাসওয়ার্ড। আবার চেষ্টা করুন।";
+      }else{
+        $("aerr").textContent="ত্রুটি: "+r.error.message;
+      }
+      return;
+    }
+    if(r.data&&r.data.user){
+      user=r.data.user;
+      syncCurrentUsername();
+    }
   }
-  if(r.error){$("aerr").textContent="ত্রুটি: "+r.error.message}
 };
 $("logout").onclick=function(){navC=null;navS=null;db.auth.signOut()};
 $("adminbtn").onclick=function(){location.hash="#admin"};
@@ -2576,6 +2779,7 @@ setTimeout(function(){if(!user&&!$("loading").classList.contains("hide")){if(lin
 db.auth.onAuthStateChange(function(ev,session){
   user=session?session.user:null;
   if(!user){clearInterval(tick);entered=false;if(linkId)prepareGuest();else if($("auth").classList.contains("hide"))home();return}
+  syncCurrentUsername();
   if(ev==="PASSWORD_RECOVERY")recovering=true;
   if(recovering){show("reset");return}
   if(linkId){if(!entered){entered=true;prepareGuest()}return}
@@ -2584,10 +2788,18 @@ db.auth.onAuthStateChange(function(ev,session){
   home();
 });
 $("forgot").onclick=async function(){
-  var em=$("email").value.trim();
-  if(!em){$("aerr").textContent="আগে ইমেইল ঘরে ইমেইল লিখুন।";return}
+  var raw=$("email").value.trim();
+  if(!raw){$("aerr").textContent="আগে আপনার ইমেইল বা ইউজারনেম লিখুন।";return}
+  $("aerr").className="err";
+  $("aerr").textContent="যাচাই হচ্ছে...";
+  var res=await resolveLoginIdentifier(raw);
+  var em=(res&&res.email)||raw;
+  if(!em||!em.includes("@")){
+    $("aerr").textContent="সঠিক ইমেইল ঠিকানা পাওয়া যায়নি। অনুগ্রহ করে আপনার আসল ইমেইল লিখুন।";
+    return;
+  }
   var r=await db.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/"});
-  $("aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
+  $("aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"পাসওয়ার্ড রিসেট লিংক '"+em+"' ঠিকানায় পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
 };
 $("rbtn").onclick=async function(){
   var p=$("npass").value;
@@ -3124,14 +3336,88 @@ async function openProfile(){
   show("prof");window.scrollTo(0,0);drawProf();
   var r=await db.from("results").select("score,total,exam_id");drawPerf(r.data||[]);
 }
+function openSetUsernameModal(existing){
+  var v=ovlOpen(existing?"ইউজারনেম পরিবর্তন":"ইউনিক ইউজারনেম সেট করুন"),k=v.k;
+  k.appendChild(el("p","ইউনিক ইউজারনেম সেট করলে বড় ইমেইল ঠিকানা মনে না রেখে শুধু এই ইউজারনেম এবং আপনার বর্তমান পাসওয়ার্ড দিয়েই লগইন করতে পারবেন।"));
+  var inp=document.createElement("input");
+  inp.placeholder="যেমন: shanto123 (৩-২০ অক্ষর)";
+  inp.style.textTransform="lowercase";
+  inp.value=existing||"";
+  k.appendChild(inp);
+  var hint=el("small","ইংরেজি ছোট অক্ষর (a-z), সংখ্যা (0-9) ও আন্ডারস্কোর (_)। কোনো স্পেস নয়।");
+  hint.style.cssText="color:var(--mute);font-size:.78rem;display:block;margin:-4px 0 10px";
+  k.appendChild(hint);
+  var msg=el("div",null,"err");
+  k.appendChild(msg);
+  var btn=el("button","যাচাই ও সংরক্ষণ করুন");
+  btn.onclick=async function(){
+    msg.className="err";msg.textContent="";
+    var raw=inp.value.trim();
+    var u=cleanUsername(raw);
+    if(!isValidUsername(u)){
+      msg.textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে।";
+      return;
+    }
+    btn.disabled=true;
+    msg.textContent="যাচাই করা হচ্ছে...";
+    var chk=await checkUsernameAvailable(u,user.id);
+    if(!chk.available){
+      btn.disabled=false;
+      msg.textContent=chk.reason;
+      return;
+    }
+    msg.textContent="সংরক্ষণ করা হচ্ছে...";
+    var r=await db.auth.updateUser({data:{username:u}});
+    if(r.error){
+      btn.disabled=false;
+      msg.textContent="ত্রুটি: "+r.error.message;
+      return;
+    }
+    if(r.data&&r.data.user)user=r.data.user;
+    await saveUserUsername(u,user.id,user.email);
+    btn.disabled=false;
+    v.o.remove();
+    drawProf();
+    var notif=ovlOpen("🎉 ইউজারনেম সফল!");
+    notif.k.appendChild(el("p","আপনার ইউনিক ইউজারনেম @"+u+" সফলভাবে সেট হয়েছে। এখন থেকে আপনি এই ইউজারনেম এবং আপনার বর্তমান পাসওয়ার্ড দিয়ে লগইন করতে পারবেন!"));
+    var okb=el("button","ঠিক আছে");
+    okb.onclick=function(){notif.o.remove()};
+    notif.k.appendChild(okb);
+  };
+  k.appendChild(btn);
+  closeBtn(v);
+}
 function drawProf(){
   var b=$("profbody");b.innerHTML="";
   var cl=parseInt(mt("class_level"))||0,done=mt("mobile")&&mt("school")&&mt("dob");
+  var curUname=mt("username");
   var top=el("div",null,"card");top.style.cssText="display:flex;gap:14px;align-items:center";
   phInit();var pv0=avEl("div",curAv(),"pav");pv0.style.cursor="pointer";pv0.title="ছবি বদলান";pv0.onclick=function(){pickPhoto()};top.appendChild(pv0);
-  var mid=el("div");mid.style.flex="1";mid.appendChild(el("b",uname()));mid.appendChild(el("div",cl?CL[cl]:"শ্রেণি দেওয়া হয়নি"));
+  var mid=el("div");mid.style.flex="1";mid.appendChild(el("b",uname()));
+  if(curUname){
+    var uline=el("div");uline.style.cssText="display:flex;align-items:center;gap:6px;margin:2px 0";
+    uline.appendChild(el("span","@"+curUname,"chip good"));
+    uline.appendChild(el("small","ইউনিক ইউজারনেম","dv"));
+    mid.appendChild(uline);
+  }
+  mid.appendChild(el("div",cl?CL[cl]:"শ্রেণি দেওয়া হয়নি"));
   mid.appendChild(el("span",done?"সম্পূর্ণ":"অসম্পূর্ণ","chip"));top.appendChild(mid);
   var ed=el("button","✏️ এডিট","ghost");ed.onclick=editProf;top.appendChild(ed);b.appendChild(top);
+
+  if(!curUname&&!isGuest()){
+    var uc=el("div",null,"card");
+    uc.style.cssText="background:linear-gradient(135deg,rgba(109,90,230,.12),rgba(46,196,182,.12));border:1.5px dashed var(--a1);display:flex;gap:12px;align-items:center";
+    uc.appendChild(el("span","⚡","ci"));
+    var ucm=el("div");ucm.style.flex="1";
+    ucm.appendChild(el("b","ইউনিক ইউজারনেম সেট করুন"));
+    ucm.appendChild(el("div","ইমেইল টাইপ না করে শুধু আপনার ইউজারনেম ও পাসওয়ার্ড দিয়েই লগইন করতে নিজস্ব ইউজারনেম সেট করুন!","dv"));
+    uc.appendChild(ucm);
+    var ucb=el("button","সেট করুন");
+    ucb.onclick=function(){openSetUsernameModal()};
+    uc.appendChild(ucb);
+    b.appendChild(uc);
+  }
+
   var pv=(user.app_metadata&&user.app_metadata.provider)||"email";
   var g=el("div",null,"card");g.style.cssText="display:flex;gap:12px;align-items:center";
   g.appendChild(el("span",pv==="google"?"🛡️":"✉️","ci"));
@@ -3143,6 +3429,18 @@ function drawProf(){
   ic.appendChild(gr);b.appendChild(ic);try{b.appendChild(__weekly())}catch(_){}
   var st=el("div",null,"card");st.appendChild(el("h2","অ্যাকাউন্ট সেটিংস"));
   st.appendChild(el("p","💎 প্রিমিয়াম: "+(subSt==="active"||subSt==="admin"?"সক্রিয় ✅":subSt==="pending"?"যাচাই চলছে ⏳":"নেই")));
+  if(curUname){
+    var usrRow=el("div",null,"card");
+    usrRow.style.cssText="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;margin:8px 0;background:var(--sub);border-radius:10px";
+    var ut=el("div");
+    ut.appendChild(el("b","ইউজারনেম: @"+curUname));
+    ut.appendChild(el("div","এই ইউজারনেম দিয়ে সরাসরি লগইন করা যাবে","dv"));
+    usrRow.appendChild(ut);
+    var uchg=el("button","✏️ বদলান","ghost");
+    uchg.onclick=function(){openSetUsernameModal(curUname)};
+    usrRow.appendChild(uchg);
+    st.appendChild(usrRow);
+  }
   var av2=el("div",null,"chips");AV.forEach(function(e){var k=el("button",e,"ghost");k.style.cssText="margin:0;padding:6px 10px";k.onclick=function(){setAvatar(e);drawProf()};av2.appendChild(k)});
   st.appendChild(el("p","প্রোফাইল ছবি:"));
   var phr=el("div",null,"phrow"),pb1=el("button",myPhoto?"📷 ছবি বদলান":"📷 ফোন থেকে ছবি দিন");pb1.onclick=function(){pickPhoto()};phr.appendChild(pb1);
@@ -3172,6 +3470,8 @@ function editProf(){
   var v=ovlOpen("তথ্য এডিট করুন"),k=v.k,f={};
   function inp(key,ph,type){var i=document.createElement("input");i.placeholder=ph;if(type)i.type=type;i.value=mt(key);f[key]=i;k.appendChild(i)}
   var nm=document.createElement("input");nm.placeholder="নাম";nm.value=mt("full_name")||uname();k.appendChild(nm);
+  var unm=document.createElement("input");unm.placeholder="ইউনিক ইউজারনেম (ঐচ্ছিক)";unm.style.textTransform="lowercase";unm.value=mt("username");
+  k.appendChild(el("small","ইউনিক ইউজারনেম (লগইনে ব্যবহার করবেন):"));k.appendChild(unm);
   inp("mobile","মোবাইল নম্বর","tel");inp("whatsapp","WhatsApp নম্বর","tel");inp("guardian","অভিভাবকের নম্বর","tel");
   var cs=document.createElement("select");var o0=el("option","শ্রেণি বেছে নিন");o0.value="";cs.appendChild(o0);
   [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(function(c){var o=el("option",CL[c]);o.value=c;cs.appendChild(o)});cs.value=mt("class_level");k.appendChild(cs);
@@ -3181,10 +3481,27 @@ function editProf(){
   var sv=el("button","সংরক্ষণ করুন");
   sv.onclick=async function(){
     sv.disabled=true;
-    var d={full_name:nm.value.trim()||uname(),mobile:f.mobile.value.trim(),whatsapp:f.whatsapp.value.trim(),guardian:f.guardian.value.trim(),class_level:cs.value?parseInt(cs.value):null,school:f.school.value.trim(),dob:f.dob.value,gender:gs.value};
+    er.textContent="";
+    var rawU=unm.value.trim(), cleanU=rawU?cleanUsername(rawU):"";
+    if(cleanU&&cleanU!==mt("username")){
+      if(!isValidUsername(cleanU)){
+        sv.disabled=false;
+        er.textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে।";
+        return;
+      }
+      var chk=await checkUsernameAvailable(cleanU,user.id);
+      if(!chk.available){
+        sv.disabled=false;
+        er.textContent=chk.reason;
+        return;
+      }
+    }
+    var d={full_name:nm.value.trim()||uname(),username:cleanU||mt("username")||undefined,mobile:f.mobile.value.trim(),whatsapp:f.whatsapp.value.trim(),guardian:f.guardian.value.trim(),class_level:cs.value?parseInt(cs.value):null,school:f.school.value.trim(),dob:f.dob.value,gender:gs.value};
     var r=await db.auth.updateUser({data:d});sv.disabled=false;
     if(r.error){er.textContent="ত্রুটি: "+r.error.message;return}
-    if(r.data&&r.data.user)user=r.data.user;v.o.remove();drawProf();
+    if(r.data&&r.data.user)user=r.data.user;
+    if(cleanU&&user)await saveUserUsername(cleanU,user.id,user.email);
+    v.o.remove();drawProf();
     db.from("results").select("score,total,exam_id").then(function(x){drawPerf(x.data||[])});
   };
   k.appendChild(sv);closeBtn(v);
@@ -3524,6 +3841,15 @@ $("copysql").onclick=function(){
   var t=$("sqlbox");t.value=$("subsql").textContent.trim();
   try{navigator.clipboard.writeText(t.value).then(function(){$("copysql").textContent="কপি হয়েছে ✓"},function(){t.select()})}catch(_){t.select()}
 };
+if($("copyunamesql")){
+  var ut=$("unamesqlbox"),us=$("username-sql");
+  if(ut&&us) ut.value=us.textContent.trim();
+  $("copyunamesql").onclick=function(){
+    var ut=$("unamesqlbox"),us=$("username-sql");
+    if(ut&&us) ut.value=us.textContent.trim();
+    try{navigator.clipboard.writeText(ut.value).then(function(){$("copyunamesql").textContent="কপি হয়েছে ✓"},function(){ut.select()})}catch(_){ut.select()}
+  };
+}
 
 async function teachBadge(){
   var r=await db.rpc("admin_teachers"),b=document.querySelector('.tabs button[data-t="teach"]');if(!b)return;
@@ -3901,24 +4227,55 @@ function dl(name,text){var b=new Blob(["﻿"+text],{type:"text/csv;charset=utf-8
 /* ---------- লগইন ---------- */
 $("t_aswitch").onclick=function(){
   signup=!signup;
-  $("t_atitle").textContent=signup?"নতুন অ্যাকাউন্ট":"টিচার লগইন";
+  $("t_atitle").textContent=signup?"নতুন শিক্ষক অ্যাকাউন্ট":"টিচার লগইন";
+  if($("t_asub")) $("t_asub").textContent=signup?"ইমেইল, ইউজারনেম ও পাসওয়ার্ড দিয়ে শিক্ষক অ্যাকাউন্ট খুলুন।":"আপনার আইডি (ইমেইল বা ইউজারনেম) দিয়ে লগইন করুন।";
   $("t_abtn").textContent=signup?"অ্যাকাউন্ট খুলুন":"লগইন";
-  $("t_aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে":"নতুন অ্যাকাউন্ট খুলুন";
-  $("t_nameBox").classList.toggle("hide",!signup);$("t_aerr").textContent="";
+  $("t_aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে? লগইন করুন":"নতুন অ্যাকাউন্ট খুলুন";
+  $("t_nameBox").classList.toggle("hide",!signup);
+  $("t_unameBox").classList.toggle("hide",!signup);
+  $("t_email").placeholder=signup?"আপনার ইমেইল লিখুন":"ইমেইল বা ইউজারনেম লিখুন";
+  $("t_aerr").textContent="";
 };
 $("t_abtn").onclick=async function(){
-  var email=$("t_email").value.trim(),pass=$("t_pass").value,r;$("t_aerr").textContent="";
+  var rawId=$("t_email").value.trim(),pass=$("t_pass").value,r;$("t_aerr").textContent="";
+  if(!rawId){$("t_aerr").textContent="ইমেইল বা ইউজারনেম লিখুন।";return}
+  if(!pass){$("t_aerr").textContent="পাসওয়ার্ড লিখুন।";return}
   if(signup){
-    r=await db.auth.signUp({email:email,password:pass,options:{data:{full_name:$("t_fname").value.trim()}}});
-    if(!r.error&&!r.data.session){$("t_aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
-  }else r=await db.auth.signInWithPassword({email:email,password:pass});
-  if(r.error)$("t_aerr").textContent="ত্রুটি: "+r.error.message;
+    var nm=$("t_fname").value.trim();
+    if(!nm){$("t_aerr").textContent="আপনার পূর্ণ নাম লিখুন।";return}
+    var rawU=$("t_uname").value.trim();
+    var u=cleanUsername(rawU);
+    if(!isValidUsername(u)){$("t_aerr").textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা _ হতে হবে।";return}
+    $("t_abtn").disabled=true;
+    var chk=await checkUsernameAvailable(u);
+    if(!chk.available){$("t_abtn").disabled=false;$("t_aerr").textContent=chk.reason;return}
+    if(!rawId.includes("@")){$("t_abtn").disabled=false;$("t_aerr").textContent="সঠিক ইমেইল ঠিকানা দিন।";return}
+    r=await db.auth.signUp({email:rawId,password:pass,options:{data:{full_name:nm,username:u}}});
+    $("t_abtn").disabled=false;
+    if(r.error){$("t_aerr").textContent="ত্রুটি: "+r.error.message;return}
+    saveUserUsername(u,(r.data&&r.data.user&&r.data.user.id)||null,rawId);
+    if(!r.data.session){$("t_aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
+  }else{
+    $("t_abtn").disabled=true;
+    var res=await resolveLoginIdentifier(rawId);
+    if(res.error){$("t_abtn").disabled=false;$("t_aerr").textContent=res.error;return}
+    r=await db.auth.signInWithPassword({email:res.email,password:pass});
+    $("t_abtn").disabled=false;
+    if(r.error){
+      if(r.error.message.includes("Invalid login credentials")) $("t_aerr").textContent="ত্রুটি: ভুল ইউজারনেম/ইমেইল বা পাসওয়ার্ড।";
+      else $("t_aerr").textContent="ত্রুটি: "+r.error.message;
+      return;
+    }
+  }
 };
 $("t_ggl").onclick=async function(){var r=await db.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname+"#teacher"}});if(r.error)$("t_aerr").textContent="ত্রুটি: "+r.error.message};
 $("t_forgot").onclick=async function(){
-  var em=$("t_email").value.trim();if(!em){$("t_aerr").textContent="আগে ইমেইল ঘরে ইমেইল লিখুন।";return}
+  var raw=$("t_email").value.trim();if(!raw){$("t_aerr").textContent="আগে আপনার ইমেইল বা ইউজারনেম লিখুন।";return}
+  var res=await resolveLoginIdentifier(raw);
+  var em=(res&&res.email)||raw;
+  if(!em||!em.includes("@")){$("t_aerr").textContent="সঠিক ইমেইল ঠিকানা পাওয়া যায়নি।";return}
   var r=await db.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/"});
-  $("t_aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
+  $("t_aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক '"+em+"' ঠিকানায় পাঠানো হয়েছে।";
 };
 ["t_tostu0","t_tostu1","t_tostu2"].forEach(function(i){$(i).onclick=function(){location.hash=""}});
 ["t_lo1","t_lo2"].forEach(function(i){$(i).onclick=function(){booted=false;db.auth.signOut()}});
