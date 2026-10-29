@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#6d5ae6"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Exam Site"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#6d5ae6"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="অনুশীলন"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <script>
 (function(){try{
 function mk(n){var c=document.createElement("canvas");c.width=c.height=n;var x=c.getContext("2d");var g=x.createLinearGradient(0,0,n,n);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");x.fillStyle=g;x.fillRect(0,0,n,n);x.font=Math.round(n*.55)+"px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("\ud83d\udcdd",n/2,n*.54);return c.toDataURL("image/png")}
 var a=mk(192),b=mk(512);
 function lk(r,h,z){var l=document.createElement("link");l.rel=r;l.href=h;if(z)l.sizes=z;document.head.appendChild(l)}
 lk("icon",a);lk("apple-touch-icon",b,"512x512");
-var m={name:"Exam Site by Arghya",short_name:"Exam Site",start_url:location.origin+"/",scope:location.origin+"/",display:"standalone",orientation:"portrait",background_color:"#6d5ae6",theme_color:"#6d5ae6",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png",purpose:"any"},{src:b,sizes:"512x512",type:"image/png",purpose:"any"}]};
+var m={name:"অনুশীলন",short_name:"অনুশীলন",start_url:location.origin+"/",scope:location.origin+"/",display:"standalone",orientation:"portrait",background_color:"#6d5ae6",theme_color:"#6d5ae6",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png",purpose:"any"},{src:b,sizes:"512x512",type:"image/png",purpose:"any"}]};
 lk("manifest","data:application/manifest+json;charset=utf-8,"+encodeURIComponent(JSON.stringify(m)));
 }catch(e){}})();
 </script>
-<title>Exam Site by Arghya</title>
+<title>অনুশীলন</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://knjfubfnhwqruqehsqbq.supabase.co">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -292,7 +292,7 @@ html,body{max-width:100%;overflow-x:hidden}
 <div id="root"></div>
 <template id="tpl-student">
 <div class="wrap">
-<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">জানো · শেখো · এগিয়ে যাও</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">জানো · শেখো · এগিয়ে যাও</div></div></header>
 
 <section id="loading" class="card"><h2>লোড হচ্ছে...</h2><p>একটু অপেক্ষা করুন।</p></section>
 
@@ -333,7 +333,7 @@ html,body{max-width:100%;overflow-x:hidden}
 <section id="home" class="hide">
   <header class="dtop">
     <button class="ib" id="menubtn" aria-label="মেনু"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    <div class="dtitle">Exam Site by Arghya</div>
+    <div class="dtitle" style="display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover" alt=""> অনুশীলন</div>
     <nav class="dlinks"><button data-act="exam">পরীক্ষা</button><button data-act="daily">ডেইলি চ্যালেঞ্জ</button><button data-act="lb">লিডারবোর্ড</button><button data-act="book">বুক ও নোট</button><button data-act="video">ভিডিও</button><button data-act="past">ফলাফল</button><button data-act="games">গেম জোন</button><button data-act="app">📲 অ্যাপ</button></nav>
     <span class="xppill" id="xppill">০ XP</span>
     <button class="ib" id="srchbtn" aria-label="খুঁজুন"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
@@ -439,7 +439,7 @@ html,body{max-width:100%;overflow-x:hidden}
 </template>
 <template id="tpl-teacher">
 <div class="wrap">
-<header class="brand"><span class="logo">👨‍🏫</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">টিচারস প্যানেল</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">টিচারস প্যানেল</div></div></header>
 
 <section id="t_load" class="card"><h2>লোড হচ্ছে...</h2></section>
 
@@ -617,7 +617,7 @@ html,body{max-width:100%;overflow-x:hidden}
 </template>
 <template id="tpl-admin">
 <div class="wrap">
-<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">অ্যাডমিন প্যানেল</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">অ্যাডমিন প্যানেল</div></div></header>
 
 <section id="login" class="card hide">
   <h1>অ্যাডমিন লগইন</h1>
@@ -1842,7 +1842,7 @@ async function certMile(name,what){
   x.fillStyle="#fffdf7";x.fillRect(0,0,W,H);
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");
   x.strokeStyle=g;x.lineWidth=22;x.strokeRect(36,36,W-72,H-72);x.lineWidth=4;x.strokeRect(80,80,W-160,H-160);
-  x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("Exam Site by Arghya",W/2,185);
+  x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("অনুশীলন",W/2,185);
   x.fillStyle=g;x.font="700 100px "+F;x.fillText("মাইলস্টোন সার্টিফিকেট",W/2,330);
   x.fillStyle="#1e1b3a";x.font="500 42px "+F;x.fillText("এই মর্মে প্রত্যয়ন করা যাচ্ছে যে",W/2,435);
   x.font="700 120px "+F;x.fillText(name||"শিক্ষার্থী",W/2,590);
@@ -2632,7 +2632,7 @@ function openAppDl(){
   var ov=document.createElement("div");ov.id="appdl_ov";
   ov.style.cssText="position:fixed;inset:0;z-index:99998;background:rgba(10,10,25,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto";
   var h='<div class="card" style="max-width:460px;width:100%;margin:0;position:relative"><button id="appdl_x" class="ghost" style="position:absolute;right:10px;top:10px;margin:0;padding:6px 12px">✕</button>'+
-    '<div style="text-align:center"><div style="font-size:2.6rem">📲</div><h2 style="margin:6px 0">Exam Site অ্যাপ</h2></div>';
+    '<div style="text-align:center"><div style="font-size:2.6rem">📲</div><h2 style="margin:6px 0">অনুশীলন অ্যাপ</h2></div>';
   if(inApp){h+='<p style="text-align:center">✅ আপনি এখন অ্যাপেই আছেন। নতুন সংস্করণ এলে ওপরে জানানো হবে। চাইলে নিচের বোতামে সর্বশেষটা নামাতে পারেন।</p>'}
   else if(!droid){h+='<p style="text-align:center">এই অ্যাপ শুধু <b>অ্যান্ড্রয়েড</b> ফোনের জন্য। আইফোন বা কম্পিউটারে সাইটটাই ব্যবহার করুন — ব্রাউজারের মেনু থেকে <b>“Add to Home screen”</b> দিলে অ্যাপের মতো খুলবে।</p>'}
   else{h+='<p style="text-align:center;margin:0 0 6px">সবসময় সর্বশেষ সংস্করণ ডাউনলোড হবে।</p>'}
@@ -2946,7 +2946,7 @@ async function shareCard(){
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");x.fillStyle=g;x.fillRect(0,0,W,H);
   x.fillStyle="rgba(255,255,255,.14)";for(var i=0;i<6;i++){x.beginPath();x.arc(120+i*190,i%2?200:1180,90+i*8,0,7);x.fill()}
   x.fillStyle="#fff";x.textAlign="center";
-  x.font="700 54px "+F;x.fillText("Exam Site by Arghya",W/2,120);
+  x.font="700 54px "+F;x.fillText("অনুশীলন",W/2,120);
   var _ok=false;
   if(myPhoto){try{var _im=await new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=j;i.src=myPhoto});x.save();x.beginPath();x.arc(W/2,250,90,0,Math.PI*2);x.closePath();x.clip();x.drawImage(_im,W/2-90,160,180,180);x.restore();x.lineWidth=8;x.strokeStyle="#fff";x.beginPath();x.arc(W/2,250,90,0,Math.PI*2);x.stroke();_ok=true}catch(_e){}}
   if(!_ok){x.font="130px sans-serif";x.fillText(av(),W/2,310)}
@@ -3258,7 +3258,7 @@ function confetti(){var cs=["#6d5ae6","#ec4899","#f59e0b","#14b8a6","#3b82f6"];f
 function showReview(d,box){
   try{if(window.__revHook)window.__revHook(d,box)}catch(_){}
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -3870,7 +3870,7 @@ function drawStu(){
     var b=el("button","📲 অভিভাবককে রিপোর্ট পাঠান","ghost");
     b.onclick=function(){
       if(!/^8801\d{9}$/.test(ph)){alert("এই স্টুডেন্টের অভিভাবকের নম্বর দেওয়া নেই।");return}
-      var t="প্রিয় অভিভাবক, "+nm+" এর পরীক্ষার রিপোর্ট:\nমোট পরীক্ষা: "+bn(rs.length)+"টি, গড় স্কোর: "+bn(avg)+"%"+(last?"\nসর্বশেষ: "+(last.exams?last.exams.title:"-")+" ("+bn(last.score)+"/"+bn(last.total)+")":"")+"\n— Exam Site by Arghya";
+      var t="প্রিয় অভিভাবক, "+nm+" এর পরীক্ষার রিপোর্ট:\nমোট পরীক্ষা: "+bn(rs.length)+"টি, গড় স্কোর: "+bn(avg)+"%"+(last?"\nসর্বশেষ: "+(last.exams?last.exams.title:"-")+" ("+bn(last.score)+"/"+bn(last.total)+")":"")+"\n— অনুশীলন";
       window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(t),"_blank");
     };
     row.appendChild(b);box.appendChild(row);
@@ -4135,7 +4135,7 @@ function admRow(x){
 
 function showReview(d,box){
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -4571,7 +4571,7 @@ function tchRow(x,cnt){
 /* ---------- ফলাফল ---------- */
 function showReview(d,box){
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -4802,7 +4802,7 @@ $("t_lprint").onclick=function(){
   if(!lbRows.length){say("t_lmsg","আগে ফলাফল দরকার।");return}
   var esc=function(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})};
   var ttl=$("t_lex").selectedOptions[0].textContent;
-  var h='<meta charset="utf-8"><title>লিডারবোর্ড</title><style>body{font-family:"Hind Siliguri",sans-serif;padding:20px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:6px 10px;text-align:left}</style><h2>Exam Site by Arghya · লিডারবোর্ড — '+esc(ttl)+'</h2><table><tr><th>র‍্যাংক</th><th>নাম</th><th>স্কোর</th><th>শতকরা</th></tr>'+
+  var h='<meta charset="utf-8"><title>লিডারবোর্ড</title><style>body{font-family:"Hind Siliguri",sans-serif;padding:20px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:6px 10px;text-align:left}</style><h2>অনুশীলন · লিডারবোর্ড — '+esc(ttl)+'</h2><table><tr><th>র‍্যাংক</th><th>নাম</th><th>স্কোর</th><th>শতকরা</th></tr>'+
     lbRows.map(function(u){return "<tr><td>"+bn(u.rank)+"</td><td>"+esc(u.name)+"</td><td>"+bn(u.score)+" / "+bn(u.total)+"</td><td>"+bn(u.pct)+"%</td></tr>"}).join("")+"</table>";
   var w=window.open("","_blank");if(!w){say("t_lmsg","পপআপ ব্লক হয়েছে।");return}w.document.write(h);w.document.close();w.focus();setTimeout(function(){w.print()},400);
 };
@@ -4915,7 +4915,7 @@ $("t_aitobank").onclick=async function(){
 (function(){
   var mode=location.hash==="#admin"?"admin":location.hash==="#teacher"?"teacher":"student",adm=mode==="admin";
   if(mode!=="student")document.body.classList.add("admin");
-  document.title=adm?"অ্যাডমিন | Exam Site by Arghya":mode==="teacher"?"টিচারস প্যানেল | Exam Site by Arghya":"Exam Site by Arghya";
+  document.title=adm?"অ্যাডমিন | অনুশীলন":mode==="teacher"?"টিচারস প্যানেল | অনুশীলন":"অনুশীলন";
   document.getElementById("root").appendChild(document.getElementById("tpl-"+mode).content.cloneNode(true));
   window.addEventListener("hashchange",function(){var m=location.hash==="#admin"?"admin":location.hash==="#teacher"?"teacher":"student";if(m!==mode)location.reload()});
   if(adm)startAdmin();else if(mode==="teacher")startTeacher();else startStudent();
@@ -4977,7 +4977,7 @@ async function cert(name,title,s,m,pc){
  x.fillStyle="#fffdf7";x.fillRect(0,0,W,H);
  var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");
  x.strokeStyle=g;x.lineWidth=22;x.strokeRect(36,36,W-72,H-72);x.lineWidth=4;x.strokeRect(80,80,W-160,H-160);
- x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("Exam Site by Arghya",W/2,185);
+ x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("অনুশীলন",W/2,185);
  x.fillStyle=g;x.font="700 100px "+F;x.fillText("সার্টিফিকেট অব অ্যাচিভমেন্ট",W/2,330);
  x.fillStyle="#1e1b3a";x.font="500 42px "+F;x.fillText("এই মর্মে প্রত্যয়ন করা যাচ্ছে যে",W/2,435);
  x.font="700 120px "+F;x.fillText(name||"শিক্ষার্থী",W/2,590);
@@ -5000,7 +5000,7 @@ window.__weekly=function(){var c=__ctx(),m=c.user.user_metadata||{},d=document.c
   if(/^01\d{9}$/.test(n))n="88"+n;if(!/^8801\d{9}$/.test(n)){M.textContent="সঠিক বাংলাদেশি নম্বর দিন।";return}
   var since=new Date(Date.now()-7*864e5).toISOString(),r=await c.db.from("results").select("score,total,created_at,exams(title)").gte("created_at",since).order("created_at"),rs=r.data||[];
   var L=rs.map(function(z){var p=z.total?Math.round(z.score/z.total*100):0;return "• "+((z.exams&&z.exams.title)||"পরীক্ষা")+": "+bn(z.score)+"/"+bn(z.total)+" ("+bn(p)+"%)"}),avg=rs.length?Math.round(rs.reduce(function(a,z){return a+(z.total?z.score/z.total*100:0)},0)/rs.length):0;
-  var msg="📊 সাপ্তাহিক রিপোর্ট\n👤 "+c.name+"\n📅 গত ৭ দিন\n\n"+(rs.length?"মোট পরীক্ষা: "+bn(rs.length)+"\nগড় ফলাফল: "+bn(avg)+"%\n\n"+L.join("\n"):"এই সপ্তাহে কোনো পরীক্ষা দেওয়া হয়নি।")+"\n\n— Exam Site by Arghya\n"+location.origin;
+  var msg="📊 সাপ্তাহিক রিপোর্ট\n👤 "+c.name+"\n📅 গত ৭ দিন\n\n"+(rs.length?"মোট পরীক্ষা: "+bn(rs.length)+"\nগড় ফলাফল: "+bn(avg)+"%\n\n"+L.join("\n"):"এই সপ্তাহে কোনো পরীক্ষা দেওয়া হয়নি।")+"\n\n— অনুশীলন\n"+location.origin;
   try{localStorage.setItem("wk_last",Date.now())}catch(e){}
   M.textContent="";window.open("https://wa.me/"+n+"?text="+encodeURIComponent(msg),"_blank")};
  return d};
@@ -5499,7 +5499,7 @@ async function claude({ model, system, messages, max_tokens = 1200, json = false
 
 const CLS = { 1: 'প্রথম', 2: 'দ্বিতীয়', 3: 'তৃতীয়', 4: 'চতুর্থ', 5: 'পঞ্চম', 6: 'ষষ্ঠ', 7: 'সপ্তম', 8: 'অষ্টম', 9: 'নবম', 10: 'দশম', 11: 'একাদশ', 12: 'দ্বাদশ', 13: 'এডমিশন' };
 
-const TUTOR_SYS = `তুমি "AI মশাই" — "Exam Site by Arghya"-এর স্নেহশীল, ধৈর্যশীল ও বন্ধুসুলভ AI শিক্ষক (মশাই মানে শিক্ষক)। তুমি একটি AI; কেউ জিজ্ঞেস করলে সেটা সত্যি বলবে। বাংলাদেশের NCTB পাঠ্যক্রম অনুযায়ী সহজ বাংলায় শেখাও।
+const TUTOR_SYS = `তুমি "AI মশাই" — "অনুশীলন"-এর স্নেহশীল, ধৈর্যশীল ও বন্ধুসুলভ AI শিক্ষক (মশাই মানে শিক্ষক)। তুমি একটি AI; কেউ জিজ্ঞেস করলে সেটা সত্যি বলবে। বাংলাদেশের NCTB পাঠ্যক্রম অনুযায়ী সহজ বাংলায় শেখাও।
 - শিক্ষার্থীকে "তুমি" বলে সম্বোধন করো। আন্তরিক ও উৎসাহব্যঞ্জক থাকো; ভুল করলে বকবে না, ধরিয়ে দিয়ে বুঝিয়ে দেবে।
 - আগে ধারণাটা বুঝিয়ে দাও, তারপর উদাহরণ। উত্তর ছোট ও পরিষ্কার রাখো (সাধারণত ২০০ শব্দের মধ্যে)।
 - দরকারে ধাপে ধাপে দেখাও। শেষে চাইলে একটি ছোট অনুশীলন প্রশ্ন দিতে পারো।
@@ -7953,7 +7953,7 @@ function stu(){
   async function pdfB64(d){
     var box=mk("div");box.style.cssText='position:fixed;left:-9999px;top:0;width:720px;padding:24px;background:#fff;color:#000;--ink:#000;--mute:#333;--line:#999;--card:#fff;--bg:#fff;font-family:"Hind Siliguri","Noto Sans Bengali",sans-serif';
     document.body.appendChild(box);
-    var h=mk("div","Exam Site by Arghya · উত্তরপত্র");h.style.cssText="font-weight:700;color:#6d5ae6;margin-bottom:6px";box.appendChild(h);
+    var h=mk("div","অনুশীলন · উত্তরপত্র");h.style.cssText="font-weight:700;color:#6d5ae6;margin-bottom:6px";box.appendChild(h);
     box.appendChild(mk("h1",d.exam));
     box.appendChild(mk("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
     var it=d.items||[],ok=0,wr=0,sk=0;it.forEach(function(x){if(x.chosen==null)sk++;else if(x.chosen===x.correct)ok++;else wr++});
@@ -8796,7 +8796,7 @@ function paginate(doc){
     }
     if(dup&&sh.querySelectorAll(".pg").length%2===1){var bl=doc.createElement("div");bl.className="pg pn";bl.innerHTML='<div class="bl">(এই পাতাটি ইচ্ছাকৃতভাবে ফাঁকা)</div>';sh.appendChild(bl)}
     var pg2=sh.querySelectorAll(".pg"),code=sh.getAttribute("data-code")||"";
-    [].forEach.call(pg2,function(p,k){var f=doc.createElement("div");f.className="ft";f.textContent="Exam Site by Arghya · সেট কোড: "+code+" · পাতা "+bn(k+1)+"/"+bn(pg2.length);p.appendChild(f)});
+    [].forEach.call(pg2,function(p,k){var f=doc.createElement("div");f.className="ft";f.textContent="অনুশীলন · সেট কোড: "+code+" · পাতা "+bn(k+1)+"/"+bn(pg2.length);p.appendChild(f)});
   });
 }
 
@@ -8858,7 +8858,7 @@ window.revPdf=function(id){
     src.innerHTML=sec.innerHTML;
     [].slice.call(src.querySelectorAll(".noprint,button")).forEach(function(n){n.remove()});
     [].slice.call(src.querySelectorAll(".card")).forEach(function(n){n.style.border="0";n.style.boxShadow="none"});
-    var hd=document.createElement("div");hd.style.cssText="font-weight:700;color:#444;border-bottom:1px solid #999;margin-bottom:12px;padding-bottom:6px";hd.textContent="Exam Site by Arghya · উত্তরপত্র";src.insertBefore(hd,src.firstChild);
+    var hd=document.createElement("div");hd.style.cssText="font-weight:700;color:#444;border-bottom:1px solid #999;margin-bottom:12px;padding-bottom:6px";hd.textContent="অনুশীলন · উত্তরপত্র";src.insertBefore(hd,src.firstChild);
     wrap.appendChild(src);document.body.appendChild(wrap);
     var H=Math.max(src.offsetHeight,PH),n=Math.ceil(H/PH),pages=[];
     for(var k=0;k<n;k++){
@@ -9734,7 +9734,7 @@ window.openOffScan=function(){
   if(!inApp&&/[?&]dl=apk/.test(location.search)){
     var o=document.createElement("div");
     o.style.cssText="position:fixed;inset:0;z-index:99999;background:#0f0c29;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:inherit";
-    o.innerHTML='<div style="font-size:3rem">📲</div><h2 style="margin:8px 0">Exam Site অ্যাপ ডাউনলোড হচ্ছে…</h2><p style="max-width:340px;opacity:.9">ডাউনলোড শেষ হলে ফাইলটা (ExamSite.apk) চাপুন, তারপর <b>ইনস্টল</b> চাপুন। প্রথমবার “অজানা উৎস থেকে ইনস্টল” অনুমতি চাইলে দিন। আগের তথ্য থাকবে।</p>'+
+    o.innerHTML='<div style="font-size:3rem">📲</div><h2 style="margin:8px 0">অনুশীলন অ্যাপ ডাউনলোড হচ্ছে…</h2><p style="max-width:340px;opacity:.9">ডাউনলোড শেষ হলে ফাইলটা (ExamSite.apk) চাপুন, তারপর <b>ইনস্টল</b> চাপুন। প্রথমবার “অজানা উৎস থেকে ইনস্টল” অনুমতি চাইলে দিন। আগের তথ্য থাকবে।</p>'+
       '<a href="'+APK+'" style="margin-top:14px;padding:14px 22px;border-radius:14px;background:linear-gradient(135deg,#6d5ae6,#ec4899);color:#fff;text-decoration:none;font-weight:700">⬇️ আবার ডাউনলোড করুন</a>'+
       '<a href="/" style="margin-top:16px;color:#bbb">সাইটে ফিরুন</a>';
     document.body.appendChild(o);
@@ -9765,7 +9765,7 @@ window.openOffScan=function(){
         var sn=+ls("upd_snooze_"+sha)||0;
         if(newer&&Date.now()-sn>6*3600*1000)bar("🆕 নতুন ভার্সন এসেছে","আপডেট করতে ডাউনলোড চাপুন। ডাউনলোড হয়ে গেলে ফাইলটা চাপুন → ইনস্টল। আগের তথ্য থাকবে।","⬇️ ডাউনলোড করো",window.__openApk,"upd_snooze_"+sha);
       }else{
-        if(!ls("apk_seen_"+sha))bar("📲 Exam Site অ্যাপ","এক ক্লিকে ডাউনলোড করুন (সর্বশেষ সংস্করণ)।","⬇️ ডাউনলোড করো",function(){location.href=APK},"apk_seen_"+sha);
+        if(!ls("apk_seen_"+sha))bar("📲 অনুশীলন অ্যাপ","এক ক্লিকে ডাউনলোড করুন (সর্বশেষ সংস্করণ)।","⬇️ ডাউনলোড করো",function(){location.href=APK},"apk_seen_"+sha);
       }
     }).catch(function(){});
   }

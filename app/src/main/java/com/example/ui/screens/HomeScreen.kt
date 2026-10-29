@@ -66,7 +66,7 @@ fun HomeScreen(
                         }
                         Column {
                             Text(
-                                "Exam Site",
+                                "অনুশীলন",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp,
                                 color = MaterialTheme.colorScheme.onSurface

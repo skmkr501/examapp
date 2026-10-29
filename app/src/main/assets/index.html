@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#6d5ae6"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Exam Site"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#6d5ae6"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="অনুশীলন"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <script>
 (function(){try{
 function mk(n){var c=document.createElement("canvas");c.width=c.height=n;var x=c.getContext("2d");var g=x.createLinearGradient(0,0,n,n);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");x.fillStyle=g;x.fillRect(0,0,n,n);x.font=Math.round(n*.55)+"px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("\ud83d\udcdd",n/2,n*.54);return c.toDataURL("image/png")}
 var a=mk(192),b=mk(512);
 function lk(r,h,z){var l=document.createElement("link");l.rel=r;l.href=h;if(z)l.sizes=z;document.head.appendChild(l)}
 lk("icon",a);lk("apple-touch-icon",b,"512x512");
-var m={name:"Exam Site by Arghya",short_name:"Exam Site",start_url:location.origin+"/",scope:location.origin+"/",display:"standalone",orientation:"portrait",background_color:"#6d5ae6",theme_color:"#6d5ae6",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png",purpose:"any"},{src:b,sizes:"512x512",type:"image/png",purpose:"any"}]};
+var m={name:"অনুশীলন",short_name:"অনুশীলন",start_url:location.origin+"/",scope:location.origin+"/",display:"standalone",orientation:"portrait",background_color:"#6d5ae6",theme_color:"#6d5ae6",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png",purpose:"any"},{src:b,sizes:"512x512",type:"image/png",purpose:"any"}]};
 lk("manifest","data:application/manifest+json;charset=utf-8,"+encodeURIComponent(JSON.stringify(m)));
 }catch(e){}})();
 </script>
-<title>Exam Site by Arghya</title>
+<title>অনুশীলন</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://knjfubfnhwqruqehsqbq.supabase.co">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -272,24 +272,39 @@ section:not(#rev){display:none!important}
 .spgrid{display:grid;gap:6px;margin:6px 0 12px}
 .spcell{font-size:1.7rem;line-height:1;text-align:center;padding:8px 0;border:2px solid var(--line);border-radius:12px;background:var(--bg);user-select:none;touch-action:manipulation}
 .spgrid.tp .spcell{cursor:pointer}.spcell.on{border-color:var(--a2);background:color-mix(in srgb,var(--a2) 20%,var(--bg))}
+
+/* 📱 ছোট স্ক্রিনে পাশে সরানো যাবে না */
+html,body{max-width:100%;overflow-x:hidden}
+.dtop{box-sizing:border-box;max-width:100%;overflow:hidden}
+#loginbtn{white-space:nowrap;margin:0;padding:8px 12px;font-size:.85rem;flex:none}
+@media (max-width:440px){
+  .dtop{gap:2px;padding:6px 6px}
+  .dtop .ib{width:32px;height:32px;border-radius:10px}
+  .dtop .ib .ic{width:20px;height:20px}
+  .dtop .xppill{padding:2px 7px;font-size:.72rem}
+  .dtop .avc{width:34px;height:34px;font-size:1.2rem}
+  .dtop #langbtn{font-size:.7rem!important}
+  .dtop .bdot{top:5px;right:6px}
+}
 </style>
 </head>
 <body>
 <div id="root"></div>
 <template id="tpl-student">
 <div class="wrap">
-<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">জানো · শেখো · এগিয়ে যাও</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">জানো · শেখো · এগিয়ে যাও</div></div></header>
 
 <section id="loading" class="card"><h2>লোড হচ্ছে...</h2><p>একটু অপেক্ষা করুন।</p></section>
 
 <section id="auth" class="card hide">
   <div class="vbox"><button class="ghost" id="authback" style="margin:0 0 10px">← ফিরে যান</button>
-  <h1 id="atitle">লগইন / সাইনআপ</h1><p>Google দিয়ে এক ট্যাপেই শুরু করুন।</p>
+  <h1 id="atitle">লগইন করুন</h1><p id="asubtitle">Google দিয়ে এক ট্যাপেই শুরু করুন অথবা ইউজারনেম/ইমেইল দিয়ে লগইন করুন।</p>
   <button class="gglbtn" id="ggl"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.2 5.5-4.7 7.2l7.6 5.9c4.4-4.1 6.9-10.1 6.9-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.8 2.3-8.3 2.3-6.3 0-11.6-4-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Google দিয়ে চালিয়ে যান</button>
-  <div class="sep">অথবা ইমেইল দিয়ে</div>
-  <div id="nameBox" class="hide"><label>নাম</label><input id="fname" autocomplete="name"></div>
-  <label>ইমেইল</label><input id="email" type="email" autocomplete="email">
-  <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="pass" type="password" autocomplete="current-password">
+  <div class="sep" id="authsep">অথবা ইমেইল বা ইউজারনেম দিয়ে</div>
+  <div id="nameBox" class="hide"><label>পূর্ণ নাম</label><input id="fname" autocomplete="name" placeholder="আপনার পূর্ণ নাম লিখুন"></div>
+  <div id="unameBox" class="hide"><label>ইউনিক ইউজারনেম (লগইনের জন্য)</label><input id="uname_in" autocomplete="username" placeholder="যেমন: shanto123 (৩-২০ অক্ষর)" style="text-transform:lowercase"><small style="color:var(--mute);font-size:.78rem;display:block;margin:-4px 0 8px">ইংরেজি ছোট অক্ষর, সংখ্যা ও আন্ডারস্কোর (_) ব্যবহার করুন</small></div>
+  <label id="emaillbl">ইমেইল বা ইউজারনেম</label><input id="email" type="text" autocomplete="username" placeholder="আপনার ইমেইল বা ইউজারনেম লিখুন">
+  <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="pass" type="password" autocomplete="current-password" placeholder="পাসওয়ার্ড লিখুন">
   <div class="err" id="aerr"></div>
   <button id="abtn">লগইন</button>
   <button class="ghost" id="aswitch">নতুন অ্যাকাউন্ট খুলুন</button>
@@ -318,8 +333,8 @@ section:not(#rev){display:none!important}
 <section id="home" class="hide">
   <header class="dtop">
     <button class="ib" id="menubtn" aria-label="মেনু"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    <div class="dtitle">Exam Site by Arghya</div>
-    <nav class="dlinks"><button data-act="exam">পরীক্ষা</button><button data-act="daily">ডেইলি চ্যালেঞ্জ</button><button data-act="lb">লিডারবোর্ড</button><button data-act="book">বুক ও নোট</button><button data-act="video">ভিডিও</button><button data-act="past">ফলাফল</button><button data-act="games">গেম জোন</button></nav>
+    <div class="dtitle" style="display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover" alt=""> অনুশীলন</div>
+    <nav class="dlinks"><button data-act="exam">পরীক্ষা</button><button data-act="daily">ডেইলি চ্যালেঞ্জ</button><button data-act="lb">লিডারবোর্ড</button><button data-act="book">বুক ও নোট</button><button data-act="video">ভিডিও</button><button data-act="past">ফলাফল</button><button data-act="games">গেম জোন</button><button data-act="app">📲 অ্যাপ</button></nav>
     <span class="xppill" id="xppill">০ XP</span>
     <button class="ib" id="srchbtn" aria-label="খুঁজুন"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
     <button class="ib" id="themebtn" aria-label="থিম">🌓</button><button class="ib" id="langbtn" style="font-size:.8rem;font-weight:700">EN</button><button class="ib" id="bellbtn" aria-label="নোটিফিকেশন"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i class="bdot" id="bdot"></i></button>
@@ -344,6 +359,7 @@ section:not(#rev){display:none!important}
     <button class="tile" data-act="refer" style="--c:var(--a4)"><span class="ti" style="font-size:1.6rem">👥</span><span>রেফার করুন</span></button>
     <button class="tile" data-act="spin" style="--c:var(--a2)"><span class="ti" style="font-size:1.6rem">🎡</span><span>দৈনিক স্পিন</span></button>
     <button class="tile" data-act="games" style="--c:var(--a1)"><span class="ti" style="font-size:1.6rem">🎮</span><span>গেম জোন</span></button>
+    <button class="tile" data-act="app" style="--c:var(--a3)"><span class="ti" style="font-size:1.5rem">📲</span><span>অ্যাপ ডাউনলোড</span></button>
     <button class="tile" data-act="friends" style="--c:var(--a3)"><span class="ti" style="font-size:1.6rem">👥</span><span>ফ্রেন্ড জোন</span></button>
     <button class="tile" data-act="offscan" style="--c:var(--a4)"><span class="ti" style="font-size:1.6rem">📷</span><span>অফলাইন স্ক্যান</span></button>
   </div>
@@ -368,6 +384,7 @@ section:not(#rev){display:none!important}
     <button class="dl" data-go="sec-lb">🥇 লিডারবোর্ড</button>
     <button class="dl" data-go="sec-badges">🏅 ব্যাজ ও স্ট্রিক</button>
     <button class="dl" data-go="sec-past">🏆 আমার ফলাফল</button>
+    <button class="dl" data-act="app">📲 অ্যাপ ডাউনলোড</button>
     <hr>
     <button class="ghost hide" id="adminbtn" style="width:100%;margin:0 0 8px">🛠 অ্যাডমিন প্যানেল</button>
     <button class="ghost hide" id="teacherbtn" style="width:100%;margin:0 0 8px">👨‍🏫 টিচার প্যানেল</button>
@@ -422,16 +439,17 @@ section:not(#rev){display:none!important}
 </template>
 <template id="tpl-teacher">
 <div class="wrap">
-<header class="brand"><span class="logo">👨‍🏫</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">টিচারস প্যানেল</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">টিচারস প্যানেল</div></div></header>
 
 <section id="t_load" class="card"><h2>লোড হচ্ছে...</h2></section>
 
 <section id="t_login" class="card hide">
   <h1 id="t_atitle">টিচার লগইন</h1>
-  <p>আপনার আইডি (ইমেইল) দিয়ে লগইন করুন। প্যানেল পেতে লগইনের পর অ্যাডমিনের কাছে অনুরোধ পাঠাতে হবে।</p>
+  <p id="t_asub">আপনার আইডি (ইমেইল বা ইউজারনেম) দিয়ে লগইন করুন। প্যানেল পেতে লগইনের পর অ্যাডমিনের কাছে অনুরোধ পাঠাতে হবে।</p>
   <button class="ghost" id="t_ggl" style="width:100%;margin:0 0 10px">Google দিয়ে লগইন</button>
-  <div id="t_nameBox" class="hide"><input id="t_fname" placeholder="আপনার নাম" autocomplete="name"></div>
-  <input id="t_email" type="email" placeholder="ইমেইল" autocomplete="email">
+  <div id="t_nameBox" class="hide"><input id="t_fname" placeholder="আপনার পূর্ণ নাম" autocomplete="name"></div>
+  <div id="t_unameBox" class="hide"><input id="t_uname" placeholder="ইউনিক ইউজারনেম (যেমন: teacher123)" autocomplete="username" style="text-transform:lowercase"></div>
+  <input id="t_email" type="text" placeholder="ইমেইল বা ইউজারনেম" autocomplete="username">
   <input id="t_pass" type="password" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)" autocomplete="current-password">
   <div class="err" id="t_aerr"></div>
   <button id="t_abtn">লগইন</button>
@@ -479,6 +497,9 @@ section:not(#rev){display:none!important}
     <select id="t_ecls"></select>
     <input id="t_esub" list="t_sublist" placeholder="বিষয় (যেমন: গণিত) — ঐচ্ছিক"><datalist id="t_sublist"></datalist>
     <input id="t_echap" placeholder="অধ্যায় — ঐচ্ছিক">
+    <select id="t_ebank"><option value="">📦 প্রশ্নব্যাংক ক্যাটাগরি (ঐচ্ছিক)</option><option value="ssc">এসএসসি</option><option value="hsc">এইচএসসি</option><option value="medical">মেডিকেল</option></select>
+    <select id="t_eby" class="hide"><option value="">📅 সাল</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select>
+    <select id="t_ebb" class="hide"><option value="">🏫 বোর্ড (ঐচ্ছিক)</option><option value="all">All board (same question)</option><option>ঢাকা</option><option>ময়মনসিংহ</option><option>রাজশাহী</option><option>দিনাজপুর</option><option>কুমিল্লা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>যশোর</option><option>বরিশাল</option></select>
     <label>কতবার পরীক্ষা দেওয়া যাবে (০ লিখলে যতবার খুশি)</label>
     <input id="t_att" type="number" min="0" value="1">
     <label style="display:block;margin:6px 0"><input type="checkbox" id="t_shq" checked style="width:auto;margin:0 6px 0 0">প্রশ্নের ক্রম এলোমেলো করুন</label>
@@ -592,7 +613,7 @@ section:not(#rev){display:none!important}
 </template>
 <template id="tpl-admin">
 <div class="wrap">
-<header class="brand"><span class="logo">📝</span><div><div class="bn">Exam Site by Arghya</div><div class="tag">অ্যাডমিন প্যানেল</div></div></header>
+<header class="brand"><img src="logo.png" class="logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="অনুশীলন"><div><div class="bn">অনুশীলন</div><div class="tag">অ্যাডমিন প্যানেল</div></div></header>
 
 <section id="login" class="card hide">
   <h1>অ্যাডমিন লগইন</h1>
@@ -641,6 +662,8 @@ section:not(#rev){display:none!important}
     <input id="echap" placeholder="অধ্যায় (প্রশ্নব্যাংক/কাস্টম পরীক্ষার জন্য) — ঐচ্ছিক">
     <select id="ebank"><option value="">📦 প্রশ্নব্যাংক ক্যাটাগরি (ঐচ্ছিক)</option><option value="ssc">এসএসসি</option><option value="hsc">এইচএসসি</option><option value="medical">মেডিকেল</option><option value="univ">ভার্সিটি</option></select>
     <select id="ebsub" class="hide"><option value="">ভার্সিটি বাছুন</option><option>চবি</option><option>রাবি</option><option>জবি</option><option>জাবি</option><option>কুবি</option><option>সাস্ট</option><option>ঢাকেবি</option></select>
+    <select id="eby" class="hide"><option value="">📅 সাল (এসএসসি/এইচএসসি-র জন্য)</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select>
+    <select id="ebb" class="hide"><option value="">🏫 বোর্ড (ঐচ্ছিক)</option><option value="all">All board (same question)</option><option>ঢাকা</option><option>ময়মনসিংহ</option><option>রাজশাহী</option><option>দিনাজপুর</option><option>কুমিল্লা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>যশোর</option><option>বরিশাল</option></select>
     <label>কতবার পরীক্ষা দেওয়া যাবে (০ লিখলে যতবার খুশি)</label>
     <input id="att" type="number" min="0" value="1">
     <label style="display:block;margin:6px 0"><input type="checkbox" id="shq" checked style="width:auto;margin:0 6px 0 0">প্রশ্নের ক্রম এলোমেলো করুন</label>
@@ -685,6 +708,7 @@ section:not(#rev){display:none!important}
     <div id="pmsg" class="err"></div>
     <div id="paylist"></div>
     <details id="paysetup"><summary>⚙️ ডেটাবেস সেটআপ SQL (একবার Run করুন)</summary><p>SQL কপি করে Supabase → SQL Editor-এ Run করুন। এতে সাবস্ক্রিপশন ও ভিজিটরদের পরীক্ষার তালিকা দেখার অনুমতি দুটোই সেট হয়।</p><button id="copysql">📋 SQL কপি করুন</button><textarea id="sqlbox" class="ta" rows="8" readonly></textarea></details>
+    <details id="unamesetup" style="margin-top:10px"><summary>🆔 ইউনিক ইউজারনেম ডেটাবেস SQL (একবার Run করুন)</summary><p>ইউজাররা যাতে নিজস্ব ইউনিক ইউজারনেম দিয়ে সরাসরি লগইন করতে পারে, তার জন্য Supabase → SQL Editor-এ এই কোডটি একবার Run করুন।</p><button id="copyunamesql">📋 ইউজারনেম SQL কপি করুন</button><textarea id="unamesqlbox" class="ta" rows="8" readonly></textarea></details>
   </div>
 
   <div id="t-stu" class="card hide"><h2>👪 শিক্ষক / অভিভাবক রিপোর্ট</h2>
@@ -908,6 +932,75 @@ create or replace function public.admin_students() returns jsonb language sql se
     'mobile',u.raw_user_meta_data->>'mobile') order by u.created_at desc),'[]'::jsonb)
   from auth.users u where public.sub_is_admin() and not coalesce(u.is_anonymous,false) $f$;
 </script>
+<script type="text/plain" id="username-sql">
+-- ===== ইউনিক ইউজারনেম সেটআপ (একবার Supabase SQL Editor-এ Run করুন) =====
+-- বারবার চালালেও কোনো সমস্যা নেই, আগের কোনো ডেটা নষ্ট হবে না।
+
+create table if not exists public.usernames(
+  username text primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  email text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists usernames_user_id_idx on public.usernames(user_id);
+create index if not exists usernames_email_idx on public.usernames(email);
+
+alter table public.usernames enable row level security;
+
+-- যে কেউ ইউজারনেম খালি আছে কিনা বা লগইনের জন্য ইমেইল দেখতে পারে
+drop policy if exists usernames_select_all on public.usernames;
+create policy usernames_select_all on public.usernames for select using(true);
+
+-- অথেনটিকেটেড ইউজার তার নিজস্ব রেকর্ড তৈরি, আপডেট ও মুছতে পারবে
+drop policy if exists usernames_insert_own on public.usernames;
+create policy usernames_insert_own on public.usernames for insert with check(auth.uid() = user_id);
+
+drop policy if exists usernames_update_own on public.usernames;
+create policy usernames_update_own on public.usernames for update using(auth.uid() = user_id);
+
+drop policy if exists usernames_delete_own on public.usernames;
+create policy usernames_delete_own on public.usernames for delete using(auth.uid() = user_id);
+
+grant select on public.usernames to anon, authenticated;
+grant insert, update, delete on public.usernames to authenticated;
+
+-- নিরাপদ ফাংশন: ইউজারনেম সেট করা
+create or replace function public.set_my_username(p_username text)
+returns jsonb language plpgsql security definer set search_path=public as $f$
+declare
+  uid uuid := auth.uid();
+  uemail text;
+  uname_clean text;
+begin
+  if uid is null then
+    return jsonb_build_object('ok', false, 'error', 'লগইন আবশ্যক');
+  end if;
+  uname_clean := lower(trim(p_username));
+  if uname_clean !~ '^[a-z0-9_]{3,20}$' then
+    return jsonb_build_object('ok', false, 'error', 'ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর হতে হবে');
+  end if;
+  select email into uemail from auth.users where id = uid;
+  if uemail is null or uemail = '' then
+    return jsonb_build_object('ok', false, 'error', 'ব্যবহারকারীর ইমেইল পাওয়া যায়নি');
+  end if;
+  if exists(select 1 from public.usernames where username = uname_clean and user_id <> uid) then
+    return jsonb_build_object('ok', false, 'error', 'এই ইউজারনেমটি অন্য কেউ নিয়ে নিয়েছে');
+  end if;
+  delete from public.usernames where user_id = uid;
+  insert into public.usernames(username, user_id, email) values(uname_clean, uid, uemail)
+  on conflict(username) do update set user_id = uid, email = uemail;
+  return jsonb_build_object('ok', true, 'username', uname_clean);
+end;
+$f$;
+grant execute on function public.set_my_username(text) to authenticated;
+
+-- নিরাপদ ফাংশন: ইউজারনেম দিয়ে ইমেইল বের করা
+create or replace function public.get_email_by_username(p_username text)
+returns text language sql security definer set search_path=public stable as $f$
+  select email from public.usernames where username = lower(trim(p_username)) limit 1;
+$f$;
+grant execute on function public.get_email_by_username(text) to anon, authenticated;
+</script>
 <script type="text/plain" id="tch-sql">
 -- 👨‍🏫 টিচারস প্যানেল সেটআপ (একবার Run করুন; বারবার চালালেও সমস্যা নেই)
 
@@ -1095,6 +1188,129 @@ grant execute on function public.teacher_reset(uuid,text) to authenticated;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+/* ---- প্রশ্নব্যাংক: সাল/বোর্ড, বাংলা ১ম-২য়, বিষয়ের তালিকা ---- */
+window.BOARDS=["ঢাকা","ময়মনসিংহ","রাজশাহী","দিনাজপুর","কুমিল্লা","চট্টগ্রাম","সিলেট","যশোর","বরিশাল"];
+window.BYEARS=[2026,2025,2024,2023,2022,2021];
+window.b2e=function(s){return String(s==null?"":s).replace(/[\u09e6-\u09ef]/g,function(d){return "\u09e6\u09e7\u09e8\u09e9\u09ea\u09eb\u09ec\u09ed\u09ee\u09ef".indexOf(d)})};
+window.bnY=function(n){return String(n).replace(/\d/g,function(d){return "\u09e6\u09e7\u09e8\u09e9\u09ea\u09eb\u09ec\u09ed\u09ee\u09ef".charAt(+d)})};
+window.bYear=function(x){if(x.bank_year)return +x.bank_year;var m=window.b2e(x.title||"").match(/(20\d\d)/);return m?+m[1]:null};
+window.bBoard=function(x){if(x.bank_board)return x.bank_board;var t=x.title||"";for(var i=0;i<window.BOARDS.length;i++)if(t.indexOf(window.BOARDS[i])>-1)return window.BOARDS[i];return "all"};
+window.subjK=function(x){
+  var s=(x.subject||"").trim(),c=x.class_level;
+  if(s==="বাংলা"&&((c!=null&&+c>=6)||x.bank_cat)){
+    var t=(x.title||"")+" "+(x.chapter||"");
+    if(/২য়|দ্বিতীয়|2nd/i.test(t))return "বাংলা ২য়";
+    if(/১ম|প্রথম|1st/i.test(t))return "বাংলা ১ম";
+  }
+  return s;
+};
+window.subjFor=function(cls,bank){
+  var big=(cls!==""&&cls!=null&&+cls>=6)||!!bank,out=[];
+  (window.SUBJ||[]).forEach(function(s){if(s==="বাংলা"&&big){out.push("বাংলা ১ম","বাংলা ২য়")}else out.push(s)});
+  return out;
+};
+window.examTag=function(x){
+  if(!x.bank_cat)return "";
+  var n={ssc:"এসএসসি",hsc:"এইচএসসি",medical:"মেডিকেল",univ:"ভার্সিটি"}[x.bank_cat]||x.bank_cat,p=["📦 "+n];
+  if(x.bank_cat==="univ"&&x.bank_sub)p.push(x.bank_sub);
+  if(x.bank_cat==="ssc"||x.bank_cat==="hsc"){var y=window.bYear(x),b=window.bBoard(x);if(y)p.push(window.bnY(y));p.push(b==="all"?"All board":b)}
+  return "  ["+p.join(" · ")+"]";
+};
+/* 🔎 পরীক্ষার তালিকা: খোঁজা, ফিল্টার, সাজানো, শ্রেণি→বিষয় অনুযায়ী ভাগ (অ্যাডমিন ও টিচার) */
+window.mkExamList=function(box,key,makeRow,opt){
+  opt=opt||{};
+  var st={q:"",cat:"",sub:"",sort:"new",grp:false};
+  try{var sv=JSON.parse(localStorage.getItem("exl_"+key)||"{}");["cat","sub","sort","grp"].forEach(function(k){if(sv[k]!==undefined)st[k]=sv[k]})}catch(e){}
+  function save(){try{localStorage.setItem("exl_"+key,JSON.stringify({cat:st.cat,sub:st.sub,sort:st.sort,grp:st.grp}))}catch(e){}}
+  function mk(t,txt,cls){var e=document.createElement(t);if(txt!=null)e.textContent=txt;if(cls)e.className=cls;return e}
+  var data=[],ctx=null;
+  var tb=mk("div");tb.style.cssText="margin:0 0 10px";
+  var q=mk("input");q.placeholder="🔎 পরীক্ষার নাম বা বিষয় খুঁজুন…";q.type="search";
+  var dt=mk("details");var sm=mk("summary","⚙️ ফিল্টার ও সাজানো");sm.style.cssText="cursor:pointer;margin:6px 0";dt.appendChild(sm);
+  var cat=mk("select"),sub=mk("select"),so=mk("select");
+  [["new","🕒 নতুন আগে"],["old","🕰 পুরনো আগে"],["name","🔤 নাম অনুযায়ী (অ-হ)"],["class","🏫 শ্রেণি → বিষয় অনুযায়ী"]].forEach(function(o){var e=mk("option",o[1]);e.value=o[0];so.appendChild(e)});
+  var gl=mk("label");gl.style.cssText="display:block;margin:6px 0";var gc=mk("input");gc.type="checkbox";gc.style.cssText="width:auto;margin:0 6px 0 0";gl.appendChild(gc);gl.appendChild(document.createTextNode("শ্রেণি ও বিষয় অনুযায়ী ভাগ করে দেখান"));
+  var rs=mk("button","✖ ফিল্টার মুছুন","ghost");
+  var info=mk("div");info.style.cssText="font-size:.88rem;opacity:.8;margin:4px 0";
+  dt.appendChild(cat);dt.appendChild(sub);dt.appendChild(so);dt.appendChild(gl);dt.appendChild(rs);
+  tb.appendChild(q);tb.appendChild(dt);tb.appendChild(info);
+  box.parentNode.insertBefore(tb,box);
+  function catOf(x){
+    if(opt.admin&&x.owner_id)return "t";
+    if(x.class_level!=null)return "c"+x.class_level;
+    if(x.bank_cat)return "b"+x.bank_cat;
+    return "o";
+  }
+  function catLabel(k){
+    if(k==="t")return "👨‍🏫 টিচারদের পরীক্ষা";
+    if(k==="o")return "📂 অন্যান্য";
+    if(k.charAt(0)==="b")return "📦 প্রশ্নব্যাংক · "+({ssc:"এসএসসি",hsc:"এইচএসসি",medical:"মেডিকেল",univ:"ভার্সিটি"}[k.slice(1)]||k.slice(1));
+    return (window.CL||{})[+k.slice(1)]||("শ্রেণি "+k.slice(1));
+  }
+  function catRank(k){if(k==="t")return 900;if(k==="o")return 800;if(k.charAt(0)==="b")return 100+["ssc","hsc","medical","univ"].indexOf(k.slice(1));return +k.slice(1)}
+  function rebuildFilters(){
+    var cs={},ss={};
+    data.forEach(function(x){cs[catOf(x)]=1;var s=window.subjK(x);ss[s]=1});
+    cat.innerHTML="";var o=mk("option","📋 সব ধরন");o.value="";cat.appendChild(o);
+    Object.keys(cs).sort(function(a,b){return catRank(a)-catRank(b)}).forEach(function(k){var e=mk("option",catLabel(k));e.value=k;cat.appendChild(e)});
+    sub.innerHTML="";var o2=mk("option","📚 সব বিষয়");o2.value="";sub.appendChild(o2);
+    Object.keys(ss).sort(function(a,b){return a.localeCompare(b,"bn")}).forEach(function(k){var e=mk("option",k||"(বিষয় নেই)");e.value=k||"\u0000";sub.appendChild(e)});
+    if(!cs[st.cat])st.cat="";if(st.sub&&!ss[st.sub==="\u0000"?"":st.sub])st.sub="";
+    cat.value=st.cat;sub.value=st.sub;so.value=st.sort;gc.checked=!!st.grp;
+  }
+  function draw(){
+    box.innerHTML="";
+    if(!data.length){box.textContent="কোনো পরীক্ষা নেই।";info.textContent="";return}
+    var qq=q.value.trim().toLowerCase();
+    var v=data.filter(function(x){
+      if(st.cat&&catOf(x)!==st.cat)return false;
+      var sk=window.subjK(x);if(st.sub&&(st.sub==="\u0000"?sk!=="":sk!==st.sub))return false;
+      if(qq&&((x.title||"")+" "+(x.subject||"")+" "+(x.chapter||"")+" "+window.examTag(x)).toLowerCase().indexOf(qq)<0)return false;
+      return true;
+    });
+    function cmpClass(a,b){var d=catRank(catOf(a))-catRank(catOf(b));if(d)return d;d=window.subjK(a).localeCompare(window.subjK(b),"bn");if(d)return d;d=(window.bYear(b)||0)-(window.bYear(a)||0);if(d)return d;return (a.title||"").localeCompare(b.title||"","bn")}
+    if(st.sort==="old")v.sort(function(a,b){return a.id-b.id});
+    else if(st.sort==="name")v.sort(function(a,b){return (a.title||"").localeCompare(b.title||"","bn")});
+    else if(st.sort==="class"||st.grp)v.sort(cmpClass);
+    else v.sort(function(a,b){return b.id-a.id});
+    info.textContent="দেখানো "+window.bnY(v.length)+"টি / মোট "+window.bnY(data.length)+"টি";
+    if(!v.length){box.textContent="এই ফিল্টারে কোনো পরীক্ষা নেই।";return}
+    var last="";
+    v.forEach(function(x){
+      if(st.grp){
+        var h=catLabel(catOf(x))+(window.subjK(x)?" › "+window.subjK(x):""),hk=h;
+        if(hk!==last){last=hk;var hd=mk("div","📂 "+h);hd.style.cssText="font-weight:700;margin:14px 0 6px;padding:6px 10px;border-radius:10px;background:rgba(109,90,230,.15)";box.appendChild(hd)}
+      }
+      box.appendChild(makeRow(x,ctx));
+    });
+  }
+  q.oninput=draw;
+  cat.onchange=function(){st.cat=cat.value;save();draw()};
+  sub.onchange=function(){st.sub=sub.value;save();draw()};
+  so.onchange=function(){st.sort=so.value;save();draw()};
+  gc.onchange=function(){st.grp=gc.checked;save();draw()};
+  rs.onclick=function(){st.cat="";st.sub="";st.sort="new";st.grp=false;q.value="";cat.value="";sub.value="";so.value="new";gc.checked=false;save();draw()};
+  return function(d,c){data=d||[];ctx=c;rebuildFilters();draw()};
+};
+window.nativeShare=function(blob,name,mime,text,phone){
+  return new Promise(function(res){
+    var B=window.ExamAndroid;if(!B||!B.shareFile)return res(false);
+    try{var fr=new FileReader();fr.onload=function(){try{B.shareFile(String(fr.result),name,mime,text||"",phone||"");res(true)}catch(e){res(false)}};fr.onerror=function(){res(false)};fr.readAsDataURL(blob)}catch(e){res(false)}
+  });
+};
+(function(){
+  var MAP={esub:["ecls","ebank","sublist"],csub:["ccls",null,"sublist"],ai_sub:["ai_cls",null,"sublist"],t_esub:["t_ecls","t_ebank","t_sublist"],t_bsub:[null,"t_ebank","t_sublist"]};
+  function fill(id){
+    var m=MAP[id];if(!m)return;
+    var dl=document.getElementById(m[2]);if(!dl)return;
+    var c=m[0]&&document.getElementById(m[0]),b=m[1]&&document.getElementById(m[1]);
+    var list=window.subjFor(c?c.value:"",b?b.value:"");
+    dl.innerHTML="";list.forEach(function(x){var o=document.createElement("option");o.value=x;dl.appendChild(o)});
+  }
+  document.addEventListener("focusin",function(e){if(e.target&&e.target.id)fill(e.target.id)});
+})();
+</script>
+<script>
 var CL={1:"প্রথম শ্রেণি",2:"দ্বিতীয় শ্রেণি",3:"তৃতীয় শ্রেণি",4:"চতুর্থ শ্রেণি",5:"পঞ্চম শ্রেণি",6:"ষষ্ঠ শ্রেণি",7:"সপ্তম শ্রেণি",8:"অষ্টম শ্রেণি",9:"নবম শ্রেণি",10:"দশম শ্রেণি",11:"একাদশ শ্রেণি",12:"দ্বাদশ শ্রেণি",13:"এডমিশন",910:"নবম ও দশম শ্রেণি",1112:"একাদশ ও দ্বাদশ শ্রেণি"};
 var SUBJ=["বাংলা","ইংরেজি","গণিত","বিজ্ঞান","বাংলাদেশ ও বিশ্বপরিচয়","তথ্য ও যোগাযোগ প্রযুক্তি","ইসলাম ও নৈতিক শিক্ষা","হিন্দুধর্ম ও নৈতিক শিক্ষা","পদার্থবিজ্ঞান","রসায়ন","জীববিজ্ঞান","উচ্চতর গণিত","ভূগোল ও পরিবেশ","ইতিহাস ও বিশ্বসভ্যতা","পৌরনীতি ও নাগরিকতা","অর্থনীতি","কৃষিশিক্ষা","সাধারণ জ্ঞান"];
 /* ==== bKash সাবস্ক্রিপশন সেটিং: নিজের নম্বর ও দাম বসান ==== */
@@ -1120,26 +1336,157 @@ var linkId=(location.hash.match(/#exam=(\d+)/)||[])[1],gexam=null,entered=false;
 function isGuest(){return !!user&&(user.is_anonymous===true||!user.email)}
 
 function show(id){document.body.classList.toggle("dash",id==="home"||id==="prof");$("loading").classList.add("hide");["auth","guest","reset","home","exam","res","rev","cls","prof"].forEach(function(s){$(s).classList.toggle("hide",s!==id)})}
-function uname(){if(!user)return "অতিথি";return (user.user_metadata&&user.user_metadata.full_name)||user.email}
+function uname(){if(!user)return "অতিথি";var m=user.user_metadata||{};return m.full_name||(m.username?"@"+m.username:user.email)}
+
+/* ===== ইউনিক ইউজারনেম সার্ভিস ও হেল্পার ===== */
+function cleanUsername(u){return String(u||"").trim().toLowerCase()}
+function isValidUsername(u){return /^[a-z0-9_]{3,20}$/.test(cleanUsername(u))}
+
+async function checkUsernameAvailable(u, currentUserId){
+  u = cleanUsername(u);
+  if(!isValidUsername(u)) return {available:false, reason:"ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে (কোনো স্পেস নয়)।"};
+  try {
+    var q = await db.from("usernames").select("user_id").eq("username", u).maybeSingle();
+    if(q && q.data){
+      if(currentUserId && q.data.user_id === currentUserId) return {available:true};
+      return {available:false, reason:"এই ইউজারনেমটি ইতিমধ্যে ব্যবহৃত হয়েছে, অন্য একটি বেছে নিন।"};
+    }
+  } catch(e) {}
+  try {
+    var loc = localStorage.getItem("un_" + u);
+    if(loc && user && user.email && loc !== user.email){
+      return {available:false, reason:"এই ইউজারনেমটি ইতিমধ্যে ব্যবহৃত হয়েছে, অন্য একটি বেছে নিন।"};
+    }
+  } catch(e) {}
+  return {available:true};
+}
+
+async function resolveLoginIdentifier(input){
+  var s = String(input||"").trim();
+  if(!s) return {error:"ইমেইল বা ইউজারনেম লিখুন।"};
+  if(s.includes("@")) return {email:s, isUsername:false};
+  var u = cleanUsername(s);
+  if(!isValidUsername(u)) return {error:"সঠিক ইউজারনেম (৩-২০ অক্ষর) অথবা সঠিক ইমেইল লিখুন।"};
+  try {
+    var rpc = await db.rpc("get_email_by_username", {p_username: u});
+    if(!rpc.error && rpc.data) return {email:rpc.data, isUsername:true, username:u};
+  } catch(e) {}
+  try {
+    var q = await db.from("usernames").select("email").eq("username", u).maybeSingle();
+    if(!q.error && q.data && q.data.email) return {email:q.data.email, isUsername:true, username:u};
+  } catch(e) {}
+  try {
+    var loc = localStorage.getItem("un_" + u);
+    if(loc && loc.includes("@")) return {email:loc, isUsername:true, username:u};
+  } catch(e) {}
+  return {error:"এই ইউজারনেম ('" + u + "') দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি। অনুগ্রহ করে আপনার সঠিক ইউজারনেম বা আসল ইমেইল দিয়ে চেষ্টা করুন।"};
+}
+
+async function saveUserUsername(u, uid, email){
+  u = cleanUsername(u);
+  if(!u || !email) return;
+  try { localStorage.setItem("un_" + u, email); } catch(e) {}
+  try { await db.rpc("set_my_username", {p_username: u}); } catch(e) {}
+  try {
+    if(uid) await db.from("usernames").upsert({username:u, user_id:uid, email:email});
+  } catch(e) {}
+}
+
+async function syncCurrentUsername(){
+  if(!user) return;
+  var u = cleanUsername(user.user_metadata && user.user_metadata.username);
+  if(u && isValidUsername(u) && user.email){
+    saveUserUsername(u, user.id, user.email);
+  }
+}
 
 $("aswitch").onclick=function(){
   signup=!signup;
-  $("atitle").textContent=signup?"নতুন অ্যাকাউন্ট":"লগইন করুন";
+  $("atitle").textContent=signup?"নতুন অ্যাকাউন্ট তৈরি":"লগইন করুন";
+  if($("asubtitle")) $("asubtitle").textContent=signup?"ইমেইল, ইউজারনেম ও পাসওয়ার্ড দিয়ে সহজে অ্যাকাউন্ট খুলুন।":"Google দিয়ে এক ট্যাপেই শুরু করুন অথবা ইউজারনেম/ইমেইল দিয়ে লগইন করুন।";
   $("abtn").textContent=signup?"অ্যাকাউন্ট খুলুন":"লগইন";
-  $("aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে":"নতুন অ্যাকাউন্ট খুলুন";
-  $("nameBox").classList.toggle("hide",!signup);$("aerr").textContent="";
-};
-$("abtn").onclick=async function(){
-  var email=$("email").value.trim(),pass=$("pass").value;
+  $("aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে? লগইন করুন":"নতুন অ্যাকাউন্ট খুলুন";
+  $("nameBox").classList.toggle("hide",!signup);
+  $("unameBox").classList.toggle("hide",!signup);
+  $("emaillbl").textContent=signup?"ইমেইল":"ইমেইল বা ইউজারনেম";
+  $("email").placeholder=signup?"আপনার ইমেইল ঠিকানা লিখুন":"আপনার ইমেইল বা ইউজারনেম লিখুন";
+  if($("authsep")) $("authsep").textContent=signup?"অথবা প্রয়োজনীয় তথ্য দিয়ে":"অথবা ইমেইল বা ইউজারনেম দিয়ে";
   $("aerr").textContent="";
-  var r;
+};
+
+$("abtn").onclick=async function(){
+  $("aerr").className="err";
+  $("aerr").textContent="";
+  var pass=$("pass").value;
   if(signup){
-    r=await db.auth.signUp({email:email,password:pass,options:{data:{full_name:$("fname").value.trim()}}});
-    if(!r.error&&!r.data.session){$("aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
+    var nm=$("fname").value.trim();
+    if(!nm){$("aerr").textContent="আপনার পূর্ণ নাম লিখুন।";return}
+    var rawUname=$("uname_in").value.trim();
+    var u=cleanUsername(rawUname);
+    if(!isValidUsername(u)){
+      $("aerr").textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে (কোনো স্পেস নয়)।";
+      return;
+    }
+    $("abtn").disabled=true;
+    $("aerr").textContent="ইউজারনেম যাচাই হচ্ছে...";
+    var chk=await checkUsernameAvailable(u);
+    if(!chk.available){
+      $("abtn").disabled=false;
+      $("aerr").textContent=chk.reason;
+      return;
+    }
+    var em=$("email").value.trim();
+    if(!em||!em.includes("@")){
+      $("abtn").disabled=false;
+      $("aerr").textContent="সঠিক ইমেইল ঠিকানা দিন।";
+      return;
+    }
+    if(!pass||pass.length<6){
+      $("abtn").disabled=false;
+      $("aerr").textContent="পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।";
+      return;
+    }
+    $("aerr").textContent="অ্যাকাউন্ট তৈরি হচ্ছে...";
+    var r=await db.auth.signUp({
+      email:em,
+      password:pass,
+      options:{data:{full_name:nm,username:u}}
+    });
+    $("abtn").disabled=false;
+    if(r.error){$("aerr").textContent="ত্রুটি: "+r.error.message;return}
+    saveUserUsername(u,(r.data&&r.data.user&&r.data.user.id)||null,em);
+    if(!r.data.session){
+      $("aerr").className="ok";
+      $("aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর ইউজারনেম '"+u+"' বা ইমেইল দিয়ে লগইন করুন।";
+      return;
+    }
   }else{
-    r=await db.auth.signInWithPassword({email:email,password:pass});
+    var rawId=$("email").value.trim();
+    if(!rawId){$("aerr").textContent="ইমেইল বা ইউজারনেম লিখুন।";return}
+    if(!pass){$("aerr").textContent="পাসওয়ার্ড লিখুন।";return}
+    $("abtn").disabled=true;
+    $("aerr").textContent="লগইন হচ্ছে...";
+    var res=await resolveLoginIdentifier(rawId);
+    if(res.error){
+      $("abtn").disabled=false;
+      $("aerr").textContent=res.error;
+      return;
+    }
+    var r=await db.auth.signInWithPassword({email:res.email,password:pass});
+    $("abtn").disabled=false;
+    if(r.error){
+      if(r.error.message.includes("Invalid login credentials")){
+        $("aerr").textContent="ত্রুটি: ভুল "+(res.isUsername?"ইউজারনেম বা ":"")+"পাসওয়ার্ড। আবার চেষ্টা করুন।";
+      }else{
+        $("aerr").textContent="ত্রুটি: "+r.error.message;
+      }
+      return;
+    }
+    if(r.data&&r.data.user){
+      user=r.data.user;
+      syncCurrentUsername();
+    }
   }
-  if(r.error){$("aerr").textContent="ত্রুটি: "+r.error.message}
 };
 $("logout").onclick=function(){navC=null;navS=null;db.auth.signOut()};
 $("adminbtn").onclick=function(){location.hash="#admin"};
@@ -1388,20 +1735,57 @@ async function openRef(){
 function openTab(id){["sec-nav","sec-past"].forEach(function(x){$(x).classList.toggle("tabhide",x!==id)});goSec(id)}
 var BK=[["ssc","🎓","এসএসসি"],["hsc","📘","এইচএসসি"],["medical","🩺","মেডিকেল"],["univ","🏛","ভার্সিটি"]],UV=["চবি","রাবি","জবি","জাবি","কুবি","সাস্ট","ঢাকেবি"],bankC=null,bankS=null;
 function bnm(k){for(var i=0;i<BK.length;i++)if(BK[i][0]===k)return BK[i][2];return ""}
+var bankSub=null,bankY=null,bankB=null;
 function drawBankNav(sc){
   var box=$("exams"),cr=$("crumb");box.innerHTML="";cr.innerHTML="";
-  var b0=el("button",bankS?"← ভার্সিটি":(bankC?"← প্রশ্নব্যাংক":"← সব শ্রেণি"),"ghost");
-  b0.onclick=function(){if(bankS)bankS=null;else if(bankC)bankC=null;else navC=null;drawNav(true)};
+  var isYB=(bankC==="ssc"||bankC==="hsc");
+  var lab=bankB!==null?"← বোর্ড":bankY!==null?"← সাল":bankSub!==null?"← বিষয়":bankS?"← ভার্সিটি":(bankC?"← প্রশ্নব্যাংক":"← সব শ্রেণি");
+  var b0=el("button",lab,"ghost");
+  b0.onclick=function(){
+    if(bankB!==null)bankB=null;else if(bankY!==null)bankY=null;else if(bankSub!==null)bankSub=null;
+    else if(bankS)bankS=null;else if(bankC)bankC=null;else navC=null;
+    drawNav(true);
+  };
   cr.appendChild(b0);cr.appendChild(el("span","📦 প্রশ্নব্যাংক","chip"));
-  if(bankC)cr.appendChild(el("span",bnm(bankC),"chip"));if(bankS)cr.appendChild(el("span",bankS,"chip"));
+  if(bankC)cr.appendChild(el("span",bnm(bankC),"chip"));
+  if(bankS)cr.appendChild(el("span",bankS,"chip"));
+  if(bankSub!==null)cr.appendChild(el("span",sName(bankSub),"chip"));
+  if(bankY!==null)cr.appendChild(el("span",bankY?bnY(bankY):"সাল নেই","chip"));
+  if(bankB!==null)cr.appendChild(el("span",bankB==="all"?"All board":bankB+" বোর্ড","chip"));
   var bx=allEx.filter(function(x){return x.bank_cat});
   function tiles(items,cnt,fn){var g=el("div",null,"cgrid");items.forEach(function(it,i){var t=el("div",null,"cbox k"+(i%5));t.appendChild(el("b",it[1]));t.appendChild(el("span",it[2],"cn"));t.appendChild(el("small",bn(cnt(it[0]))+"টি পরীক্ষা"));t.onclick=function(){fn(it[0])};g.appendChild(t)});box.appendChild(g)}
-  if(!bankC)tiles(BK,function(k){return bx.filter(function(x){return x.bank_cat===k}).length},function(k){bankC=k;bankS=null;drawNav(true)});
-  else if(bankC==="univ"&&!bankS)tiles(UV.map(function(u){return [u,"🏛",u]}),function(u){return bx.filter(function(x){return x.bank_cat==="univ"&&x.bank_sub===u}).length},function(u){bankS=u;drawNav(true)});
-  else{
-    var es=bx.filter(function(x){return x.bank_cat===bankC&&(bankC!=="univ"||x.bank_sub===bankS)});
+  function cards(es){
     if(!es.length)box.appendChild(el("p","এখানে এখনও কোনো পরীক্ষা নেই।"));
     var eg=el("div",null,"egrid");es.forEach(function(x){examCard(x,eg)});box.appendChild(eg);
+  }
+  var base=bx.filter(function(x){return x.bank_cat===bankC&&(bankC!=="univ"||x.bank_sub===bankS)});
+  if(!bankC)tiles(BK,function(k){return bx.filter(function(x){return x.bank_cat===k}).length},function(k){bankC=k;bankS=null;bankSub=null;bankY=null;bankB=null;drawNav(true)});
+  else if(bankC==="univ"&&!bankS)tiles(UV.map(function(u){return [u,"🏛",u]}),function(u){return bx.filter(function(x){return x.bank_cat==="univ"&&x.bank_sub===u}).length},function(u){bankS=u;bankSub=null;drawNav(true)});
+  else if(bankSub===null){
+    var sm={},so=[];base.forEach(function(x){var k=subjK(x);if(!sm[k]){sm[k]=0;so.push(k)}sm[k]++});
+    if(!so.length)box.appendChild(el("p","এখানে এখনও কোনো পরীক্ষা নেই।"));
+    else tiles(so.map(function(k){return [k,"📚",sName(k)]}),function(k){return sm[k]},function(k){bankSub=k;bankY=null;bankB=null;drawNav(true)});
+  }else{
+    var bs=base.filter(function(x){return subjK(x)===bankSub});
+    if(!isYB)cards(bs);
+    else if(bankY===null){
+      var ys=BYEARS.slice();if(bs.some(function(x){return !bYear(x)||ys.indexOf(bYear(x))<0}))ys.push(0);
+      tiles(ys.map(function(y){return [y,"📅",y?bnY(y):"সাল নেই"]}),function(y){return bs.filter(function(x){var v=bYear(x)||0;return y?v===y:ys.indexOf(v)<0}).length},function(y){bankY=y;bankB=null;drawNav(true)});
+    }else{
+      var by=bs.filter(function(x){var v=bYear(x)||0;return bankY?v===bankY:BYEARS.indexOf(v)<0});
+      if(bankB===null){
+        box.appendChild(el("h2","মডেল টেস্ট নির্বাচন করুন"));
+        var opts=[["all","All board (same question)",by.filter(function(x){return bBoard(x)==="all"}).length]];
+        BOARDS.forEach(function(b){opts.push([b,b+" বোর্ড-"+(bankY?bnY(bankY):""),by.filter(function(x){var v=bBoard(x);return v===b||v==="all"}).length])});
+        opts.forEach(function(o){
+          var it=el("div",null,"citem click");
+          it.appendChild(el("span","○","ci"));it.appendChild(el("span",o[1]+"  ("+bn(o[2])+"টি)"));
+          it.onclick=function(){bankB=o[0];drawNav(true)};box.appendChild(it);
+        });
+      }else{
+        cards(by.filter(function(x){var v=bBoard(x);return bankB==="all"?v==="all":(v===bankB||v==="all")}));
+      }
+    }
   }
   if(sc)$("navtitle").scrollIntoView({behavior:"smooth",block:"start"});
 }
@@ -1437,7 +1821,7 @@ async function certMile(name,what){
   x.fillStyle="#fffdf7";x.fillRect(0,0,W,H);
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");
   x.strokeStyle=g;x.lineWidth=22;x.strokeRect(36,36,W-72,H-72);x.lineWidth=4;x.strokeRect(80,80,W-160,H-160);
-  x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("Exam Site by Arghya",W/2,185);
+  x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("অনুশীলন",W/2,185);
   x.fillStyle=g;x.font="700 100px "+F;x.fillText("মাইলস্টোন সার্টিফিকেট",W/2,330);
   x.fillStyle="#1e1b3a";x.font="500 42px "+F;x.fillText("এই মর্মে প্রত্যয়ন করা যাচ্ছে যে",W/2,435);
   x.font="700 120px "+F;x.fillText(name||"শিক্ষার্থী",W/2,590);
@@ -2217,7 +2601,36 @@ async function openFriends(){
     sel.onchange=dl;dl();
   }
 }
+
+/* ---- 📲 অ্যাপ ডাউনলোড (সর্বদা সর্বশেষ APK) ---- */
+var APK_URL="https://github.com/skmkr501/examapp/raw/main/ExamSite.apk";
+function openAppDl(){
+  var old=document.getElementById("appdl_ov");if(old)old.remove();
+  var dr=document.getElementById("drawer");if(dr)dr.classList.add("hide");
+  var ua=navigator.userAgent||"",inApp=/ExamSiteAndroidApp/.test(ua),droid=/Android/i.test(ua);
+  var ov=document.createElement("div");ov.id="appdl_ov";
+  ov.style.cssText="position:fixed;inset:0;z-index:99998;background:rgba(10,10,25,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto";
+  var h='<div class="card" style="max-width:460px;width:100%;margin:0;position:relative"><button id="appdl_x" class="ghost" style="position:absolute;right:10px;top:10px;margin:0;padding:6px 12px">✕</button>'+
+    '<div style="text-align:center"><div style="font-size:2.6rem">📲</div><h2 style="margin:6px 0">অনুশীলন অ্যাপ</h2></div>';
+  if(inApp){h+='<p style="text-align:center">✅ আপনি এখন অ্যাপেই আছেন। নতুন সংস্করণ এলে ওপরে জানানো হবে। চাইলে নিচের বোতামে সর্বশেষটা নামাতে পারেন।</p>'}
+  else if(!droid){h+='<p style="text-align:center">এই অ্যাপ শুধু <b>অ্যান্ড্রয়েড</b> ফোনের জন্য। আইফোন বা কম্পিউটারে সাইটটাই ব্যবহার করুন — ব্রাউজারের মেনু থেকে <b>“Add to Home screen”</b> দিলে অ্যাপের মতো খুলবে।</p>'}
+  else{h+='<p style="text-align:center;margin:0 0 6px">সবসময় সর্বশেষ সংস্করণ ডাউনলোড হবে।</p>'}
+  h+='<div id="appdl_info" style="text-align:center;color:var(--mute);font-size:.9rem;margin:6px 0 12px"></div>';
+  if(droid)h+='<a id="appdl_go" href="'+APK_URL+'" style="display:block;text-align:center;text-decoration:none;padding:14px;border-radius:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,#6d5ae6,#ec4899)" rel="noopener">⬇️ অ্যাপ ডাউনলোড করুন</a>';
+  h+='<div style="margin-top:14px;font-size:.92rem"><b>ইনস্টলের ধাপ</b><ol style="padding-left:20px;margin:6px 0 0"><li>ডাউনলোড শেষে ফাইলটা (ExamSite.apk) চাপুন।</li><li>“অজানা উৎস থেকে ইনস্টল” অনুমতি চাইলে অনুমতি দিন।</li><li>ফোন সতর্কতা দেখালে “তবুও ইনস্টল করুন” চাপুন — অ্যাপটি আমাদের নিজস্ব।</li><li>আগের সংস্করণ থাকলে ওপরেই আপডেট হবে; না হলে আগেরটা আনইনস্টল করে আবার ইনস্টল করুন।</li></ol></div></div>';
+  ov.innerHTML=h;document.body.appendChild(ov);
+  var cl=function(){ov.remove()};
+  ov.querySelector("#appdl_x").onclick=cl;var ag=ov.querySelector("#appdl_go");if(ag&&inApp)ag.onclick=function(e){e.preventDefault();if(window.__openApk)window.__openApk();else location.href=APK_URL};ov.onclick=function(e){if(e.target===ov)cl()};
+  try{
+    fetch("https://api.github.com/repos/skmkr501/examapp/commits?path=ExamSite.apk&per_page=1").then(function(r){return r.json()}).then(function(j){
+      var c=j&&j[0];if(!c||!c.commit)return;
+      var d=new Date(c.commit.committer.date),el=document.getElementById("appdl_info");
+      if(el)el.textContent="সর্বশেষ আপডেট: "+d.toLocaleDateString("bn-BD",{day:"numeric",month:"long",year:"numeric"})+" · "+d.toLocaleTimeString("bn-BD",{hour:"2-digit",minute:"2-digit"});
+    }).catch(function(){});
+  }catch(_){}
+}
 function tileAct(a){
+  if(a==="app"){openAppDl();return}
   if(a==="exam"){navC=null;navS=null;navSec=false;drawNav(false);openSec("📚 পরীক্ষা",[["📚 পরীক্ষা","sec-nav"]])}
   else if(a==="daily")dcOpen();
   else if(a==="lb")openSec("🥇 লিডারবোর্ড",[["🥇 লিডারবোর্ড","sec-lb"]]);
@@ -2260,6 +2673,26 @@ $("bellbtn").onclick=function(){
   function add(ic,txt,fn){var d=el("div",null,"nitem"+(fn?" click":""));d.appendChild(el("span",ic,"ci"));d.appendChild(el("span",txt));if(fn)d.onclick=fn;k.appendChild(d)}
   if(dcDone)add("✅","আজকের ডেইলি চ্যালেঞ্জ শেষ। কাল আবার আসুন!");
   else add("⚡","আজকের ডেইলি চ্যালেঞ্জ বাকি আছে — XP ও স্ট্রিক পেতে শুরু করুন",function(){v.o.remove();dcOpen()});
+  var inb=el("div");k.insertBefore(inb,k.firstChild);
+  (async function(){
+    try{
+      var r=await db.from("push_inbox").select("id,title,body,url,created_at").order("created_at",{ascending:false}).limit(15);
+      var rows=(r&&r.data)||[];if(!rows.length)return;
+      var seen=0;try{seen=+localStorage.getItem("inbox_seen")||0}catch(_){}
+      rows.forEach(function(m){
+        var d=el("div",null,"nitem"+(m.url?" click":""));
+        d.appendChild(el("span","📢","ci"));
+        var w=el("span");var t=el("b",m.title);w.appendChild(t);w.appendChild(document.createElement("br"));
+        w.appendChild(document.createTextNode(m.body));w.appendChild(document.createElement("br"));
+        var tm=el("small",new Date(m.created_at).toLocaleString("bn-BD",{dateStyle:"medium",timeStyle:"short"}));tm.style.opacity=".65";w.appendChild(tm);
+        d.appendChild(w);
+        if(m.id>seen)d.style.borderLeft="3px solid #ec4899";
+        if(m.url)d.onclick=function(){try{var u=new URL(m.url);if(u.origin===location.origin){v.o.remove();return}}catch(_){}window.open(m.url,"_blank")};
+        inb.appendChild(d);
+      });
+      try{localStorage.setItem("inbox_seen",String(rows[0].id));$("bellbtn").classList.remove("hasnew")}catch(_){}
+    }catch(_){}
+  })();
   add("🔥",$("strkMsg").textContent);
   var nx=allEx.filter(function(x){var m=x.max_attempts==null?1:x.max_attempts;return m<=0||(cntMap[x.id]||0)<m}).length;
   if(nx)add("📝",bn(nx)+"টি পরীক্ষা দেওয়ার জন্য খোলা আছে",function(){v.o.remove();tileAct("exam")});
@@ -2268,6 +2701,15 @@ $("bellbtn").onclick=function(){
   closeBtn(v);
 };
 
+async function chkInbox(){
+  try{
+    var r=await db.from("push_inbox").select("id").order("id",{ascending:false}).limit(1);
+    var id=r&&r.data&&r.data[0]&&r.data[0].id;if(!id)return;
+    var seen=0;try{seen=+localStorage.getItem("inbox_seen")||0}catch(_){}
+    if(id>seen)$("bdot").style.display="block";
+  }catch(_){}
+}
+setTimeout(chkInbox,5000);setInterval(chkInbox,60000);
 var recovering=location.hash.indexOf("type=recovery")>=0;
 async function loadGuestExam(){
   try{var e=await db.from("exams").select("*").eq("id",linkId).maybeSingle();gexam=(e&&e.data)||null}catch(_){gexam=null}
@@ -2337,6 +2779,7 @@ setTimeout(function(){if(!user&&!$("loading").classList.contains("hide")){if(lin
 db.auth.onAuthStateChange(function(ev,session){
   user=session?session.user:null;
   if(!user){clearInterval(tick);entered=false;if(linkId)prepareGuest();else if($("auth").classList.contains("hide"))home();return}
+  syncCurrentUsername();
   if(ev==="PASSWORD_RECOVERY")recovering=true;
   if(recovering){show("reset");return}
   if(linkId){if(!entered){entered=true;prepareGuest()}return}
@@ -2345,10 +2788,18 @@ db.auth.onAuthStateChange(function(ev,session){
   home();
 });
 $("forgot").onclick=async function(){
-  var em=$("email").value.trim();
-  if(!em){$("aerr").textContent="আগে ইমেইল ঘরে ইমেইল লিখুন।";return}
+  var raw=$("email").value.trim();
+  if(!raw){$("aerr").textContent="আগে আপনার ইমেইল বা ইউজারনেম লিখুন।";return}
+  $("aerr").className="err";
+  $("aerr").textContent="যাচাই হচ্ছে...";
+  var res=await resolveLoginIdentifier(raw);
+  var em=(res&&res.email)||raw;
+  if(!em||!em.includes("@")){
+    $("aerr").textContent="সঠিক ইমেইল ঠিকানা পাওয়া যায়নি। অনুগ্রহ করে আপনার আসল ইমেইল লিখুন।";
+    return;
+  }
   var r=await db.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/"});
-  $("aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
+  $("aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"পাসওয়ার্ড রিসেট লিংক '"+em+"' ঠিকানায় পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
 };
 $("rbtn").onclick=async function(){
   var p=$("npass").value;
@@ -2474,7 +2925,7 @@ async function shareCard(){
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");x.fillStyle=g;x.fillRect(0,0,W,H);
   x.fillStyle="rgba(255,255,255,.14)";for(var i=0;i<6;i++){x.beginPath();x.arc(120+i*190,i%2?200:1180,90+i*8,0,7);x.fill()}
   x.fillStyle="#fff";x.textAlign="center";
-  x.font="700 54px "+F;x.fillText("Exam Site by Arghya",W/2,120);
+  x.font="700 54px "+F;x.fillText("অনুশীলন",W/2,120);
   var _ok=false;
   if(myPhoto){try{var _im=await new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=j;i.src=myPhoto});x.save();x.beginPath();x.arc(W/2,250,90,0,Math.PI*2);x.closePath();x.clip();x.drawImage(_im,W/2-90,160,180,180);x.restore();x.lineWidth=8;x.strokeStyle="#fff";x.beginPath();x.arc(W/2,250,90,0,Math.PI*2);x.stroke();_ok=true}catch(_e){}}
   if(!_ok){x.font="130px sans-serif";x.fillText(av(),W/2,310)}
@@ -2488,6 +2939,7 @@ async function shareCard(){
   x.font="400 34px "+F;x.fillText(location.host,W/2,1280);
   c.toBlob(async function(b){
     var f=new File([b],"result.png",{type:"image/png"});
+    if(await window.nativeShare(b,"result.png","image/png","আমার ফলাফল",""))return;
     if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:"আমার ফলাফল"});return}catch(e){if(e&&e.name==="AbortError")return}}
     var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="result.png";a.click();
   },"image/png");
@@ -2553,7 +3005,7 @@ var GR={910:{ids:[9,10],sh:"৯ম–১০ম",sec:"এসএসি প্র�
 function grpOf(c){c=Number(c);if(c===9||c===10)return 910;if(c===11||c===12)return 1112;return c}
 function inCl(l){var g=GR[navC];return g?g.ids.indexOf(l)>-1:l===navC}
 function inClX(l,c){var g=GR[c];return g?g.ids.indexOf(l)>-1:l===c}
-function sKey(x){return (x.subject||"").trim()}
+function sKey(x){return subjK(x)}
 function cKey(x){return x.class_level==null?(x.bank_cat?-1:0):x.class_level}
 function sName(k){return k||"সাধারণ"}
 function examCard(x,box){
@@ -2601,7 +3053,7 @@ function drawNav(sc){
     });
     var bt=el("div",null,"cbox k3");bt.appendChild(el("b","📦"));bt.appendChild(el("span","প্রশ্নব্যাংক","cn"));
     bt.appendChild(el("small",bn(allEx.filter(function(x){return x.bank_cat}).length)+"টি পরীক্ষা"));
-    bt.onclick=function(){bankC=null;bankS=null;go("bank",null,false)};g.appendChild(bt);
+    bt.onclick=function(){bankC=null;bankS=null;bankSub=null;bankY=null;bankB=null;go("bank",null,false)};g.appendChild(bt);
     box.appendChild(g);
   }else if(isG&&!navSec){
     var b00=el("button","← সব শ্রেণি","ghost");b00.onclick=function(){go(null,null)};cr.appendChild(b00);
@@ -2618,7 +3070,7 @@ function drawNav(sc){
     var m={},ord=[];
     function add(k,f){if(!m[k]){m[k]={e:0,c:0};ord.push(k)}m[k][f]++}
     allEx.forEach(function(x){if(inCl(cKey(x)))add(sKey(x),"e")});
-    allCt.forEach(function(x){if(inCl(x.class_level))add((x.subject||"").trim(),"c")});
+    allCt.forEach(function(x){if(inCl(x.class_level))add(subjK(x),"c")});
     if(!ord.length){box.appendChild(el("p","এই শ্রেণিতে এখনও কিছু যোগ হয়নি।"));}
     else{var g2=el("div",null,"cgrid");
       ord.forEach(function(k,i){
@@ -2632,7 +3084,7 @@ function drawNav(sc){
     cr.appendChild(el("span",navC?CL[navC]:"অন্যান্য","chip"));
     if(isG)cr.appendChild(el("span",GR[navC].sec,"chip"));
     cr.appendChild(el("span",sName(navS),"chip"));
-    var cs=allCt.filter(function(x){return inCl(x.class_level)&&(x.subject||"").trim()===navS});
+    var cs=allCt.filter(function(x){return inCl(x.class_level)&&subjK(x)===navS});
     var es=allEx.filter(function(x){return inCl(cKey(x))&&sKey(x)===navS});
     if(cs.length){
       box.appendChild(el("h2","📖 পড়ার কনটেন্ট"));
@@ -2761,7 +3213,7 @@ function confetti(){var cs=["#6d5ae6","#ec4899","#f59e0b","#14b8a6","#3b82f6"];f
 function showReview(d,box){
   try{if(window.__revHook)window.__revHook(d,box)}catch(_){}
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -2783,7 +3235,7 @@ function showReview(d,box){
     box.appendChild(q);
   });
 }
-$("revpdf").onclick=function(){window.print()};
+$("revpdf").onclick=function(){window.revPdf("rev")};
 $("revback").onclick=function(){if(isGuest())show("res");else home()};
 $("wabtn").onclick=async function(){
   var m=$("wamsg"),b=$("wabtn");m.textContent="";
@@ -2802,8 +3254,10 @@ $("wabtn").onclick=async function(){
     var pdf=new window.jspdf.jsPDF("p","pt","a4"),W=pdf.internal.pageSize.getWidth(),H=pdf.internal.pageSize.getHeight(),ih=cv.height*W/cv.width,img=cv.toDataURL("image/jpeg",.85);
     pdf.addImage(img,"JPEG",0,0,W,ih);for(var y=H;y<ih;y+=H){pdf.addPage();pdf.addImage(img,"JPEG",0,-y,W,ih)}
     db.auth.updateUser({data:{whatsapp:n}}).then(function(u){if(u.data&&u.data.user)user=u.data.user});
-    var f=new File([pdf.output("blob")],"answer-sheet.pdf",{type:"application/pdf"}),tx="আমার \""+exam.title+"\" পরীক্ষার উত্তরপত্র";
-    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:tx});m.textContent="✓ শেয়ার মেনু থেকে WhatsApp বেছে নিন।"}
+    var pb=pdf.output("blob"),f=new File([pb],"answer-sheet.pdf",{type:"application/pdf"}),tx="আমার \""+exam.title+"\" পরীক্ষার উত্তরপত্র";
+    if(await window.nativeShare(pb,"answer-sheet.pdf","application/pdf",tx,n)){m.textContent="✓ WhatsApp খুলছে… PDF-টি পাঠিয়ে দিন।"}
+    else if(window.ExamAndroid&&window.ExamAndroid.savePdf){await new Promise(function(r){var fr=new FileReader();fr.onload=function(){try{window.ExamAndroid.savePdf(String(fr.result),"answer-sheet.pdf")}catch(e){}r()};fr.readAsDataURL(pb)});m.textContent="PDF সেভ হয়েছে। খুলে শেয়ার করুন, অথবা WhatsApp-এ ফাইলটি অ্যাটাচ করে পাঠান। (সরাসরি পাঠাতে অ্যাপ আপডেট করুন)"}
+    else if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:tx});m.textContent="✓ শেয়ার মেনু থেকে WhatsApp বেছে নিন।"}
     else{pdf.save("answer-sheet.pdf");window.open("https://wa.me/"+n+"?text="+encodeURIComponent(tx),"_blank");m.textContent="PDF ডাউনলোড হয়েছে। WhatsApp-এ ফাইলটি অ্যাটাচ করে পাঠান।"}
   }catch(e){if(d)d.remove();if(!e||e.name!=="AbortError"){m.className="err";m.textContent="ত্রুটি: "+((e&&e.message)||e)}else m.textContent=""}
   b.disabled=false;
@@ -2882,14 +3336,88 @@ async function openProfile(){
   show("prof");window.scrollTo(0,0);drawProf();
   var r=await db.from("results").select("score,total,exam_id");drawPerf(r.data||[]);
 }
+function openSetUsernameModal(existing){
+  var v=ovlOpen(existing?"ইউজারনেম পরিবর্তন":"ইউনিক ইউজারনেম সেট করুন"),k=v.k;
+  k.appendChild(el("p","ইউনিক ইউজারনেম সেট করলে বড় ইমেইল ঠিকানা মনে না রেখে শুধু এই ইউজারনেম এবং আপনার বর্তমান পাসওয়ার্ড দিয়েই লগইন করতে পারবেন।"));
+  var inp=document.createElement("input");
+  inp.placeholder="যেমন: shanto123 (৩-২০ অক্ষর)";
+  inp.style.textTransform="lowercase";
+  inp.value=existing||"";
+  k.appendChild(inp);
+  var hint=el("small","ইংরেজি ছোট অক্ষর (a-z), সংখ্যা (0-9) ও আন্ডারস্কোর (_)। কোনো স্পেস নয়।");
+  hint.style.cssText="color:var(--mute);font-size:.78rem;display:block;margin:-4px 0 10px";
+  k.appendChild(hint);
+  var msg=el("div",null,"err");
+  k.appendChild(msg);
+  var btn=el("button","যাচাই ও সংরক্ষণ করুন");
+  btn.onclick=async function(){
+    msg.className="err";msg.textContent="";
+    var raw=inp.value.trim();
+    var u=cleanUsername(raw);
+    if(!isValidUsername(u)){
+      msg.textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে।";
+      return;
+    }
+    btn.disabled=true;
+    msg.textContent="যাচাই করা হচ্ছে...";
+    var chk=await checkUsernameAvailable(u,user.id);
+    if(!chk.available){
+      btn.disabled=false;
+      msg.textContent=chk.reason;
+      return;
+    }
+    msg.textContent="সংরক্ষণ করা হচ্ছে...";
+    var r=await db.auth.updateUser({data:{username:u}});
+    if(r.error){
+      btn.disabled=false;
+      msg.textContent="ত্রুটি: "+r.error.message;
+      return;
+    }
+    if(r.data&&r.data.user)user=r.data.user;
+    await saveUserUsername(u,user.id,user.email);
+    btn.disabled=false;
+    v.o.remove();
+    drawProf();
+    var notif=ovlOpen("🎉 ইউজারনেম সফল!");
+    notif.k.appendChild(el("p","আপনার ইউনিক ইউজারনেম @"+u+" সফলভাবে সেট হয়েছে। এখন থেকে আপনি এই ইউজারনেম এবং আপনার বর্তমান পাসওয়ার্ড দিয়ে লগইন করতে পারবেন!"));
+    var okb=el("button","ঠিক আছে");
+    okb.onclick=function(){notif.o.remove()};
+    notif.k.appendChild(okb);
+  };
+  k.appendChild(btn);
+  closeBtn(v);
+}
 function drawProf(){
   var b=$("profbody");b.innerHTML="";
   var cl=parseInt(mt("class_level"))||0,done=mt("mobile")&&mt("school")&&mt("dob");
+  var curUname=mt("username");
   var top=el("div",null,"card");top.style.cssText="display:flex;gap:14px;align-items:center";
   phInit();var pv0=avEl("div",curAv(),"pav");pv0.style.cursor="pointer";pv0.title="ছবি বদলান";pv0.onclick=function(){pickPhoto()};top.appendChild(pv0);
-  var mid=el("div");mid.style.flex="1";mid.appendChild(el("b",uname()));mid.appendChild(el("div",cl?CL[cl]:"শ্রেণি দেওয়া হয়নি"));
+  var mid=el("div");mid.style.flex="1";mid.appendChild(el("b",uname()));
+  if(curUname){
+    var uline=el("div");uline.style.cssText="display:flex;align-items:center;gap:6px;margin:2px 0";
+    uline.appendChild(el("span","@"+curUname,"chip good"));
+    uline.appendChild(el("small","ইউনিক ইউজারনেম","dv"));
+    mid.appendChild(uline);
+  }
+  mid.appendChild(el("div",cl?CL[cl]:"শ্রেণি দেওয়া হয়নি"));
   mid.appendChild(el("span",done?"সম্পূর্ণ":"অসম্পূর্ণ","chip"));top.appendChild(mid);
   var ed=el("button","✏️ এডিট","ghost");ed.onclick=editProf;top.appendChild(ed);b.appendChild(top);
+
+  if(!curUname&&!isGuest()){
+    var uc=el("div",null,"card");
+    uc.style.cssText="background:linear-gradient(135deg,rgba(109,90,230,.12),rgba(46,196,182,.12));border:1.5px dashed var(--a1);display:flex;gap:12px;align-items:center";
+    uc.appendChild(el("span","⚡","ci"));
+    var ucm=el("div");ucm.style.flex="1";
+    ucm.appendChild(el("b","ইউনিক ইউজারনেম সেট করুন"));
+    ucm.appendChild(el("div","ইমেইল টাইপ না করে শুধু আপনার ইউজারনেম ও পাসওয়ার্ড দিয়েই লগইন করতে নিজস্ব ইউজারনেম সেট করুন!","dv"));
+    uc.appendChild(ucm);
+    var ucb=el("button","সেট করুন");
+    ucb.onclick=function(){openSetUsernameModal()};
+    uc.appendChild(ucb);
+    b.appendChild(uc);
+  }
+
   var pv=(user.app_metadata&&user.app_metadata.provider)||"email";
   var g=el("div",null,"card");g.style.cssText="display:flex;gap:12px;align-items:center";
   g.appendChild(el("span",pv==="google"?"🛡️":"✉️","ci"));
@@ -2901,6 +3429,18 @@ function drawProf(){
   ic.appendChild(gr);b.appendChild(ic);try{b.appendChild(__weekly())}catch(_){}
   var st=el("div",null,"card");st.appendChild(el("h2","অ্যাকাউন্ট সেটিংস"));
   st.appendChild(el("p","💎 প্রিমিয়াম: "+(subSt==="active"||subSt==="admin"?"সক্রিয় ✅":subSt==="pending"?"যাচাই চলছে ⏳":"নেই")));
+  if(curUname){
+    var usrRow=el("div",null,"card");
+    usrRow.style.cssText="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;margin:8px 0;background:var(--sub);border-radius:10px";
+    var ut=el("div");
+    ut.appendChild(el("b","ইউজারনেম: @"+curUname));
+    ut.appendChild(el("div","এই ইউজারনেম দিয়ে সরাসরি লগইন করা যাবে","dv"));
+    usrRow.appendChild(ut);
+    var uchg=el("button","✏️ বদলান","ghost");
+    uchg.onclick=function(){openSetUsernameModal(curUname)};
+    usrRow.appendChild(uchg);
+    st.appendChild(usrRow);
+  }
   var av2=el("div",null,"chips");AV.forEach(function(e){var k=el("button",e,"ghost");k.style.cssText="margin:0;padding:6px 10px";k.onclick=function(){setAvatar(e);drawProf()};av2.appendChild(k)});
   st.appendChild(el("p","প্রোফাইল ছবি:"));
   var phr=el("div",null,"phrow"),pb1=el("button",myPhoto?"📷 ছবি বদলান":"📷 ফোন থেকে ছবি দিন");pb1.onclick=function(){pickPhoto()};phr.appendChild(pb1);
@@ -2930,6 +3470,8 @@ function editProf(){
   var v=ovlOpen("তথ্য এডিট করুন"),k=v.k,f={};
   function inp(key,ph,type){var i=document.createElement("input");i.placeholder=ph;if(type)i.type=type;i.value=mt(key);f[key]=i;k.appendChild(i)}
   var nm=document.createElement("input");nm.placeholder="নাম";nm.value=mt("full_name")||uname();k.appendChild(nm);
+  var unm=document.createElement("input");unm.placeholder="ইউনিক ইউজারনেম (ঐচ্ছিক)";unm.style.textTransform="lowercase";unm.value=mt("username");
+  k.appendChild(el("small","ইউনিক ইউজারনেম (লগইনে ব্যবহার করবেন):"));k.appendChild(unm);
   inp("mobile","মোবাইল নম্বর","tel");inp("whatsapp","WhatsApp নম্বর","tel");inp("guardian","অভিভাবকের নম্বর","tel");
   var cs=document.createElement("select");var o0=el("option","শ্রেণি বেছে নিন");o0.value="";cs.appendChild(o0);
   [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(function(c){var o=el("option",CL[c]);o.value=c;cs.appendChild(o)});cs.value=mt("class_level");k.appendChild(cs);
@@ -2939,10 +3481,27 @@ function editProf(){
   var sv=el("button","সংরক্ষণ করুন");
   sv.onclick=async function(){
     sv.disabled=true;
-    var d={full_name:nm.value.trim()||uname(),mobile:f.mobile.value.trim(),whatsapp:f.whatsapp.value.trim(),guardian:f.guardian.value.trim(),class_level:cs.value?parseInt(cs.value):null,school:f.school.value.trim(),dob:f.dob.value,gender:gs.value};
+    er.textContent="";
+    var rawU=unm.value.trim(), cleanU=rawU?cleanUsername(rawU):"";
+    if(cleanU&&cleanU!==mt("username")){
+      if(!isValidUsername(cleanU)){
+        sv.disabled=false;
+        er.textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা আন্ডারস্কোর (_) হতে হবে।";
+        return;
+      }
+      var chk=await checkUsernameAvailable(cleanU,user.id);
+      if(!chk.available){
+        sv.disabled=false;
+        er.textContent=chk.reason;
+        return;
+      }
+    }
+    var d={full_name:nm.value.trim()||uname(),username:cleanU||mt("username")||undefined,mobile:f.mobile.value.trim(),whatsapp:f.whatsapp.value.trim(),guardian:f.guardian.value.trim(),class_level:cs.value?parseInt(cs.value):null,school:f.school.value.trim(),dob:f.dob.value,gender:gs.value};
     var r=await db.auth.updateUser({data:d});sv.disabled=false;
     if(r.error){er.textContent="ত্রুটি: "+r.error.message;return}
-    if(r.data&&r.data.user)user=r.data.user;v.o.remove();drawProf();
+    if(r.data&&r.data.user)user=r.data.user;
+    if(cleanU&&user)await saveUserUsername(cleanU,user.id,user.email);
+    v.o.remove();drawProf();
     db.from("results").select("score,total,exam_id").then(function(x){drawPerf(x.data||[])});
   };
   k.appendChild(sv);closeBtn(v);
@@ -2970,7 +3529,7 @@ function fillCls(sel,ph){sel.innerHTML="";var o=el("option",ph);o.value="";sel.a
 fillCls($("ecls"),"শ্রেণি নির্বাচন করুন (ঐচ্ছিক)");fillCls($("ccls"),"শ্রেণি নির্বাচন করুন");fillCls($("cfil"),"সব শ্রেণি");
 SUBJ.forEach(function(x){var o=document.createElement("option");o.value=x;$("sublist").appendChild(o)});
 $("ckind").onchange=function(){$("curl").classList.toggle("hide",$("ckind").value==="note")};
-$("ebank").onchange=function(){$("ebsub").classList.toggle("hide",$("ebank").value!=="univ")};
+$("ebank").onchange=function(){var v=$("ebank").value;$("ebsub").classList.toggle("hide",v!=="univ");$("eby").classList.toggle("hide",v!=="ssc"&&v!=="hsc");$("ebb").classList.toggle("hide",v!=="ssc"&&v!=="hsc")};
 async function loadAna(){
   var box=$("anabox");box.textContent="লোড হচ্ছে...";
   var r=await db.rpc("admin_analytics");
@@ -3265,7 +3824,7 @@ function drawStu(){
     var b=el("button","📲 অভিভাবককে রিপোর্ট পাঠান","ghost");
     b.onclick=function(){
       if(!/^8801\d{9}$/.test(ph)){alert("এই স্টুডেন্টের অভিভাবকের নম্বর দেওয়া নেই।");return}
-      var t="প্রিয় অভিভাবক, "+nm+" এর পরীক্ষার রিপোর্ট:\nমোট পরীক্ষা: "+bn(rs.length)+"টি, গড় স্কোর: "+bn(avg)+"%"+(last?"\nসর্বশেষ: "+(last.exams?last.exams.title:"-")+" ("+bn(last.score)+"/"+bn(last.total)+")":"")+"\n— Exam Site by Arghya";
+      var t="প্রিয় অভিভাবক, "+nm+" এর পরীক্ষার রিপোর্ট:\nমোট পরীক্ষা: "+bn(rs.length)+"টি, গড় স্কোর: "+bn(avg)+"%"+(last?"\nসর্বশেষ: "+(last.exams?last.exams.title:"-")+" ("+bn(last.score)+"/"+bn(last.total)+")":"")+"\n— অনুশীলন";
       window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(t),"_blank");
     };
     row.appendChild(b);box.appendChild(row);
@@ -3282,6 +3841,15 @@ $("copysql").onclick=function(){
   var t=$("sqlbox");t.value=$("subsql").textContent.trim();
   try{navigator.clipboard.writeText(t.value).then(function(){$("copysql").textContent="কপি হয়েছে ✓"},function(){t.select()})}catch(_){t.select()}
 };
+if($("copyunamesql")){
+  var ut=$("unamesqlbox"),us=$("username-sql");
+  if(ut&&us) ut.value=us.textContent.trim();
+  $("copyunamesql").onclick=function(){
+    var ut=$("unamesqlbox"),us=$("username-sql");
+    if(ut&&us) ut.value=us.textContent.trim();
+    try{navigator.clipboard.writeText(ut.value).then(function(){$("copyunamesql").textContent="কপি হয়েছে ✓"},function(){ut.select()})}catch(_){ut.select()}
+  };
+}
 
 async function teachBadge(){
   var r=await db.rpc("admin_teachers"),b=document.querySelector('.tabs button[data-t="teach"]');if(!b)return;
@@ -3416,7 +3984,7 @@ var editId=null;
 $("addq").onclick=function(){addQ()};
 function exf(title,dur){
   var a=parseInt($("att").value);if(isNaN(a)||a<0)a=1;
-  return Object.assign({title:title,duration_minutes:dur,max_attempts:a,shuffle_questions:$("shq").checked,shuffle_options:$("sho").checked,review_open:$("rvo").checked,class_level:$("ecls").value?parseInt($("ecls").value):null,subject:$("esub").value.trim()||null,chapter:$("echap").value.trim()||null,bank_cat:$("ebank").value||null,bank_sub:$("ebank").value==="univ"?($("ebsub").value||null):null},__neg());
+  return Object.assign({title:title,duration_minutes:dur,max_attempts:a,shuffle_questions:$("shq").checked,shuffle_options:$("sho").checked,review_open:$("rvo").checked,class_level:$("ecls").value?parseInt($("ecls").value):null,subject:$("esub").value.trim()||null,chapter:$("echap").value.trim()||null,bank_cat:$("ebank").value||null,bank_sub:$("ebank").value==="univ"?($("ebsub").value||null):null},(($("ebank").value==="ssc"||$("ebank").value==="hsc")?{bank_year:$("eby").value?parseInt($("eby").value):null,bank_board:$("ebb").value||null}:{}),__neg());
 }
 function bd(s){return s.replace(/[০-৯]/g,function(d){return "০১২৩৪৫৬৭৮৯".indexOf(d)})}
 function li(s){var c=bd(s.trim()).charAt(0).toUpperCase();var i="কখগঘ".indexOf(c);if(i<0)i="ABCD".indexOf(c);if(i<0)i="1234".indexOf(c);return i}
@@ -3472,7 +4040,7 @@ $("save").onclick=async function(){
   var k=await db.from("answer_keys").insert(keys);
   if(k.error){m.textContent="ত্রুটি: "+k.error.message;return}
   m.className="ok";m.textContent="সংরক্ষণ হয়েছে ("+bn(items.length)+"টি প্রশ্ন)।";
-  if(editId){$("ecls").value="";$("esub").value="";$("echap").value="";$("ebank").value="";$("ebsub").value="";$("ebsub").classList.add("hide")}editId=null;$("formtitle").textContent="নতুন পরীক্ষা যোগ করুন";
+  if(editId){$("ecls").value="";$("esub").value="";$("echap").value="";$("ebank").value="";$("ebsub").value="";$("ebsub").classList.add("hide");$("eby").value="";$("ebb").value="";$("eby").classList.add("hide");$("ebb").classList.add("hide")}editId=null;$("formtitle").textContent="নতুন পরীক্ষা যোগ করুন";
   $("title").value="";$("dur").value=10;$("att").value=1;$("shq").checked=true;$("sho").checked=true;$("rvo").checked=true;if($("neg"))$("neg").value="0";$("qs").innerHTML="";addQ();
 };
 
@@ -3483,7 +4051,7 @@ async function editExam(x){
   if(k.error){alert("লোড করা যায়নি: "+k.error.message);return}
   var key={};k.data.forEach(function(r){key[r.question_id]=r.correct});
   editId=x.id;
-  $("title").value=x.title;$("dur").value=x.duration_minutes;$("ecls").value=x.class_level==null?"":x.class_level;$("esub").value=x.subject||"";$("echap").value=x.chapter||"";$("ebank").value=x.bank_cat||"";$("ebsub").value=x.bank_sub||"";$("ebsub").classList.toggle("hide",x.bank_cat!=="univ");
+  $("title").value=x.title;$("dur").value=x.duration_minutes;$("ecls").value=x.class_level==null?"":x.class_level;$("esub").value=x.subject||"";$("echap").value=x.chapter||"";$("ebank").value=x.bank_cat||"";$("ebsub").value=x.bank_sub||"";$("ebsub").classList.toggle("hide",x.bank_cat!=="univ");var _yb=(x.bank_cat==="ssc"||x.bank_cat==="hsc");$("eby").classList.toggle("hide",!_yb);$("ebb").classList.toggle("hide",!_yb);$("eby").value=x.bank_year?String(x.bank_year):(_yb&&window.bYear(x)?String(window.bYear(x)):"");$("ebb").value=x.bank_board||(_yb&&window.bBoard(x)!=="all"?window.bBoard(x):(_yb?"all":""));
   $("att").value=x.max_attempts==null?1:x.max_attempts;$("shq").checked=x.shuffle_questions!==false;$("sho").checked=x.shuffle_options!==false;$("rvo").checked=x.review_open!==false;window.__negCol="neg_mark" in x;$("neg").value=String(x.neg_mark||0);$("qs").innerHTML="";
   q.data.forEach(function(r){addQ({body:r.body,options:r.options,correct:key[r.id],marks:r.marks})});
   $("formtitle").textContent="এডিট: "+x.title;$("msg").textContent="";
@@ -3492,11 +4060,14 @@ async function editExam(x){
 
 async function loadExams(){
   var r=await db.from("exams").select("*").order("id",{ascending:false});
-  var box=$("exams");box.innerHTML="";
+  var box=$("exams");
+  if(!window.__alist)window.__alist=window.mkExamList(box,"adm",admRow,{admin:true});
   if(!r.data||!r.data.length){box.textContent="কোনো পরীক্ষা নেই।";return}
-  r.data.forEach(function(x){
+  window.__alist(r.data);
+}
+function admRow(x){
     var row=el("div",null,"row");
-    row.appendChild(el("span",(x.owner_id?"👨‍🏫 ":"")+(x.class_level!=null?"["+(CL[x.class_level]||"")+(x.subject?" · "+x.subject:"")+"] ":(x.subject?"["+x.subject+"] ":""))+x.title+" ("+bn(x.duration_minutes)+" মিনিট)"));
+    row.appendChild(el("span",(x.owner_id?"👨‍🏫 ":"")+(x.class_level!=null?"["+(CL[x.class_level]||"")+(x.subject?" · "+x.subject:"")+"] ":(x.subject?"["+x.subject+"] ":""))+x.title+" ("+bn(x.duration_minutes)+" মিনিট)"+window.examTag(x)));
     var ed=el("button","এডিট");ed.onclick=function(){editExam(x)};
     var d=el("button","মুছুন","del");
     d.onclick=async function(){
@@ -3510,13 +4081,13 @@ async function loadExams(){
       var u=location.origin+location.pathname+"#exam="+x.id;
       try{await navigator.clipboard.writeText(u);alert("লিংক কপি হয়েছে:\n"+u)}catch(_){prompt("লিংকটি কপি করুন:",u)}
     };
-    var bs=el("span");bs.appendChild(lk);bs.appendChild(ed);bs.appendChild(d);row.appendChild(bs);box.appendChild(row);
-  });
+    var bs=el("span");bs.appendChild(lk);bs.appendChild(ed);bs.appendChild(d);row.appendChild(bs);
+    return row;
 }
 
 function showReview(d,box){
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -3538,7 +4109,7 @@ function showReview(d,box){
     box.appendChild(q);
   });
 }
-$("revpdf").onclick=function(){window.print()};
+$("revpdf").onclick=function(){window.revPdf("rev")};
 $("revback").onclick=function(){show("panel")};
 
 async function loadSummary(){
@@ -3656,24 +4227,55 @@ function dl(name,text){var b=new Blob(["﻿"+text],{type:"text/csv;charset=utf-8
 /* ---------- লগইন ---------- */
 $("t_aswitch").onclick=function(){
   signup=!signup;
-  $("t_atitle").textContent=signup?"নতুন অ্যাকাউন্ট":"টিচার লগইন";
+  $("t_atitle").textContent=signup?"নতুন শিক্ষক অ্যাকাউন্ট":"টিচার লগইন";
+  if($("t_asub")) $("t_asub").textContent=signup?"ইমেইল, ইউজারনেম ও পাসওয়ার্ড দিয়ে শিক্ষক অ্যাকাউন্ট খুলুন।":"আপনার আইডি (ইমেইল বা ইউজারনেম) দিয়ে লগইন করুন।";
   $("t_abtn").textContent=signup?"অ্যাকাউন্ট খুলুন":"লগইন";
-  $("t_aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে":"নতুন অ্যাকাউন্ট খুলুন";
-  $("t_nameBox").classList.toggle("hide",!signup);$("t_aerr").textContent="";
+  $("t_aswitch").textContent=signup?"আগে থেকেই অ্যাকাউন্ট আছে? লগইন করুন":"নতুন অ্যাকাউন্ট খুলুন";
+  $("t_nameBox").classList.toggle("hide",!signup);
+  $("t_unameBox").classList.toggle("hide",!signup);
+  $("t_email").placeholder=signup?"আপনার ইমেইল লিখুন":"ইমেইল বা ইউজারনেম লিখুন";
+  $("t_aerr").textContent="";
 };
 $("t_abtn").onclick=async function(){
-  var email=$("t_email").value.trim(),pass=$("t_pass").value,r;$("t_aerr").textContent="";
+  var rawId=$("t_email").value.trim(),pass=$("t_pass").value,r;$("t_aerr").textContent="";
+  if(!rawId){$("t_aerr").textContent="ইমেইল বা ইউজারনেম লিখুন।";return}
+  if(!pass){$("t_aerr").textContent="পাসওয়ার্ড লিখুন।";return}
   if(signup){
-    r=await db.auth.signUp({email:email,password:pass,options:{data:{full_name:$("t_fname").value.trim()}}});
-    if(!r.error&&!r.data.session){$("t_aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
-  }else r=await db.auth.signInWithPassword({email:email,password:pass});
-  if(r.error)$("t_aerr").textContent="ত্রুটি: "+r.error.message;
+    var nm=$("t_fname").value.trim();
+    if(!nm){$("t_aerr").textContent="আপনার পূর্ণ নাম লিখুন।";return}
+    var rawU=$("t_uname").value.trim();
+    var u=cleanUsername(rawU);
+    if(!isValidUsername(u)){$("t_aerr").textContent="ইউজারনেম ৩-২০ অক্ষরের ইংরেজি ছোট অক্ষর, সংখ্যা বা _ হতে হবে।";return}
+    $("t_abtn").disabled=true;
+    var chk=await checkUsernameAvailable(u);
+    if(!chk.available){$("t_abtn").disabled=false;$("t_aerr").textContent=chk.reason;return}
+    if(!rawId.includes("@")){$("t_abtn").disabled=false;$("t_aerr").textContent="সঠিক ইমেইল ঠিকানা দিন।";return}
+    r=await db.auth.signUp({email:rawId,password:pass,options:{data:{full_name:nm,username:u}}});
+    $("t_abtn").disabled=false;
+    if(r.error){$("t_aerr").textContent="ত্রুটি: "+r.error.message;return}
+    saveUserUsername(u,(r.data&&r.data.user&&r.data.user.id)||null,rawId);
+    if(!r.data.session){$("t_aerr").textContent="ইমেইলে পাঠানো লিংকে চাপ দিয়ে নিশ্চিত করুন, তারপর লগইন করুন।";return}
+  }else{
+    $("t_abtn").disabled=true;
+    var res=await resolveLoginIdentifier(rawId);
+    if(res.error){$("t_abtn").disabled=false;$("t_aerr").textContent=res.error;return}
+    r=await db.auth.signInWithPassword({email:res.email,password:pass});
+    $("t_abtn").disabled=false;
+    if(r.error){
+      if(r.error.message.includes("Invalid login credentials")) $("t_aerr").textContent="ত্রুটি: ভুল ইউজারনেম/ইমেইল বা পাসওয়ার্ড।";
+      else $("t_aerr").textContent="ত্রুটি: "+r.error.message;
+      return;
+    }
+  }
 };
 $("t_ggl").onclick=async function(){var r=await db.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname+"#teacher"}});if(r.error)$("t_aerr").textContent="ত্রুটি: "+r.error.message};
 $("t_forgot").onclick=async function(){
-  var em=$("t_email").value.trim();if(!em){$("t_aerr").textContent="আগে ইমেইল ঘরে ইমেইল লিখুন।";return}
+  var raw=$("t_email").value.trim();if(!raw){$("t_aerr").textContent="আগে আপনার ইমেইল বা ইউজারনেম লিখুন।";return}
+  var res=await resolveLoginIdentifier(raw);
+  var em=(res&&res.email)||raw;
+  if(!em||!em.includes("@")){$("t_aerr").textContent="সঠিক ইমেইল ঠিকানা পাওয়া যায়নি।";return}
   var r=await db.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/"});
-  $("t_aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।";
+  $("t_aerr").textContent=r.error?"ত্রুটি: "+r.error.message:"রিসেট লিংক '"+em+"' ঠিকানায় পাঠানো হয়েছে।";
 };
 ["t_tostu0","t_tostu1","t_tostu2"].forEach(function(i){$(i).onclick=function(){location.hash=""}});
 ["t_lo1","t_lo2"].forEach(function(i){$(i).onclick=function(){booted=false;db.auth.signOut()}});
@@ -3717,6 +4319,7 @@ $("t_rbtn").onclick=async function(){
 function initPanel(){
   fillCls($("t_ecls"),"শ্রেণি (ঐচ্ছিক)");fillCls($("t_bcls"),"শ্রেণি");fillCls($("t_bfcls"),"সব শ্রেণি");fillCls($("t_aicls"),"শ্রেণি (ঐচ্ছিক)");
   SUBJ.forEach(function(x){var o=document.createElement("option");o.value=x;$("t_sublist").appendChild(o)});
+  $("t_ebank").onchange=function(){var v=$("t_ebank").value,y=(v==="ssc"||v==="hsc");$("t_eby").classList.toggle("hide",!y);$("t_ebb").classList.toggle("hide",!y)};
   [].forEach.call($("t_tabs").querySelectorAll("button"),function(b){b.onclick=function(){goTab(b.dataset.t)}});
   addQ();loadSummary();
 }
@@ -3804,7 +4407,7 @@ $("t_frombank").onclick=function(){goTab("bank")};
 $("t_toai").onclick=function(){goTab("ai")};
 function resetForm(){
   editId=null;negCol=false;$("t_formtitle").textContent="নতুন পরীক্ষা যোগ করুন";
-  $("t_title").value="";$("t_dur").value=10;$("t_att").value=1;$("t_ecls").value="";$("t_esub").value="";$("t_echap").value="";
+  $("t_title").value="";$("t_dur").value=10;$("t_att").value=1;$("t_ecls").value="";$("t_esub").value="";$("t_echap").value="";$("t_ebank").value="";$("t_eby").value="";$("t_ebb").value="";$("t_eby").classList.add("hide");$("t_ebb").classList.add("hide");
   $("t_shq").checked=true;$("t_sho").checked=true;$("t_rvo").checked=true;$("t_neg").value="0";$("t_qs").innerHTML="";addQ();
 }
 $("t_cancel").onclick=function(){resetForm();$("t_msg").textContent=""};
@@ -3831,6 +4434,7 @@ $("t_save").onclick=async function(){
   var a=parseInt($("t_att").value);if(isNaN(a)||a<0)a=1;
   var meta={class_level:$("t_ecls").value?parseInt($("t_ecls").value):null,subject:$("t_esub").value.trim()||null,chapter:$("t_echap").value.trim()||null};
   var row={title:title,duration_minutes:dur,max_attempts:a,shuffle_questions:$("t_shq").checked,shuffle_options:$("t_sho").checked,review_open:$("t_rvo").checked,class_level:meta.class_level,subject:meta.subject,chapter:meta.chapter};
+  var _tb=$("t_ebank").value;if(_tb){row.bank_cat=_tb;if(_tb==="ssc"||_tb==="hsc"){row.bank_year=$("t_eby").value?parseInt($("t_eby").value):null;row.bank_board=$("t_ebb").value||null}}
   var nv=parseFloat($("t_neg").value)||0;if(nv>0||negCol)row.neg_mark=nv;
   $("t_save").disabled=true;
   try{
@@ -3863,7 +4467,7 @@ async function fetchQs(x){
 async function editExam(x){
   var qs;try{qs=await fetchQs(x)}catch(e){alert("লোড করা যায়নি: "+e.message);return}
   editId=x.id;negCol="neg_mark" in x;
-  $("t_title").value=x.title;$("t_dur").value=x.duration_minutes;$("t_ecls").value=x.class_level==null?"":x.class_level;$("t_esub").value=x.subject||"";$("t_echap").value=x.chapter||"";
+  $("t_title").value=x.title;$("t_dur").value=x.duration_minutes;$("t_ecls").value=x.class_level==null?"":x.class_level;$("t_esub").value=x.subject||"";$("t_echap").value=x.chapter||"";$("t_ebank").value=x.bank_cat||"";var _ty=(x.bank_cat==="ssc"||x.bank_cat==="hsc");$("t_eby").classList.toggle("hide",!_ty);$("t_ebb").classList.toggle("hide",!_ty);$("t_eby").value=x.bank_year?String(x.bank_year):"";$("t_ebb").value=x.bank_board||"";
   $("t_att").value=x.max_attempts==null?1:x.max_attempts;$("t_shq").checked=x.shuffle_questions!==false;$("t_sho").checked=x.shuffle_options!==false;$("t_rvo").checked=x.review_open!==false;$("t_neg").value=String(x.neg_mark||0);
   $("t_qs").innerHTML="";qs.forEach(function(r){addQ(r)});
   $("t_formtitle").textContent="এডিট: "+x.title;$("t_msg").textContent="";goTab("new");
@@ -3890,9 +4494,12 @@ async function loadExams(){
   var r=await loadMine();if(r.error){box.textContent="ত্রুটি: "+r.error.message+" (অ্যাডমিন টিচার SQL Run করেছেন কি?)";return}
   await loadRes();var cnt={};resAll.forEach(function(z){cnt[z.exam_id]=(cnt[z.exam_id]||0)+1});
   box.innerHTML="";if(!exams.length){box.textContent="এখনও কোনো পরীক্ষা বানাননি।";return}
-  exams.forEach(function(x){
+  if(!window.__tlist)window.__tlist=window.mkExamList(box,"tch",tchRow,{});
+  window.__tlist(exams,cnt);
+}
+function tchRow(x,cnt){
     var row=el("div",null,"row");
-    row.appendChild(el("span",(x.class_level!=null?"["+(CL[x.class_level]||"")+(x.subject?" · "+x.subject:"")+"] ":(x.subject?"["+x.subject+"] ":""))+x.title+" ("+bn(x.duration_minutes)+" মিনিট · জমা "+bn(cnt[x.id]||0)+")"));
+    row.appendChild(el("span",(x.class_level!=null?"["+(CL[x.class_level]||"")+(x.subject?" · "+x.subject:"")+"] ":(x.subject?"["+x.subject+"] ":""))+x.title+" ("+bn(x.duration_minutes)+" মিনিট · জমা "+bn(cnt[x.id]||0)+")"+window.examTag(x)));
     var bs=el("span");
     var lk=el("button","🔗 লিংক","ghost");lk.onclick=async function(){var u=location.origin+location.pathname+"#exam="+x.id;try{await navigator.clipboard.writeText(u);alert("লিংক কপি হয়েছে:\n"+u)}catch(_){prompt("লিংকটি কপি করুন:",u)}};
     var ed=el("button","এডিট");ed.onclick=function(){editExam(x)};
@@ -3905,14 +4512,14 @@ async function loadExams(){
       var e=await db.from("exams").delete().eq("id",x.id).eq("owner_id",user.id);
       if(e.error)alert(e.error.message);else loadExams();
     };
-    [lk,ed,bk,cp,d].forEach(function(b){bs.appendChild(b)});row.appendChild(bs);box.appendChild(row);
-  });
+    [lk,ed,bk,cp,d].forEach(function(b){bs.appendChild(b)});row.appendChild(bs);
+    return row;
 }
 
 /* ---------- ফলাফল ---------- */
 function showReview(d,box){
   box.innerHTML="";
-  box.appendChild(el("div","Exam Site by Arghya · উত্তরপত্র","prhead"));
+  box.appendChild(el("div","অনুশীলন · উত্তরপত্র","prhead"));
   var sg=el("div",null,"sig");sg.appendChild(el("span","স্টুডেন্টের স্বাক্ষর: ______________"));sg.appendChild(el("span","শিক্ষকের স্বাক্ষর: ______________"));box.appendChild(sg);
   box.appendChild(el("h1",d.exam));
   box.appendChild(el("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
@@ -3927,7 +4534,7 @@ function showReview(d,box){
     box.appendChild(q);
   });
 }
-$("t_revpdf").onclick=function(){window.print()};
+$("t_revpdf").onclick=function(){window.revPdf("t_rev")};
 $("t_revback").onclick=function(){show("t_panel")};
 var rt;$("t_rq").oninput=function(){clearTimeout(rt);rt=setTimeout(loadResults,300)};$("t_rex").onchange=loadResults;
 async function loadResults(){
@@ -4143,7 +4750,7 @@ $("t_lprint").onclick=function(){
   if(!lbRows.length){say("t_lmsg","আগে ফলাফল দরকার।");return}
   var esc=function(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})};
   var ttl=$("t_lex").selectedOptions[0].textContent;
-  var h='<meta charset="utf-8"><title>লিডারবোর্ড</title><style>body{font-family:"Hind Siliguri",sans-serif;padding:20px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:6px 10px;text-align:left}</style><h2>Exam Site by Arghya · লিডারবোর্ড — '+esc(ttl)+'</h2><table><tr><th>র‍্যাংক</th><th>নাম</th><th>স্কোর</th><th>শতকরা</th></tr>'+
+  var h='<meta charset="utf-8"><title>লিডারবোর্ড</title><style>body{font-family:"Hind Siliguri",sans-serif;padding:20px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:6px 10px;text-align:left}</style><h2>অনুশীলন · লিডারবোর্ড — '+esc(ttl)+'</h2><table><tr><th>র‍্যাংক</th><th>নাম</th><th>স্কোর</th><th>শতকরা</th></tr>'+
     lbRows.map(function(u){return "<tr><td>"+bn(u.rank)+"</td><td>"+esc(u.name)+"</td><td>"+bn(u.score)+" / "+bn(u.total)+"</td><td>"+bn(u.pct)+"%</td></tr>"}).join("")+"</table>";
   var w=window.open("","_blank");if(!w){say("t_lmsg","পপআপ ব্লক হয়েছে।");return}w.document.write(h);w.document.close();w.focus();setTimeout(function(){w.print()},400);
 };
@@ -4151,8 +4758,8 @@ $("t_lprint").onclick=function(){
 /* ---------- এআই (প্রশ্ন জেনারেটর + ছবি স্ক্যান) ---------- */
 async function aiCall(body){
   var s=await db.auth.getSession(),t=s&&s.data&&s.data.session&&s.data.session.access_token;
-  var apiBase = (location.protocol === "http:" || location.protocol === "https:") ? "" : "https://examsite-agkk.vercel.app";
-  var r;try{r=await fetch(apiBase + "/api/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},body:JSON.stringify(body)})}
+  if(!t)throw new Error("লগইন করুন");
+  var r;try{r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},body:JSON.stringify(body)})}
   catch(e){throw new Error("সার্ভারে সংযোগ হয়নি। ইন্টারনেট দেখুন।")}
   var j={};try{j=await r.json()}catch(e){}
   if(r.status===404)throw new Error("এআই সার্ভার চালু হয়নি। অ্যাডমিনকে জানান।");
@@ -4256,7 +4863,7 @@ $("t_aitobank").onclick=async function(){
 (function(){
   var mode=location.hash==="#admin"?"admin":location.hash==="#teacher"?"teacher":"student",adm=mode==="admin";
   if(mode!=="student")document.body.classList.add("admin");
-  document.title=adm?"অ্যাডমিন | Exam Site by Arghya":mode==="teacher"?"টিচারস প্যানেল | Exam Site by Arghya":"Exam Site by Arghya";
+  document.title=adm?"অ্যাডমিন | অনুশীলন":mode==="teacher"?"টিচারস প্যানেল | অনুশীলন":"অনুশীলন";
   document.getElementById("root").appendChild(document.getElementById("tpl-"+mode).content.cloneNode(true));
   window.addEventListener("hashchange",function(){var m=location.hash==="#admin"?"admin":location.hash==="#teacher"?"teacher":"student";if(m!==mode)location.reload()});
   if(adm)startAdmin();else if(mode==="teacher")startTeacher();else startStudent();
@@ -4318,7 +4925,7 @@ async function cert(name,title,s,m,pc){
  x.fillStyle="#fffdf7";x.fillRect(0,0,W,H);
  var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#6d5ae6");g.addColorStop(.6,"#ec4899");g.addColorStop(1,"#f59e0b");
  x.strokeStyle=g;x.lineWidth=22;x.strokeRect(36,36,W-72,H-72);x.lineWidth=4;x.strokeRect(80,80,W-160,H-160);
- x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("Exam Site by Arghya",W/2,185);
+ x.textAlign="center";x.fillStyle="#6b6a85";x.font="700 40px "+F;x.fillText("অনুশীলন",W/2,185);
  x.fillStyle=g;x.font="700 100px "+F;x.fillText("সার্টিফিকেট অব অ্যাচিভমেন্ট",W/2,330);
  x.fillStyle="#1e1b3a";x.font="500 42px "+F;x.fillText("এই মর্মে প্রত্যয়ন করা যাচ্ছে যে",W/2,435);
  x.font="700 120px "+F;x.fillText(name||"শিক্ষার্থী",W/2,590);
@@ -4341,7 +4948,7 @@ window.__weekly=function(){var c=__ctx(),m=c.user.user_metadata||{},d=document.c
   if(/^01\d{9}$/.test(n))n="88"+n;if(!/^8801\d{9}$/.test(n)){M.textContent="সঠিক বাংলাদেশি নম্বর দিন।";return}
   var since=new Date(Date.now()-7*864e5).toISOString(),r=await c.db.from("results").select("score,total,created_at,exams(title)").gte("created_at",since).order("created_at"),rs=r.data||[];
   var L=rs.map(function(z){var p=z.total?Math.round(z.score/z.total*100):0;return "• "+((z.exams&&z.exams.title)||"পরীক্ষা")+": "+bn(z.score)+"/"+bn(z.total)+" ("+bn(p)+"%)"}),avg=rs.length?Math.round(rs.reduce(function(a,z){return a+(z.total?z.score/z.total*100:0)},0)/rs.length):0;
-  var msg="📊 সাপ্তাহিক রিপোর্ট\n👤 "+c.name+"\n📅 গত ৭ দিন\n\n"+(rs.length?"মোট পরীক্ষা: "+bn(rs.length)+"\nগড় ফলাফল: "+bn(avg)+"%\n\n"+L.join("\n"):"এই সপ্তাহে কোনো পরীক্ষা দেওয়া হয়নি।")+"\n\n— Exam Site by Arghya\n"+location.origin;
+  var msg="📊 সাপ্তাহিক রিপোর্ট\n👤 "+c.name+"\n📅 গত ৭ দিন\n\n"+(rs.length?"মোট পরীক্ষা: "+bn(rs.length)+"\nগড় ফলাফল: "+bn(avg)+"%\n\n"+L.join("\n"):"এই সপ্তাহে কোনো পরীক্ষা দেওয়া হয়নি।")+"\n\n— অনুশীলন\n"+location.origin;
   try{localStorage.setItem("wk_last",Date.now())}catch(e){}
   M.textContent="";window.open("https://wa.me/"+n+"?text="+encodeURIComponent(msg),"_blank")};
  return d};
@@ -4840,7 +5447,7 @@ async function claude({ model, system, messages, max_tokens = 1200, json = false
 
 const CLS = { 1: 'প্রথম', 2: 'দ্বিতীয়', 3: 'তৃতীয়', 4: 'চতুর্থ', 5: 'পঞ্চম', 6: 'ষষ্ঠ', 7: 'সপ্তম', 8: 'অষ্টম', 9: 'নবম', 10: 'দশম', 11: 'একাদশ', 12: 'দ্বাদশ', 13: 'এডমিশন' };
 
-const TUTOR_SYS = `তুমি "AI মশাই" — "Exam Site by Arghya"-এর স্নেহশীল, ধৈর্যশীল ও বন্ধুসুলভ AI শিক্ষক (মশাই মানে শিক্ষক)। তুমি একটি AI; কেউ জিজ্ঞেস করলে সেটা সত্যি বলবে। বাংলাদেশের NCTB পাঠ্যক্রম অনুযায়ী সহজ বাংলায় শেখাও।
+const TUTOR_SYS = `তুমি "AI মশাই" — "অনুশীলন"-এর স্নেহশীল, ধৈর্যশীল ও বন্ধুসুলভ AI শিক্ষক (মশাই মানে শিক্ষক)। তুমি একটি AI; কেউ জিজ্ঞেস করলে সেটা সত্যি বলবে। বাংলাদেশের NCTB পাঠ্যক্রম অনুযায়ী সহজ বাংলায় শেখাও।
 - শিক্ষার্থীকে "তুমি" বলে সম্বোধন করো। আন্তরিক ও উৎসাহব্যঞ্জক থাকো; ভুল করলে বকবে না, ধরিয়ে দিয়ে বুঝিয়ে দেবে।
 - আগে ধারণাটা বুঝিয়ে দাও, তারপর উদাহরণ। উত্তর ছোট ও পরিষ্কার রাখো (সাধারণত ২০০ শব্দের মধ্যে)।
 - দরকারে ধাপে ধাপে দেখাও। শেষে চাইলে একটি ছোট অনুশীলন প্রশ্ন দিতে পারো।
@@ -6963,10 +7570,8 @@ function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
 async function call(url,body,db){
   var s=await db.auth.getSession(),t=s&&s.data&&s.data.session&&s.data.session.access_token;
   if(!t)throw new Error("লগইন করুন");
-  var apiBase = (location.protocol === "http:" || location.protocol === "https:") ? "" : "https://examsite-agkk.vercel.app";
-  var fullUrl = (url.indexOf("/") === 0) ? (apiBase + url) : url;
   var r;
-  try{r=await fetch(fullUrl,{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},body:JSON.stringify(body)})}
+  try{r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},body:JSON.stringify(body)})}
   catch(e){throw new Error("সার্ভারে সংযোগ হয়নি। ইন্টারনেট দেখুন।")}
   var j={};try{j=await r.json()}catch(e){}
   if(r.status===404)throw new Error("AI/অটোমেশন সার্ভার এখনও চালু হয়নি। (অ্যাডমিন প্যানেল → 🤖 AI ও অটো → সেটআপ)");
@@ -7296,7 +7901,7 @@ function stu(){
   async function pdfB64(d){
     var box=mk("div");box.style.cssText='position:fixed;left:-9999px;top:0;width:720px;padding:24px;background:#fff;color:#000;--ink:#000;--mute:#333;--line:#999;--card:#fff;--bg:#fff;font-family:"Hind Siliguri","Noto Sans Bengali",sans-serif';
     document.body.appendChild(box);
-    var h=mk("div","Exam Site by Arghya · উত্তরপত্র");h.style.cssText="font-weight:700;color:#6d5ae6;margin-bottom:6px";box.appendChild(h);
+    var h=mk("div","অনুশীলন · উত্তরপত্র");h.style.cssText="font-weight:700;color:#6d5ae6;margin-bottom:6px";box.appendChild(h);
     box.appendChild(mk("h1",d.exam));
     box.appendChild(mk("p","নাম: "+d.student+" | তারিখ: "+new Date(d.at).toLocaleString("bn-BD")));
     var it=d.items||[],ok=0,wr=0,sk=0;it.forEach(function(x){if(x.chosen==null)sk++;else if(x.chosen===x.correct)ok++;else wr++});
@@ -7389,6 +7994,12 @@ function adm(){
    '<input id="ai_n" type="number" min="1" max="60" value="10" placeholder="কয়টি প্রশ্ন (সর্বোচ্চ ৬০)">'+
    '<textarea id="ai_notes" class="ta" rows="4" placeholder="ঐচ্ছিক: বইয়ের কোনো অংশ/নোট পেস্ট করুন — তখন শুধু সেটার ভিত্তিতে প্রশ্ন হবে"></textarea>'+
    '<button id="ai_gen">🤖 প্রশ্ন বানান</button><div id="ai_msg" class="err"></div><div id="ai_go" class="hide"><button class="ghost" id="ai_goto">📝 ফর্মে দেখুন ও সংরক্ষণ করুন</button></div>'+
+   '<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">'+
+   '<h2>🔔 অ্যাপে নোটিফিকেশন পাঠান</h2><p>অ্যাপে লগইন থাকা ব্যবহারকারীদের ফোনে আওয়াজ সহ নোটিফিকেশন যাবে।</p>'+
+   '<div id="pn_stat" style="margin:6px 0"></div>'+
+   '<input id="pn_title" maxlength="60" placeholder="শিরোনাম (যেমন: নতুন পরীক্ষা এসেছে)"><textarea id="pn_body" class="ta" rows="3" maxlength="200" placeholder="বার্তা"></textarea>'+
+   '<select id="pn_aud"><option value="self">🙋 শুধু আমাকে (টেস্ট)</option><option value="all">👥 সবাই</option><option value="email">✉️ নির্দিষ্ট ইমেইল</option></select><input id="pn_email" class="hide" type="email" placeholder="স্টুডেন্টের ইমেইল">'+
+   '<button id="pn_send">🔔 পাঠান</button><div id="pn_msg" class="err"></div>'+
    '<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">'+
    '<h2>🔌 সংযোগ ও অটোমেশন</h2>'+
    '<button class="ghost" id="ai_health">🔌 সংযোগ পরীক্ষা</button><div id="ai_hres" style="margin:8px 0;white-space:pre-line"></div>'+
@@ -7538,6 +8149,21 @@ function adm(){
   $("ai_goto").onclick=function(){var t=document.querySelector('.tabs button[data-t="new"]');if(t)t.click();window.scrollTo(0,0)};
 
   /* সংযোগ, টেস্ট, রান, লগ */
+  (function(){
+    var st=$("pn_stat"),msg=$("pn_msg");if(!st)return;
+    function say(t,ok){msg.className=ok?"ok":"err";msg.textContent=t||""}
+    $("pn_aud").onchange=function(){$("pn_email").classList.toggle("hide",$("pn_aud").value!=="email")};
+    call("/api/push",{action:"stats"},D()).then(function(j){st.textContent="📱 নোটিফিকেশন চালু: "+j.users+" জন ব্যবহারকারী ("+j.devices+"টি ডিভাইস)"+(j.firebase?"":" — ⚠️ FIREBASE_SERVICE_ACCOUNT সেট করা নেই")}).catch(function(e){st.textContent="নোটিফিকেশন তথ্য পাওয়া যায়নি: "+e.message});
+    $("pn_send").onclick=async function(){
+      var aud=$("pn_aud").value,t=$("pn_title").value.trim(),b=$("pn_body").value.trim();
+      if(!t||!b){say("শিরোনাম ও বার্তা দিন");return}
+      if(aud==="all"&&!confirm("সব ব্যবহারকারীর ফোনে নোটিফিকেশন যাবে। পাঠাবেন?"))return;
+      say("পাঠানো হচ্ছে…",true);
+      try{var j=await call("/api/push",{action:"send",title:t,body:b,audience:aud,email:$("pn_email").value},D());
+        say("✅ "+j.sent+"টি ডিভাইসে গেছে"+(j.saved?" · 🔔 তালিকায়ও জমা হয়েছে":"")+(j.failed?(", ব্যর্থ "+j.failed+(j.error?" ("+j.error+")":"")):""),!j.failed)}
+      catch(e){say(e.message)}
+    };
+  })();
   $("ai_health").onclick=async function(){
     var r=$("ai_hres");r.textContent="পরীক্ষা চলছে…";
     try{var j=await call("/api/ai",{action:"health"},D());r.textContent=Object.keys(j.env).map(function(k){return (j.env[k]?"✅ ":"❌ ")+k}).join("\n")}
@@ -8118,16 +8744,88 @@ function paginate(doc){
     }
     if(dup&&sh.querySelectorAll(".pg").length%2===1){var bl=doc.createElement("div");bl.className="pg pn";bl.innerHTML='<div class="bl">(এই পাতাটি ইচ্ছাকৃতভাবে ফাঁকা)</div>';sh.appendChild(bl)}
     var pg2=sh.querySelectorAll(".pg"),code=sh.getAttribute("data-code")||"";
-    [].forEach.call(pg2,function(p,k){var f=doc.createElement("div");f.className="ft";f.textContent="Exam Site by Arghya · সেট কোড: "+code+" · পাতা "+bn(k+1)+"/"+bn(pg2.length);p.appendChild(f)});
+    [].forEach.call(pg2,function(p,k){var f=doc.createElement("div");f.className="ft";f.textContent="অনুশীলন · সেট কোড: "+code+" · পাতা "+bn(k+1)+"/"+bn(pg2.length);p.appendChild(f)});
   });
 }
+
+/* ---- অ্যান্ড্রয়েড অ্যাপ (WebView)-এ প্রিন্ট কাজ করে না: পাতাগুলো ছবি→PDF করে প্রিভিউ + সেভ/শেয়ার ---- */
+function isWV(){var u=navigator.userAgent||"";return !!window.ExamAndroid||/ExamSiteAndroidApp/.test(u)||/Android|iPhone|iPad|iPod|Mobile/i.test(u)}
+function wvPdfOut(f,doc){
+  var old=document.getElementById("wv_ov");if(old)old.remove();
+  var ov=document.createElement("div");ov.id="wv_ov";
+  ov.style.cssText="position:fixed;inset:0;z-index:99999;background:#e9edf3;overflow:auto;font-family:inherit";
+  ov.innerHTML='<div style="position:sticky;top:0;z-index:2;display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px;background:#1f2937;color:#fff"><b style="flex:1;min-width:120px">📄 PDF প্রিভিউ</b><button id="wv_sv" disabled style="padding:8px 12px;border:0;border-radius:8px;background:#16a34a;color:#fff;font-weight:700">💾 PDF সেভ</button><button id="wv_sh" disabled style="padding:8px 12px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-weight:700">📤 শেয়ার</button><button id="wv_x" style="padding:8px 12px;border:0;border-radius:8px;background:#dc2626;color:#fff;font-weight:700">✕ বন্ধ</button></div><div id="wv_st" style="padding:14px;text-align:center">⏳ PDF তৈরি হচ্ছে… একটু অপেক্ষা করুন</div><div id="wv_pg" style="padding:8px;display:flex;flex-direction:column;align-items:center;gap:10px"></div>';
+  document.body.appendChild(ov);
+  var fin=function(){try{f.remove()}catch(_){}if(f===pf)pf=null;if(f===pfp)pfp=null};
+  ov.querySelector("#wv_x").onclick=function(){ov.remove();fin()};
+  var st=ov.querySelector("#wv_st");
+  var h2c=window.html2canvas,JP=window.jspdf&&window.jspdf.jsPDF;
+  if(!h2c||!JP){st.textContent="❌ PDF লাইব্রেরি লোড হয়নি — ইন্টারনেট দেখে আবার চেষ্টা করুন।";return}
+  var pages=[].slice.call(doc.querySelectorAll(".pg"));
+  if(!pages.length)pages=[doc.body];
+  var pdf=null,i=0,box=ov.querySelector("#wv_pg");
+  (function next(){
+    if(i>=pages.length){
+      var blob=pdf.output("blob"),name="exam-"+Date.now()+".pdf";
+      st.textContent="✅ তৈরি হয়েছে ("+pages.length+" পাতা)। নিচে প্রিভিউ — উপরের বোতামে সেভ/শেয়ার করুন।";
+      var sv=ov.querySelector("#wv_sv"),sh=ov.querySelector("#wv_sh");sv.disabled=sh.disabled=false;
+      sv.onclick=function(){
+        if(window.ExamAndroid&&window.ExamAndroid.savePdf){try{var fr=new FileReader();fr.onload=function(){try{window.ExamAndroid.savePdf(String(fr.result),name)}catch(e){st.textContent="সেভ ব্যর্থ: "+e}};fr.readAsDataURL(blob);st.textContent="💾 সেভ হচ্ছে…"}catch(e){st.textContent="সেভ ব্যর্থ"}return}
+        try{var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove()},1500);st.textContent="💾 সেভ করার চেষ্টা হয়েছে। না হলে ‘শেয়ার’ চাপুন।"}catch(e){st.textContent="সেভ ব্যর্থ — শেয়ার চাপুন।"}
+      };
+      sh.onclick=async function(){
+        if(await window.nativeShare(blob,name,"application/pdf","প্রশ্নপত্র","")){return}
+        try{var file=new File([blob],name,{type:"application/pdf"});
+          if(navigator.canShare&&navigator.canShare({files:[file]}))navigator.share({files:[file],title:"প্রশ্নপত্র"}).catch(function(){});
+          else st.textContent="এই ডিভাইসে শেয়ার সাপোর্ট নেই — ‘PDF সেভ’ চাপুন।"}catch(e){st.textContent="শেয়ার ব্যর্থ — ‘PDF সেভ’ চাপুন।"}
+      };
+      fin();return;
+    }
+    var pg=pages[i];
+    h2c(pg,{scale:1.6,useCORS:true,backgroundColor:"#ffffff",logging:false}).then(function(c){
+      var wmm=c.width/1.6*25.4/96,hmm=c.height/1.6*25.4/96,img=c.toDataURL("image/jpeg",.92);
+      var o=wmm>hmm?"l":"p";
+      if(!pdf)pdf=new JP({orientation:o,unit:"mm",format:[wmm,hmm]});else pdf.addPage([wmm,hmm],o);
+      pdf.addImage(img,"JPEG",0,0,wmm,hmm);
+      var im=new Image();im.src=img;im.style.cssText="width:100%;max-width:820px;background:#fff;box-shadow:0 2px 8px #0004";box.appendChild(im);
+      st.textContent="⏳ পাতা "+(i+1)+"/"+pages.length;i++;setTimeout(next,30);
+    }).catch(function(e){st.textContent="❌ PDF ব্যর্থ: "+((e&&e.message)||e)});
+  })();
+}
+
+/* ---- পরীক্ষার্থীর উত্তরপত্র (রিভিউ) PDF: অ্যাপে ছবি→PDF, ব্রাউজারে প্রিন্ট ---- */
+window.revPdf=function(id){
+  try{
+    if(!isWV()){window.print();return}
+    var sec=document.getElementById(id);if(!sec){window.print();return}
+    var PW=794,PH=1123;
+    var wrap=document.createElement("div");
+    wrap.style.cssText="position:absolute;left:0;top:0;width:"+PW+"px;z-index:99990;background:#fff";
+    var src=document.createElement("div");
+    src.style.cssText="width:"+PW+"px;box-sizing:border-box;padding:28px;background:#fff;color:#000;--bg:#fff;--card:#fff;--ink:#000;--mute:#333;--line:#999;--accent:#000";
+    src.innerHTML=sec.innerHTML;
+    [].slice.call(src.querySelectorAll(".noprint,button")).forEach(function(n){n.remove()});
+    [].slice.call(src.querySelectorAll(".card")).forEach(function(n){n.style.border="0";n.style.boxShadow="none"});
+    var hd=document.createElement("div");hd.style.cssText="font-weight:700;color:#444;border-bottom:1px solid #999;margin-bottom:12px;padding-bottom:6px";hd.textContent="অনুশীলন · উত্তরপত্র";src.insertBefore(hd,src.firstChild);
+    wrap.appendChild(src);document.body.appendChild(wrap);
+    var H=Math.max(src.offsetHeight,PH),n=Math.ceil(H/PH),pages=[];
+    for(var k=0;k<n;k++){
+      var pg=document.createElement("div");pg.style.cssText="position:relative;width:"+PW+"px;height:"+PH+"px;overflow:hidden;background:#fff";
+      var c=src.cloneNode(true);c.style.position="absolute";c.style.left="0";c.style.top="-"+(k*PH)+"px";
+      pg.appendChild(c);wrap.appendChild(pg);pages.push(pg);
+    }
+    src.remove();
+    wvPdfOut(wrap,{querySelectorAll:function(){return pages}});
+  }catch(e){try{window.print()}catch(_){}}
+};
 function printDoc(html){
   if(pf){try{pf.remove()}catch(_){}pf=null}
-  var f=document.createElement("iframe");f.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+  var WV=isWV();
+  var f=document.createElement("iframe");f.style.cssText=WV?"position:fixed;left:-5000px;top:0;width:1100px;height:1600px;border:0":"position:fixed;right:0;bottom:0;width:0;height:0;border:0";
   document.body.appendChild(f);pf=f;
   var w=f.contentWindow,doc=f.contentDocument;doc.open();doc.write(html);doc.close();
   var pend=[].filter.call(doc.images,function(i){return !i.complete}).map(function(i){return new Promise(function(r){i.onload=i.onerror=r})});
-  Promise.race([Promise.all(pend),new Promise(function(r){setTimeout(r,6000)})]).then(function(){return doc.fonts?doc.fonts.ready:0}).then(function(){try{paginate(doc)}catch(e){try{console.error("paginate",e)}catch(_){}}setTimeout(function(){w.focus();w.print()},300)});
+  Promise.race([Promise.all(pend),new Promise(function(r){setTimeout(r,6000)})]).then(function(){return doc.fonts?doc.fonts.ready:0}).then(function(){try{paginate(doc)}catch(e){try{console.error("paginate",e)}catch(_){}}setTimeout(function(){if(WV){wvPdfOut(f,doc);return}w.focus();w.print()},300)});
 }
 
 /* ---------- স্কোর ---------- */
@@ -8485,8 +9183,9 @@ function fitPaper(doc){
 var pfp=null;
 function printPaper(html){
   if(pfp){try{pfp.remove()}catch(_){}pfp=null}
+  var WV=isWV();
   var f=document.createElement("iframe");
-  f.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+  f.style.cssText=WV?"position:fixed;left:-5000px;top:0;width:1100px;height:1600px;border:0":"position:fixed;right:0;bottom:0;width:0;height:0;border:0";
   document.body.appendChild(f);pfp=f;
   var w=f.contentWindow,doc=f.contentDocument;doc.open();doc.write(html);doc.close();
   var pend=[].filter.call(doc.images,function(i){return !i.complete}).map(function(i){return new Promise(function(r){i.onload=i.onerror=r})});
@@ -8494,7 +9193,7 @@ function printPaper(html){
   if(lk&&!lk.sheet)pend.push(new Promise(function(r){lk.onload=lk.onerror=r}));
   Promise.race([Promise.all(pend),new Promise(function(r){setTimeout(r,6000)})])
     .then(function(){return doc.fonts?doc.fonts.ready:0})
-    .then(function(){try{fitPaper(doc)}catch(e){try{console.error("fit",e)}catch(_){}}setTimeout(function(){w.focus();w.print()},300)});
+    .then(function(){try{fitPaper(doc)}catch(e){try{console.error("fit",e)}catch(_){}}setTimeout(function(){if(WV){wvPdfOut(f,doc);return}w.focus();w.print()},300)});
 }
 function paperMsg(t,ok){var m=$("qpp_msg");if(m){m.className=ok?"ok":"err";m.textContent=t||""}}
 function paperHint(e){var t=(e&&e.message)||String(e);return t+(/offline_sheets|relation|schema cache|does not exist/i.test(t)?" — অফলাইন পরীক্ষার “প্রথমবার সেটআপ” SQL একবার চালান।":"")}
@@ -8948,6 +9647,78 @@ window.openOffScan=function(){
     entry.scrollIntoView({behavior:"smooth",block:"start"});
   }
 };
+})();
+</script>
+<script>
+/* 🔔 অ্যাপের ডিভাইস টোকেন সার্ভারে নিবন্ধন (শুধু Android অ্যাপের ভেতরে) */
+(function(){
+  var KEY="sb-knjfubfnhwqruqehsqbq-auth-token",last="";
+  function tok(){try{return (window.ExamAndroid&&window.ExamAndroid.getPushToken&&window.ExamAndroid.getPushToken())||""}catch(e){return ""}}
+  function access(){try{var o=JSON.parse(localStorage.getItem(KEY)||"null");return o&&(o.access_token||(o.currentSession&&o.currentSession.access_token))||""}catch(e){return ""}}
+  async function reg(){
+    var t=tok(),a=access();if(!t||!a)return;
+    var k=a.slice(-16)+"|"+t;if(k===last)return;
+    try{var r=await fetch("/api/push",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+a},body:JSON.stringify({action:"register",token:t})});if(r.ok)last=k}catch(e){}
+  }
+  setTimeout(reg,4000);setInterval(reg,30000);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden)reg()});
+})();
+</script>
+<script>
+/* 🆕 অ্যাপ আপডেট নোটিশ: GitHub-এ নতুন ExamSite.apk এলেই সাইট ও অ্যাপে দেখায় */
+(function(){
+  var APK="https://github.com/skmkr501/examapp/raw/main/ExamSite.apk";
+  var ua=navigator.userAgent||"",droid=/Android/i.test(ua);
+  var inApp=!!window.ExamAndroid||/ExamSiteAndroidApp/.test(ua);
+  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  window.__openApk=function(){
+    if(inApp){
+      var u=location.origin+"/?dl=apk";
+      try{if(window.ExamAndroid&&window.ExamAndroid.openExternal){window.ExamAndroid.openExternal(u);return}}catch(e){}
+    }
+    location.href=APK;
+  };
+  /* সাইটের লিংক ?dl=apk হলে (অ্যাপ থেকে পাঠানো) ডাউনলোড নিজে শুরু হবে */
+  if(!inApp&&/[?&]dl=apk/.test(location.search)){
+    var o=document.createElement("div");
+    o.style.cssText="position:fixed;inset:0;z-index:99999;background:#0f0c29;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:inherit";
+    o.innerHTML='<div style="font-size:3rem">📲</div><h2 style="margin:8px 0">অনুশীলন অ্যাপ ডাউনলোড হচ্ছে…</h2><p style="max-width:340px;opacity:.9">ডাউনলোড শেষ হলে ফাইলটা (ExamSite.apk) চাপুন, তারপর <b>ইনস্টল</b> চাপুন। প্রথমবার “অজানা উৎস থেকে ইনস্টল” অনুমতি চাইলে দিন। আগের তথ্য থাকবে।</p>'+
+      '<a href="'+APK+'" style="margin-top:14px;padding:14px 22px;border-radius:14px;background:linear-gradient(135deg,#6d5ae6,#ec4899);color:#fff;text-decoration:none;font-weight:700">⬇️ আবার ডাউনলোড করুন</a>'+
+      '<a href="/" style="margin-top:16px;color:#bbb">সাইটে ফিরুন</a>';
+    document.body.appendChild(o);
+    setTimeout(function(){location.href=APK},700);
+    return;
+  }
+  if(!droid)return;
+  function bar(title,note,btn,onGo,key){
+    if(document.getElementById("upd_bar"))return;
+    var d=document.createElement("div");d.id="upd_bar";
+    d.style.cssText="position:fixed;left:12px;right:12px;bottom:84px;z-index:99997;background:linear-gradient(135deg,#6d5ae6,#ec4899);color:#fff;border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-size:.95rem";
+    var t=document.createElement("div");t.style.fontWeight="700";t.textContent=title;d.appendChild(t);
+    var n=document.createElement("div");n.style.cssText="margin:4px 0 10px;opacity:.95";n.textContent=note;d.appendChild(n);
+    var go=document.createElement("button");go.textContent=btn;go.style.cssText="background:#fff;color:#4c3bd1;border:0;border-radius:12px;padding:10px 16px;font-weight:700;margin-right:8px";
+    go.onclick=function(){ls(key,String(Date.now()));d.remove();onGo()};
+    var no=document.createElement("button");no.textContent="পরে";no.style.cssText="background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:12px;padding:10px 14px";
+    no.onclick=function(){ls(key,String(Date.now()));d.remove()};
+    d.appendChild(go);d.appendChild(no);document.body.appendChild(d);
+  }
+  function chk(){
+    fetch("https://api.github.com/repos/skmkr501/examapp/commits?path=ExamSite.apk&per_page=1").then(function(r){return r.ok?r.json():null}).then(function(j){
+      var c=j&&j[0];if(!c||!c.commit)return;
+      var cd=new Date(c.commit.committer.date).getTime(),sha=c.sha;
+      if(inApp){
+        var it=0,has=false;
+        try{if(window.ExamAndroid&&window.ExamAndroid.getInstallTime){has=true;it=parseFloat(window.ExamAndroid.getInstallTime())||0}}catch(e){}
+        var newer=!has||cd>it+60000;
+        var sn=+ls("upd_snooze_"+sha)||0;
+        if(newer&&Date.now()-sn>6*3600*1000)bar("🆕 নতুন ভার্সন এসেছে","আপডেট করতে ডাউনলোড চাপুন। ডাউনলোড হয়ে গেলে ফাইলটা চাপুন → ইনস্টল। আগের তথ্য থাকবে।","⬇️ ডাউনলোড করো",window.__openApk,"upd_snooze_"+sha);
+      }else{
+        if(!ls("apk_seen_"+sha))bar("📲 অনুশীলন অ্যাপ","এক ক্লিকে ডাউনলোড করুন (সর্বশেষ সংস্করণ)।","⬇️ ডাউনলোড করো",function(){location.href=APK},"apk_seen_"+sha);
+      }
+    }).catch(function(){});
+  }
+  setTimeout(chk,6000);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden)setTimeout(chk,1500)});
 })();
 </script>
 </body>

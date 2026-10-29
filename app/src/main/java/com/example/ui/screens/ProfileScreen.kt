@@ -200,7 +200,7 @@ fun ProfileScreen(
                         Spacer(modifier = Modifier.height(10.dp))
                         Button(
                             onClick = {
-                                val message = "📊 Exam Site সাপ্তাহিক অগ্রগতি রিপোর্ট\n" +
+                                val message = "📊 অনুশীলন সাপ্তাহিক অগ্রগতি রিপোর্ট\n" +
                                         "শিক্ষার্থী: ${userProfile.name}\n" +
                                         "শ্রেণি: ${userProfile.classLevel}\n" +
                                         "সম্পন্ন পরীক্ষা: $totalTests টি\n" +

@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Exam Site"
+rootProject.name = "অনুশীলন"
 
 include(":app")

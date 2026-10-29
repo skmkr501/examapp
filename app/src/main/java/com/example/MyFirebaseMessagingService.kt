@@ -27,7 +27,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
         Log.d("FCM", "From: ${remoteMessage.from}")
 
-        val title = remoteMessage.notification?.title ?: remoteMessage.data["title"] ?: "Exam Site"
+        val title = remoteMessage.notification?.title ?: remoteMessage.data["title"] ?: "অনুশীলন"
         val body = remoteMessage.notification?.body ?: remoteMessage.data["body"] ?: ""
 
         sendNotification(title, body)

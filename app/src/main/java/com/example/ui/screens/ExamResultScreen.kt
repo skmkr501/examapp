@@ -230,7 +230,7 @@ fun ExamResultScreen(
                                 type = "text/plain"
                                 putExtra(
                                     Intent.EXTRA_TEXT,
-                                    "Exam Site-এ আমি '${result.examTitle}' পরীক্ষায় ${result.score}/${result.totalMarks} (${percentage.toInt()}%) পেয়েছি! 🚀"
+                                    "অনুশীলন-এ আমি '${result.examTitle}' পরীক্ষায় ${result.score}/${result.totalMarks} (${percentage.toInt()}%) পেয়েছি! 🚀"
                                 )
                             }
                             context.startActivity(Intent.createChooser(shareIntent, "ফলাফল শেয়ার করুন"))
