@@ -189,11 +189,6 @@ class PdfBridge(private val ctx: Context) {
     }
 }
 
-data class NavTab(
-    val title: String,
-    val icon: ImageVector,
-    val hash: String
-)
 
 class MainActivity : ComponentActivity() {
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
@@ -260,7 +255,6 @@ fun MainAppHost(
 ) {
     val context = LocalContext.current
     var webViewRef by remember { mutableStateOf<WebView?>(null) }
-    var currentHash by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var loadingProgress by remember { mutableStateOf(0) }
 
@@ -293,66 +287,17 @@ fun MainAppHost(
         }
     }
 
-    val tabs = listOf(
-        NavTab("স্টুডেন্ট", Icons.Default.School, ""),
-        NavTab("টিচার", Icons.Default.CoPresent, "#teacher"),
-        NavTab("অ্যাডমিন", Icons.Default.AdminPanelSettings, "#admin"),
-        NavTab("রিফ্রেশ", Icons.Default.Refresh, "reload")
-    )
-
     BackHandler(enabled = true) {
         val webView = webViewRef
         if (webView != null && webView.canGoBack()) {
             webView.goBack()
-        } else if (currentHash.isNotEmpty()) {
-            webView?.loadUrl(SITE_URL)
-            currentHash = ""
         } else {
             (context as? ComponentActivity)?.finish()
         }
     }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-            NavigationBar(
-                containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 8.dp
-            ) {
-                tabs.forEach { tab ->
-                    val selected = when (tab.hash) {
-                        "reload" -> false
-                        else -> currentHash == tab.hash
-                    }
-
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = {
-                            if (tab.hash == "reload") {
-                                webViewRef?.reload()
-                            } else {
-                                currentHash = tab.hash
-                                val targetUrl = SITE_URL + tab.hash
-                                webViewRef?.loadUrl(targetUrl)
-                            }
-                        },
-                        icon = { Icon(tab.icon, contentDescription = tab.title) },
-                        label = {
-                            Text(
-                                tab.title,
-                                fontSize = 12.sp,
-                                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
-                            )
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = PurpleAccent,
-                            selectedTextColor = PurpleAccent,
-                            indicatorColor = PurpleAccent.copy(alpha = 0.12f)
-                        )
-                    )
-                }
-            }
-        }
+        modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -378,6 +323,7 @@ fun MainAppHost(
                             loadsImagesAutomatically = true
                             loadWithOverviewMode = true
                             useWideViewPort = true
+                            textZoom = 100
                             displayZoomControls = false
                             builtInZoomControls = false
                             mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
